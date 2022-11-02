@@ -25,7 +25,8 @@ Our project is a web application that gives users the ability to create named bo
     `git commit -m "useful-commit-message"`
 8. Push your changes to the remote respository:
     `git push -u origin <branch-name>`
-9. Once you're finished working on the branch, submit a **pull request**
+9. Once you're finished working on the branch, commit your changes locally and remotely.
+10. Submit a **pull request**
 
 ## Submitting a Pull Request
 The easiest way is to visit 
