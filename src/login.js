@@ -7,10 +7,12 @@ class LoginForm extends React.Component {
         this.state = {
             username: '',
             password: '',
+            reg: false,
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.register = this.register.bind(this);
     }
 
     handleChange(event) {
@@ -22,14 +24,20 @@ class LoginForm extends React.Component {
     }
 
     handleSubmit(event) {
-        alert('FORM SUBMISSION: ' + this.state.username +' , ' + this.state.password);
         event.preventDefault();
-        // TODO: Validation / data base
-        // TODO: switching to home
+        if (this.state.reg){
+            this.setState({reg: false});
+            this.props.setActive('RegistrationForm');
+        }
+        else{
+            alert('Attempting to Log In: ' + this.state.username +' , ' + this.state.password);
+            // TODO: Validation / data base
+            // TODO: switching to home
+        }
     }
 
-    registration() {
-        // TODO: switch to registration page
+    register() {
+        this.setState({reg: true});
     }
 
     render() {
@@ -46,10 +54,12 @@ class LoginForm extends React.Component {
                         <input name="password" type="password" value={this.state.password} onChange={this.handleChange} />
                     </label>
                     <br/>
-                    <input type="submit" value="Log in" />
+                    <input type="submit" name="login" value="Log in" />
                     <br/>
-                    <button name="register" onClick={this.registration}>
-                        Register Now
+                    {"Don't have an account?"}
+                    <br/>
+                    <button name="register" onClick={this.register} >
+                        Register now
                     </button>
                 </form>
             </div>
