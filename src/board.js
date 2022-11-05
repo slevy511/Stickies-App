@@ -6,7 +6,7 @@ class Board extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            notes: Array(3).fill(null)
+            notes: Array(12).fill(null)
         }
     }
 

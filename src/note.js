@@ -32,15 +32,13 @@ class Note extends React.Component{
         return(
             <div>
                 <form className='Note' onSubmit={this.handleSubmit}>
-                    <input name="noteName" type="text" placeholder="Name your note!" value={this.state.noteName} onChange={this.handleChange} />
+                    <input className="Name" name="noteName" type="text" placeholder="Name your note!" value={this.state.noteName} onChange={this.handleChange} />
                     <br/>
-                    <label className='TextArea'>
                     <textarea
                         name="text"
                         placeholder="Start taking notes now!"
                         value={this.state.text}
                         onChange={this.handleChange} />
-                    </label>
                     <br/>
                     <input type="submit" name="save" value="Save Note" />
                 </form>

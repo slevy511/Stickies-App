@@ -5,11 +5,15 @@ textarea {
     width: 140px;
     height:100px;
     cursor: text;
-    background-color: #fff;
+    background-color: #F3E779;
     overflow: auto;
     resize: none;
 }
 
+.Name{
+    background-color: #F3E779;
+}
+
 .Note {
-    background-color: deepskyblue;
+    padding: 10px;
 }
