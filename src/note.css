@@ -1,0 +1,15 @@
+textarea {
+    display: inline-block;
+    margin: 0;
+    padding: .2em;
+    width: 140px;
+    height:100px;
+    cursor: text;
+    background-color: #fff;
+    overflow: auto;
+    resize: none;
+}
+
+.Note {
+    background-color: deepskyblue;
+}

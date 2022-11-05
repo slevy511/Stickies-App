@@ -30,9 +30,8 @@ class LoginForm extends React.Component {
             this.props.setActive('RegistrationForm');
         }
         else{
-            alert('Attempting to Log In: ' + this.state.username +' , ' + this.state.password);
             // TODO: Validation / data base
-            // TODO: switching to home
+            this.props.setActive('Board');
         }
     }
 
@@ -46,12 +45,12 @@ class LoginForm extends React.Component {
                 <form className="Form" onSubmit={this.handleSubmit}>
                     <label>
                         {"Username: "}
-                        <input name="username" type="text" value={this.state.username} onChange={this.handleChange} />
+                        <input name="username" type="text" placeholder="Username" value={this.state.username} onChange={this.handleChange} />
                     </label>
                     <br/>
                     <label>
                         {"Password: "}
-                        <input name="password" type="password" value={this.state.password} onChange={this.handleChange} />
+                        <input name="password" type="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} />
                     </label>
                     <br/>
                     <input type="submit" name="login" value="Log in" />
