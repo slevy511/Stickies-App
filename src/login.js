@@ -1,0 +1,70 @@
+import React from 'react';
+import './login.css';
+
+class LoginForm extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: '',
+            password: '',
+            reg: false,
+        };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.register = this.register.bind(this);
+    }
+
+    handleChange(event) {
+        const target = event.target;
+        const name = target.name;
+        this.setState({
+            [name]: event.target.value
+        });
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        if (this.state.reg){
+            this.setState({reg: false});
+            this.props.setActive('RegistrationForm');
+        }
+        else{
+            alert('Attempting to Log In: ' + this.state.username +' , ' + this.state.password);
+            // TODO: Validation / data base
+            // TODO: switching to home
+        }
+    }
+
+    register() {
+        this.setState({reg: true});
+    }
+
+    render() {
+        return (
+            <div className="LoginForm">
+                <form className="Form" onSubmit={this.handleSubmit}>
+                    <label>
+                        {"Username: "}
+                        <input name="username" type="text" value={this.state.username} onChange={this.handleChange} />
+                    </label>
+                    <br/>
+                    <label>
+                        {"Password: "}
+                        <input name="password" type="password" value={this.state.password} onChange={this.handleChange} />
+                    </label>
+                    <br/>
+                    <input type="submit" name="login" value="Log in" />
+                    <br/>
+                    {"Don't have an account?"}
+                    <br/>
+                    <button name="register" onClick={this.register} >
+                        Register now
+                    </button>
+                </form>
+            </div>
+        );
+    }
+}
+
+export default LoginForm;
