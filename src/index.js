@@ -24,7 +24,7 @@ class App extends React.Component{
       <div>
         {this.state.active === 'LoginForm' ? <LoginForm setActive={this.setActive}/> : null}
         {this.state.active === 'RegistrationForm' ? <RegistrationForm setActive={this.setActive} /> : null}
-        {this.state.active === 'Board' ? <Board /> : null}
+        {this.state.active === 'Board' ? <Board setActive={this.setActive} /> : null}
       </div>
     );
   }
