@@ -59,7 +59,7 @@ class RegistrationForm extends React.Component {
           {"Already have an account?"}
           <br/>
           <button name="login" onClick={this.login} >
-            Login
+            Log in
           </button>
         </form>
       </div>
