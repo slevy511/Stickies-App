@@ -6,13 +6,21 @@ class Board extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            notes: Array(12).fill(null)
+            notes: [0]
         }
         this.logout = this.logout.bind(this);
+        this.addnote = this.addnote.bind(this);
     }
 
     logout() {
         this.props.setActive('LoginForm');
+    }
+
+    addnote() {
+        this.setState({
+            notes: this.state.notes.concat(this.state.notes[this.state.notes.length - 1] + 1)
+        });
+        console.log(this.state.notes);
     }
 
     render() {
@@ -29,7 +37,7 @@ class Board extends React.Component{
             <div className="Board">
                 {this.state.notes.map((note, index) => {
                     return(
-                        < Note />
+                        < Note key={index}/>
                     );
                 })}
             </div>
