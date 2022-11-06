@@ -20,7 +20,6 @@ class Board extends React.Component{
         this.setState({
             notes: this.state.notes.concat(this.state.notes[this.state.notes.length - 1] + 1)
         });
-        console.log(this.state.notes);
     }
 
     render() {

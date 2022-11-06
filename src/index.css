@@ -13,3 +13,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.Logo {
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  position: absolute;
+  object-position: -20% -20%;
+}

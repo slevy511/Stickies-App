@@ -4,6 +4,7 @@ import './index.css';
 import LoginForm from './login.js'
 import RegistrationForm from './register.js'
 import Board from './board.js'
+import logo from './logo.png'
 
 class App extends React.Component{
   constructor(props) {
@@ -22,6 +23,7 @@ class App extends React.Component{
   render(){
     return (
       <div>
+        <img className="Logo" src={logo} alt={"Stickies!"} />
         {this.state.active === 'LoginForm' ? <LoginForm setActive={this.setActive}/> : null}
         {this.state.active === 'RegistrationForm' ? <RegistrationForm setActive={this.setActive} /> : null}
         {this.state.active === 'Board' ? <Board setActive={this.setActive} /> : null}
