@@ -1,5 +1,4 @@
 import React from 'react';
-import './login.css';
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -41,8 +40,8 @@ class LoginForm extends React.Component {
 
     render() {
         return (
-            <div className="LoginForm">
-                <form className="Form" onSubmit={this.handleSubmit}>
+            <div className="login-form">
+                <form className="form" onSubmit={this.handleSubmit}>
                     <label>
                         {"Username: "}
                         <input name="username" type="text" placeholder="Username" value={this.state.username} onChange={this.handleChange} />
