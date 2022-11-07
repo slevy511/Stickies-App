@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import LoginForm from './login.js'
-import RegistrationForm from './register.js'
-import Board from './board.js'
+import LoginForm from './components/Login'
+import RegistrationForm from './components/Register'
+import Board from './components/Board'
 import logo from './logo.png'
 
 class App extends React.Component{
@@ -23,7 +22,7 @@ class App extends React.Component{
   render(){
     return (
       <div>
-        <img className="Logo" src={logo} alt={"Stickies!"} />
+        <img className="logo" src={logo} alt={"Stickies!"} />
         {this.state.active === 'LoginForm' ? <LoginForm setActive={this.setActive}/> : null}
         {this.state.active === 'RegistrationForm' ? <RegistrationForm setActive={this.setActive} /> : null}
         {this.state.active === 'Board' ? <Board setActive={this.setActive} /> : null}

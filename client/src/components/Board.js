@@ -1,6 +1,5 @@
 import React from 'react';
-import Note from './note.js';
-import './board.css'
+import Note from './Note.js';
 
 class Board extends React.Component{
     constructor(props){
@@ -25,15 +24,15 @@ class Board extends React.Component{
     render() {
         return(
             <>
-            <div className="AppBar">
+            <div className="app-bar">
             <button name="addnote" onClick={this.addnote}>
                 New Note
-            </ button>
+            </button>
             <button name="logout" onClick={this.logout}>
                 Log out
-            </ button>
+            </button>
             </div>
-            <div className="Board">
+            <div className="board">
                 {this.state.notes.map((note, index) => {
                     return(
                         < Note key={index} />

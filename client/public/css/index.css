@@ -14,7 +14,7 @@ code {
     monospace;
 }
 
-.Logo {
+.logo {
   width: 55px;
   height: 55px;
   object-fit: cover;
@@ -22,3 +22,4 @@ code {
   left: 0;
   position: absolute;
 }
+
