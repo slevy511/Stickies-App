@@ -1,0 +1,20 @@
+textarea {
+    display: inline-block;
+    margin: 0;
+    padding: .2em;
+    width: 200px;
+    height:100px;
+    cursor: text;
+    background-color: #F3E779;
+    overflow: auto;
+    resize: none;
+}
+
+.Name{
+    background-color: #F3E779;
+    width: 200px;
+}
+
+.Note {
+    padding: 10px;
+}

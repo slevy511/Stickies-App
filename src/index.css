@@ -5,9 +5,20 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(35, 162, 205);
+  height: 100%
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.Logo {
+  width: 55px;
+  height: 55px;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  position: absolute;
 }

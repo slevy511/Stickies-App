@@ -1,0 +1,15 @@
+.Board{
+    position: static;
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 100vw;
+}
+
+.AppBar{
+    display: flex;
+    justify-content: flex-end;
+    height: 25px;
+    padding: 15px;
+    background-color: darkblue;
+}
