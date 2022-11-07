@@ -11,7 +11,7 @@ Our project is a web application that gives users the ability to create named bo
 4. Type `cd CS-35L-Final-Project` to change into the repo directory
 5. Type `cd client` to change into the `client` directory
 6. Type `npm install` to install client dependencies
-7. Run `npm install` to start the client application
+7. Run `npm start` to start the client application
 8. The application should now be running on `localhost:3000` in your browser
 
 ## How to Run the Backend (server directory)
