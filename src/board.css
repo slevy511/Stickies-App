@@ -10,5 +10,6 @@
     display: flex;
     justify-content: flex-end;
     height: 25px;
-    margin: 15px;
+    padding: 15px;
+    background-color: darkblue;
 }

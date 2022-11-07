@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: deepskyblue;
+  background-color: rgb(35, 162, 205);
   height: 100%
 }
 
@@ -15,11 +15,10 @@ code {
 }
 
 .Logo {
-  width: 75px;
-  height: 75px;
+  width: 55px;
+  height: 55px;
   object-fit: cover;
   top: 0;
   left: 0;
   position: absolute;
-  object-position: -20% -20%;
 }

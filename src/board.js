@@ -36,7 +36,7 @@ class Board extends React.Component{
             <div className="Board">
                 {this.state.notes.map((note, index) => {
                     return(
-                        < Note key={index}/>
+                        < Note key={index} />
                     );
                 })}
             </div>

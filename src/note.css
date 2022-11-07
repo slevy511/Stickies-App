@@ -2,7 +2,7 @@ textarea {
     display: inline-block;
     margin: 0;
     padding: .2em;
-    width: 140px;
+    width: 200px;
     height:100px;
     cursor: text;
     background-color: #F3E779;
@@ -12,6 +12,7 @@ textarea {
 
 .Name{
     background-color: #F3E779;
+    width: 200px;
 }
 
 .Note {
