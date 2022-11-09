@@ -15,7 +15,9 @@ Our project is a web application that gives users the ability to create named bo
 8. The application should now be running on `localhost:3000` in your browser
 
 ## How to Run the Backend (server directory)
-<sub>Coming soon....</sub>
+1. `cd` into `server` directory
+2. run `npm install` to install server dependencies
+3. run `nodemon server.js` to run the server application. `nodemon` updates as you save your `server.js` code, which is nice. If it doesn't work, use `node server.js` but note that you have to rerun it every time you make changes. 
 
 ## How to Contribute to the Project
 **Make sure you have cloned the repository and ran the application by following the instructions above**
