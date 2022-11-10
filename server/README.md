@@ -15,7 +15,7 @@ Let's say you're at a restaurant and you start going in the kitchen and cooking 
 
 *How do restaurants tell you what you can and cannot access?*
 
-They would do that by providing you a menu! This menu includes things you can buy such as sandwiches, pizza, and coffee. 
+They would do that by providing you a menu! This menu includes things you can buy such as sandwiches, pizza, and coffee.  
 An API is just like a menu. For a weather API like OpenWeatherMap, the kind of data you can access include things like temperature, weather conditions, weather images, atmospheric pressure, etc... whereas other data will be off-limits to the public. 
 
 ### Understanding the API Code
@@ -36,16 +36,16 @@ app.get('/api/all-users', function(req, res) {
 })
 ```
 **There are two kinds of express HTTP requests:**
-`app.get()` and `app.post()`
-Post requests are used to send data
-Get requests are used to retrieve data
-In this case, it's a get request, so we're retrieving data from the server
-Inside the function, we see some Mongoose code that gives us an array of all users. 
-So every time we call this API endpoint, we get the array of all users. 
+`app.get()` and `app.post()`  
+Post requests are used to send data  
+Get requests are used to retrieve data  
+In this case, it's a get request, so we're retrieving data from the server  
+Inside the function, we see some Mongoose code that gives us an array of all users.   
+So every time we call this API endpoint, we get the array of all users.  
 
-Get requests can be accessed by visiting the domain + the route.
-So for example, you can visit: `localhost:8000/api/all-users` and see an array user objects
-Post requests cannot be accessed this way!
+Get requests can be accessed by visiting the domain + the route.  
+So for example, you can visit: `localhost:8000/api/all-users` and see an array user objects  
+**Post requests cannot be accessed this way!** 
 
 ### Express Routing Parameters
 Now how do we pass arguments into our API routes? Say for example you wanted to search for a specific user via username
@@ -132,8 +132,8 @@ async function search() {
 search()
 ```
 
-TLDR:
-If you want to access the value of an API get or post request, you must bundle all the code inside an `async` function
+TLDR:  
+If you want to access the value of an API get or post request, you must bundle all the code inside an `async` function and call it
 
 
 
