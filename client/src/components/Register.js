@@ -8,7 +8,7 @@ class RegistrationForm extends React.Component {
       username: '',
       password: '',
       log: false,
-      errstate: 0,
+      errstate: true,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -47,17 +47,12 @@ class RegistrationForm extends React.Component {
         if (this.state.username === '' || this.state.password === ''){
             this.setState({errstate: 0});
         }
-        else{
-            const userValid = await Axios.get("http://localhost:8000/api/search-user/" + this.state.username)
-            console.log(userValid)
-            if (userValid.data === ''){
-              // user doesn't exist: create account
-              await Axios.post("http://localhost:8000/api/add-users/" + this.state.username + "/" + this.state.password)
-              this.props.setActive('Board');
-            }
-            else{
-              this.setState({errstate: 1});
-            }
+        else {
+          const created = await Axios.post("http://localhost:8000/api/create-user/" + this.state.username + "/" + this.state.password)
+          this.setState({errstate: created.data});
+          if (created.data){
+            this.props.setActive('Board');
+          }
         }
     }
 }
@@ -75,7 +70,7 @@ class RegistrationForm extends React.Component {
             <small>
               <small>
                 <pre>
-                  {this.state.errstate === 0 ? "Please enter your username\nand password." : 
+                  {this.state.errstate === true ? "Please enter your username\nand password." : 
                   "That username is taken.\nTry another username."}
                 </pre>
               </small>

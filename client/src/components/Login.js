@@ -36,20 +36,12 @@ class LoginForm extends React.Component {
                 this.setState({errstate: 0});
             }
             else{
-                const userValid = await Axios.get("http://localhost:8000/api/search-user/" + this.state.username)
-                console.log(userValid)
-                if (userValid.data === ''){
-                    this.setState({errstate: 1});
+                const response = await Axios.get("http://localhost:8000/api/valid-login/" + this.state.username + "/" + this.state.password)
+                if(response.data){
+                    this.props.setActive('Board');
                 }
                 else{
-                    const response = await Axios.get("http://localhost:8000/api/compare-password/" + this.state.username + "/" + this.state.password)
-                    console.log(response)
-                    if(response.data){
-                        this.props.setActive('Board');
-                    }
-                    else{
-                        this.setState({errstate: 2});
-                    }
+                    this.setState({errstate: 1});
                 }
             }
         }
@@ -69,8 +61,7 @@ class LoginForm extends React.Component {
                             <small>
                                 <pre>
                                     {this.state.errstate === 0 ? "Please enter your username\nand password." : 
-                                    this.state.errstate === 1 ? "That user does not exist.\nCreate an account." :
-                                    "Incorrect password.\nPlease try again."}
+                                    "Incorrect username\nor password."}
                                 </pre>
                             </small>
                         </small>

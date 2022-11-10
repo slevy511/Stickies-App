@@ -51,6 +51,39 @@ app.post('/api/add-users/:username/:password', function(req, res) {
     })
 });
 
+app.post('/api/create-user/:username/:password', function(req, res){
+    // create a user, if and only if username is not in use
+
+    const newUsername = req.params.username
+    const newPassword = req.params.password
+
+    const newUser = new User({
+        username: newUsername,
+        password: newPassword
+    })
+
+    User.findOne({username: newUsername}, function(err, foundUser) {
+        if (err) {
+            res.send(err)
+        }
+        else {
+            if (foundUser == null){
+                newUser.save(function(err){
+                    if (err) {
+                        res.send(err)
+                    }
+                    else {
+                        res.send(true)
+                    }
+                })
+            }
+            else{
+                res.send(false)
+            }
+        }
+    })
+})
+
 app.get('/api/compare-password/:username/:password', function(req, res) {
     // sends 'true' if password matches for the user, 'false' otherwise
 
@@ -63,6 +96,28 @@ app.get('/api/compare-password/:username/:password', function(req, res) {
         }
         else {
             res.send(foundUser.password == password)
+        }
+    })
+
+})
+
+app.get('/api/valid-login/:username/:password', function(req, res) {
+    // sends 'true' if password matches for the user, 'false' if user doesn't exist or password doesn't match
+
+    const searchUsername = req.params.username
+    const password = req.params.password
+
+    User.findOne({username: searchUsername}, function(err, foundUser) {
+        if (err) {
+            res.send(err)
+        }
+        else {
+            if (foundUser == null){
+                res.send(false)
+            }
+            else{
+                res.send(foundUser.password == password)
+            }
         }
     })
 
