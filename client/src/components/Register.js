@@ -43,7 +43,6 @@ class RegistrationForm extends React.Component {
         this.props.setActive('LoginForm');
     }
     else{
-        // TODO: Validation / data base
         if (this.state.username === '' || this.state.password === ''){
             this.setState({errstate: 0});
         }

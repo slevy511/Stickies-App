@@ -29,28 +29,6 @@ const User = mongoose.model("user", userSchema);
 
 /* USER API */
 
-app.post('/api/add-users/:username/:password', function(req, res) {
-    // creating a user
-
-    // getting the values of express parameters
-    const newUsername = req.params.username
-    const newPassword = req.params.password
-
-    const newUser = new User({
-        username: newUsername,
-        password: newPassword
-    })
-
-    newUser.save(function(err) {
-        if (err) {
-            res.send(err)
-        }
-        else {
-            res.send("Success!")
-        }
-    })
-});
-
 app.post('/api/create-user/:username/:password', function(req, res){
     // create a user, if and only if username is not in use
 
@@ -82,23 +60,6 @@ app.post('/api/create-user/:username/:password', function(req, res){
             }
         }
     })
-})
-
-app.get('/api/compare-password/:username/:password', function(req, res) {
-    // sends 'true' if password matches for the user, 'false' otherwise
-
-    const searchUsername = req.params.username
-    const password = req.params.password
-
-    User.findOne({username: searchUsername}, function(err, foundUser) {
-        if (err) {
-            res.send(err)
-        }
-        else {
-            res.send(foundUser.password == password)
-        }
-    })
-
 })
 
 app.get('/api/valid-login/:username/:password', function(req, res) {
