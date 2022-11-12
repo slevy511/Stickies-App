@@ -22,7 +22,20 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model("user", userSchema);
 
+/* NOTE SCHEMA AND MODEL */
+const noteSchema = new mongoose.Schema({
+    title: String,
+    content: String
+});
 
+const Note = mongoose.model("note", noteSchema);
+
+/* BOARD SCHEMA AND MODEL */
+const boardSchema = new mongoose.Schema({
+    title: String
+});
+
+const Board = mongoose.model("board", boardSchema);
 
 /* ***************** API ENDPOINTS ***************** */
 
@@ -84,6 +97,22 @@ app.get('/api/search-user/:username', function(req, res) {
     })
 })
 
+app.post('/api/delete-user/:username', function(req, res) {
+    // searching for a user
+
+    const searchUsername = req.params.username
+
+    // sends the user object that matches the username, error otherwise
+    User.deleteOne({username: searchUsername}, function(err) {
+        if (err) {
+            res.send(err)
+        }
+        else {
+            res.send("Success!")
+        }
+    })
+})
+
 // sends back all users & passwords for testing purposes
 app.get('/api/all-users', function(req, res) {
     User.find(function(err, users) {
@@ -100,9 +129,133 @@ app.get('/api/all-users', function(req, res) {
 
 /* NOTE API */
 
+//accepts title and content and posts it to database
+//nodemon server.js
+
+function sayHi(req, res) {
+    res.send("Hello")
+}
+
+app.post('/api/create-note/:title/:content', function(req,res){
+    const newTitle = req.params.title
+    const newContent = req.params.content
+
+
+    const newNote = new Note({
+        title: newTitle,
+        content: newContent
+    })
+
+    newNote.save(function(err) {
+        if (err) {
+            res.send(err)
+        }
+        else {
+            res.send("Success!")
+        }
+    })
+
+
+});
+
+// sends back all users & passwords for testing purposes
+app.get('/api/all-notes', function(req, res) {
+    Note.find(function(err, notes) {
+        if (err) {
+            console.log(err)
+            res.send("Error!")
+        }
+        else {
+            // users is an array of JavaScript user objects
+            res.send(notes)
+        }
+    })
+})
+
+app.post('/api/delete-note/:id', function(req, res) {
+    // searching for a user
+
+    const searchId = req.params.id
+
+    // sends the user object that matches the username, error otherwise
+    Note.deleteOne({_id: searchId}, function(err) {
+        if (err) {
+            res.send(err)
+        }
+        else {
+            res.send("Success!")
+        }
+    })
+})
+
+
 
 
 /* BOARD API */
+
+app.post('/api/create-board/:title', function(req,res){
+    const newTitle = req.params.title
+    
+    const newBoard = new Board({
+        title: newTitle
+    })
+
+    newBoard.save(function(err) {
+        if (err) {
+            res.send(err)
+        }
+        else {
+            res.send("Success!")
+        }
+    })
+
+});
+
+app.get('/api/search-board/:title', function(req, res) {
+    // searching for a board
+
+    const searchTitle = req.params.title
+
+    // sends the user object that matches the username, error otherwise
+    Board.findOne({title: searchTitle}, function(err, foundTitle) {
+        if (err) {
+            res.send(err)
+        }
+        else {
+            res.send(foundTitle)
+        }
+    })
+})
+
+app.post('/api/delete-board/:id', function(req, res) {
+    // searching for a board
+
+    const searchId = req.params.id
+
+    // sends the user object that matches the username, error otherwise
+    Board.deleteOne({_id: searchId}, function(err) {
+        if (err) {
+            res.send(err)
+        }
+        else {
+            res.send("Success!")
+        }
+    })
+})
+
+// sends back all users & passwords for testing purposes
+app.get('/api/all-boards', function(req, res) {
+    Board.find(function(err, boards) {
+        if (err) {
+            console.log(err)
+            res.send("Error!")
+        }
+        else {
+            // users is an array of JavaScript user objects
+            res.send(boards)
+        }
+    })
+})
 
 
 
