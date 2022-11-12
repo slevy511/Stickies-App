@@ -137,6 +137,9 @@ function sayHi(req, res) {
 }
 
 app.post('/api/create-note/:title/:content', function(req,res){
+    // creating a note
+
+    // getting the values of express parameters
     const newTitle = req.params.title
     const newContent = req.params.content
 
@@ -158,7 +161,7 @@ app.post('/api/create-note/:title/:content', function(req,res){
 
 });
 
-// sends back all users & passwords for testing purposes
+// sends back all notes for testing purposes
 app.get('/api/all-notes', function(req, res) {
     Note.find(function(err, notes) {
         if (err) {
@@ -166,18 +169,17 @@ app.get('/api/all-notes', function(req, res) {
             res.send("Error!")
         }
         else {
-            // users is an array of JavaScript user objects
             res.send(notes)
         }
     })
 })
 
 app.post('/api/delete-note/:id', function(req, res) {
-    // searching for a user
+    // searching for a note
 
     const searchId = req.params.id
 
-    // sends the user object that matches the username, error otherwise
+    // finds and deletes the note object that matches the title, error otherwise
     Note.deleteOne({_id: searchId}, function(err) {
         if (err) {
             res.send(err)
@@ -194,6 +196,10 @@ app.post('/api/delete-note/:id', function(req, res) {
 /* BOARD API */
 
 app.post('/api/create-board/:title', function(req,res){
+    // creating a board
+
+    // getting the values of express parameters
+
     const newTitle = req.params.title
     
     const newBoard = new Board({
@@ -216,7 +222,7 @@ app.get('/api/search-board/:title', function(req, res) {
 
     const searchTitle = req.params.title
 
-    // sends the user object that matches the username, error otherwise
+    // sends the board object that matches the title, error otherwise
     Board.findOne({title: searchTitle}, function(err, foundTitle) {
         if (err) {
             res.send(err)
@@ -232,7 +238,7 @@ app.post('/api/delete-board/:id', function(req, res) {
 
     const searchId = req.params.id
 
-    // sends the user object that matches the username, error otherwise
+    // finds and deletes the board object that matches the title, error otherwise
     Board.deleteOne({_id: searchId}, function(err) {
         if (err) {
             res.send(err)
@@ -243,7 +249,7 @@ app.post('/api/delete-board/:id', function(req, res) {
     })
 })
 
-// sends back all users & passwords for testing purposes
+// sends back all boards for testing purposes
 app.get('/api/all-boards', function(req, res) {
     Board.find(function(err, boards) {
         if (err) {
@@ -251,7 +257,6 @@ app.get('/api/all-boards', function(req, res) {
             res.send("Error!")
         }
         else {
-            // users is an array of JavaScript user objects
             res.send(boards)
         }
     })
