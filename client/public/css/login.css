@@ -3,10 +3,13 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+    font-family: "Arial Black", "Impact", "Courier New", monospace;
 }
 
 .form{
-    background-color: white;
+    background-color: #F3E779;
+    font-family: "Arial Black", "Impact", "Courier New", monospace;
+
     display: inline-block;
     padding: 10px;
 }
