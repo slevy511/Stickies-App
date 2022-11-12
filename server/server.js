@@ -42,10 +42,9 @@ const Board = mongoose.model("board", boardSchema);
 
 /* USER API */
 
-app.post('/api/add-users/:username/:password', function(req, res) {
-    // creating a user
+app.post('/api/create-user/:username/:password', function(req, res){
+    // create a user, if and only if username is not in use
 
-    // getting the values of express parameters
     const newUsername = req.params.username
     const newPassword = req.params.password
 
@@ -54,18 +53,30 @@ app.post('/api/add-users/:username/:password', function(req, res) {
         password: newPassword
     })
 
-    newUser.save(function(err) {
+    User.findOne({username: newUsername}, function(err, foundUser) {
         if (err) {
             res.send(err)
         }
         else {
-            res.send("Success!")
+            if (foundUser == null){
+                newUser.save(function(err){
+                    if (err) {
+                        res.send(err)
+                    }
+                    else {
+                        res.send(true)
+                    }
+                })
+            }
+            else{
+                res.send(false)
+            }
         }
     })
-});
+})
 
-app.get('/api/compare-password/:username/:password', function(req, res) {
-    // sends 'true' if password matches for the user, 'false' otherwise
+app.get('/api/valid-login/:username/:password', function(req, res) {
+    // sends 'true' if password matches for the user, 'false' if user doesn't exist or password doesn't match
 
     const searchUsername = req.params.username
     const password = req.params.password
@@ -75,7 +86,12 @@ app.get('/api/compare-password/:username/:password', function(req, res) {
             res.send(err)
         }
         else {
-            res.send(foundUser.password == password)
+            if (foundUser == null){
+                res.send(false)
+            }
+            else{
+                res.send(foundUser.password == password)
+            }
         }
     })
 
