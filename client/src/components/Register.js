@@ -24,18 +24,6 @@ class RegistrationForm extends React.Component {
     });
   }
 
-  // handleSubmit(event) {
-  //   event.preventDefault();
-  //   if (this.state.log){
-  //     this.setState({log: false});
-  //     this.props.setActive('LoginForm');
-  //   }
-  //   else{
-  //     // TODO: Validation / data base
-  //     this.props.setActive('Board');
-  //   }
-  // }
-
   async handleSubmit(event) {
     event.preventDefault();
     if (this.state.log){
@@ -54,7 +42,7 @@ class RegistrationForm extends React.Component {
           }
         }
     }
-}
+  }
 
   login() {
       this.setState({log: true});

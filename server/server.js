@@ -232,7 +232,7 @@ app.get('/api/search-board/:title', function(req, res) {
 
     const searchTitle = req.params.title
 
-    // sends the user object that matches the username, error otherwise
+    // sends the board object that matches the title, error otherwise
     Board.findOne({title: searchTitle}, function(err, foundTitle) {
         if (err) {
             res.send(err)
@@ -248,7 +248,7 @@ app.post('/api/delete-board/:id', function(req, res) {
 
     const searchId = req.params.id
 
-    // sends the user object that matches the username, error otherwise
+    // sends the board object that matches the id, error otherwise
     Board.deleteOne({_id: searchId}, function(err) {
         if (err) {
             res.send(err)
@@ -259,7 +259,7 @@ app.post('/api/delete-board/:id', function(req, res) {
     })
 })
 
-// sends back all users & passwords for testing purposes
+// sends back all boards
 app.get('/api/all-boards', function(req, res) {
     Board.find(function(err, boards) {
         if (err) {
@@ -267,7 +267,7 @@ app.get('/api/all-boards', function(req, res) {
             res.send("Error!")
         }
         else {
-            // users is an array of JavaScript user objects
+            // boards is an array of JavaScript board objects
             res.send(boards)
         }
     })
