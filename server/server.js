@@ -16,26 +16,55 @@ async function main() {
 
 /* USER SCHEMA AND MODEL */
 const userSchema = new mongoose.Schema({
+    // Username and password
     username: String,
-    password: String
+    password: String,
+    // Array containing IDs of all boards belonging to user
+    boardIds: [{
+        id: String
+    }]
 });
 
 const User = mongoose.model("user", userSchema);
 
-/* NOTE SCHEMA AND MODEL */
-const noteSchema = new mongoose.Schema({
-    title: String,
-    content: String
-});
-
-const Note = mongoose.model("note", noteSchema);
-
 /* BOARD SCHEMA AND MODEL */
 const boardSchema = new mongoose.Schema({
-    title: String
+    // Name of board
+    boardname: String,
+    // Array containing IDs of all notes belonging to board
+    noteIds: [{
+        id: String
+    }]
 });
 
 const Board = mongoose.model("board", boardSchema);
+
+/* NOTE SCHEMA AND MODEL */
+const noteSchema = new mongoose.Schema({
+    // Notes have three modes: Note, Chart, and Poll
+    mode: String,
+    notename: String,
+    // Background color (modifies CSS)
+    color: String,
+    // Number of references to note
+    linkcount: Number,
+    // If mode is Note: array of length 1
+    // If mode is Chart: array of length 0
+    // If mode is Poll: array of the poll options
+    contents: [{
+        content: String
+    }],
+    // Records responses to a poll
+    // If mode is not poll, NULL
+    responses: {
+        type: Map,
+        of: String
+    },
+    // Only for chart: poll to get data from
+    pollId: String
+});
+
+const Note = mongoose.model("note", noteSchema);
 
 /* ***************** API ENDPOINTS ***************** */
 
@@ -143,77 +172,13 @@ app.get('/api/all-users', function(req, res) {
     })
 })
 
-/* NOTE API */
-
-//accepts title and content and posts it to database
-//nodemon server.js
-
-function sayHi(req, res) {
-    res.send("Hello")
-}
-
-app.post('/api/create-note/:title/:content', function(req,res){
-    const newTitle = req.params.title
-    const newContent = req.params.content
-
-
-    const newNote = new Note({
-        title: newTitle,
-        content: newContent
-    })
-
-    newNote.save(function(err) {
-        if (err) {
-            res.send(err)
-        }
-        else {
-            res.send("Success!")
-        }
-    })
-
-
-});
-
-// sends back all users & passwords for testing purposes
-app.get('/api/all-notes', function(req, res) {
-    Note.find(function(err, notes) {
-        if (err) {
-            console.log(err)
-            res.send("Error!")
-        }
-        else {
-            // users is an array of JavaScript user objects
-            res.send(notes)
-        }
-    })
-})
-
-app.post('/api/delete-note/:id', function(req, res) {
-    // searching for a user
-
-    const searchId = req.params.id
-
-    // sends the user object that matches the username, error otherwise
-    Note.deleteOne({_id: searchId}, function(err) {
-        if (err) {
-            res.send(err)
-        }
-        else {
-            res.send("Success!")
-        }
-    })
-})
-
-
-
-
 /* BOARD API */
 
-app.post('/api/create-board/:title', function(req,res){
-    const newTitle = req.params.title
+app.post('/api/create-board/:boardname', function(req,res){
+    const newBoardName = req.params.boardname
     
     const newBoard = new Board({
-        title: newTitle
+        boardname: newBoardName
     })
 
     newBoard.save(function(err) {
@@ -227,18 +192,18 @@ app.post('/api/create-board/:title', function(req,res){
 
 });
 
-app.get('/api/search-board/:title', function(req, res) {
+app.get('/api/search-board/:boardname', function(req, res) {
     // searching for a board
 
-    const searchTitle = req.params.title
+    const searchName = req.params.boardname
 
-    // sends the board object that matches the title, error otherwise
-    Board.findOne({title: searchTitle}, function(err, foundTitle) {
+    // sends the board object that matches the boardname, error otherwise
+    Board.findOne({boardname: searchName}, function(err, foundName) {
         if (err) {
             res.send(err)
         }
         else {
-            res.send(foundTitle)
+            res.send(foundName)
         }
     })
 })
@@ -273,7 +238,57 @@ app.get('/api/all-boards', function(req, res) {
     })
 })
 
+/* NOTE API */
 
+app.post('/api/create-note/:title/:content', function(req,res){
+    const newNoteName = req.params.title
+    const newContent = req.params.content
+
+
+    const newNote = new Note({
+        notename: newNoteName,
+        content: newContent
+    })
+
+    newNote.save(function(err) {
+        if (err) {
+            res.send(err)
+        }
+        else {
+            res.send("Success!")
+        }
+    })
+});
+
+// sends back all users & passwords for testing purposes
+app.get('/api/all-notes', function(req, res) {
+    Note.find(function(err, notes) {
+        if (err) {
+            console.log(err)
+            res.send("Error!")
+        }
+        else {
+            // users is an array of JavaScript user objects
+            res.send(notes)
+        }
+    })
+})
+
+app.post('/api/delete-note/:id', function(req, res) {
+    // searching for a user
+
+    const searchId = req.params.id
+
+    // sends the user object that matches the username, error otherwise
+    Note.deleteOne({_id: searchId}, function(err) {
+        if (err) {
+            res.send(err)
+        }
+        else {
+            res.send("Success!")
+        }
+    })
+})
 
 app.post('/', function(req, res, next) {
     res.send("all working!: POST")
