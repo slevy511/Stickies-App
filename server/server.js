@@ -6,6 +6,7 @@ const cors = require('cors')
 // enable access to all origins
 app.use(cors())
 
+app.use(express.json());
 main().catch(err => console.log(err));
 
 async function main() {
@@ -42,18 +43,17 @@ const Board = mongoose.model("board", boardSchema);
 /* NOTE SCHEMA AND MODEL */
 const noteSchema = new mongoose.Schema({
     // Notes have three modes: Note, Chart, and Poll
-    mode: String,
+    mode: {type: String, default: "note"},
     notename: String,
     // Background color (modifies CSS)
     color: String,
-    // Number of references to note
-    linkcount: Number,
+    // Number of references to note - default is 1
+    linkcount: {type: Number, default: 1},
     // If mode is Note: array of length 1
     // If mode is Chart: array of length 0
     // If mode is Poll: array of the poll options
-    contents: [{
-        content: String
-    }],
+    contents: [String],
+
     // Records responses to a poll
     // If mode is not poll, NULL
     responses: {
@@ -240,14 +240,13 @@ app.get('/api/all-boards', function(req, res) {
 
 /* NOTE API */
 
-app.post('/api/create-note/:title/:content', function(req,res){
-    const newNoteName = req.params.title
-    const newContent = req.params.content
-
-
+app.post('/api/create-note', function(req,res){
+    const newNoteName = req.body.notename
+    const newContent = req.body.content
+    
     const newNote = new Note({
         notename: newNoteName,
-        content: newContent
+        contents: [newContent]
     })
 
     newNote.save(function(err) {

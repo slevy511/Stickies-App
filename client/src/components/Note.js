@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 
 class Note extends React.Component{
@@ -22,6 +23,18 @@ class Note extends React.Component{
 
     handleSubmit(event) {
         event.preventDefault();
+        
+        // Add note to database!
+        axios.post("http://localhost:8000/api/create-note", {
+            notename: this.state.noteName,
+            content: this.state.text
+        })
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 
         // TODO: Tie in to database
         console.log(this.state.noteName + ", " + this.state.text);
