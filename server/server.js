@@ -203,13 +203,38 @@ app.get('/api/all-users', function(req, res) {
 
 /* BOARD API */
 
-app.post('/api/create-board/:boardname', function(req,res){
+app.post('/api/create-board/:userID/:boardname', function(req,res){
+    const userID = req.params.userID
     const newBoardName = req.params.boardname
     
+    // create new board with inputted title
     const newBoard = new Board({
         boardname: newBoardName
     })
 
+    // grab the board ID
+    const newBoardId = String(newBoard._id)
+
+    // find the user and update its boardIds array to include the created board
+    User.findOne({_id: userID}, function(err, foundUser) {
+        if (err) {
+            res.send(err)
+        }
+        else {
+            if (foundUser !== null) {
+                // append the newBoardId to the current user's boardIds array
+                // and save it to database
+                foundUser.boardIds.push(newBoardId)
+                foundUser.save()
+            }
+            else {
+                res.send("User doesn't exist")
+            }
+        }
+    })
+
+
+    // save that new board into the database
     newBoard.save(function(err) {
         if (err) {
             res.send(err)
