@@ -217,7 +217,7 @@ app.post('/api/create-board/:userID/:boardname', async function(req,res){
 
     // find the user and update its boardIds array to include the created board
     await User.updateOne(
-            {_id: mongoose.Types.ObjectId(userID)}, 
+            {_id: userID}, 
             {$push: {boardIds: [newBoardId]}}
     )
 
@@ -254,32 +254,28 @@ app.get('/api/search-board/:boardname', function(req, res) {
 // returns all the boards for a specific user
 app.get("/api/get-all-boards/:username", function(req, res) {
     const username = req.params.username
-    
 
+    // find user given the username
     User.findOne({username: username})
     .then(function(foundUser) {
+
+        // get board ID array for found user
         const allBoardIds = foundUser.boardIds
-        console.log(allBoardIds)
-        for (var i = 0; i < allBoardIds.length; i++) {
-            allBoardIds[i] = mongoose.Types.ObjectId(allBoardIds[i])
-        }
-        console.log(allBoardIds)
+
+        // finds all boards with ID's in the allBoardIds array
         Board.find({_id: {$in: allBoardIds}}, function(err, allBoards) {
             if (err) {
                 res.send(err)
             }
             else {
+                // send the array of all boards
                 res.send(allBoards)
             }
         })
-
     })
     .catch(function(err) {
         res.send(err)
     })
-
-    
-    
 
 })
 
