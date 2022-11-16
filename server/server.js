@@ -311,14 +311,22 @@ app.get('/api/all-boards', function(req, res) {
 
 /* NOTE API */
 
-app.post('/api/create-note', function(req,res){
+app.post('/api/create-note', async function(req,res){
     const newNoteName = req.body.notename
     const newContent = req.body.content
-    
+    const boardID = req.body.boardID
+
     const newNote = new Note({
         notename: newNoteName,
         contents: [newContent]
     })
+
+    const newNoteID = newNote._id
+
+    await Board.updateOne(
+        {_id: boardID}, 
+        {$push: {noteIds: [newNoteID]}}
+    )
 
     newNote.save(function(err) {
         if (err) {
@@ -329,6 +337,31 @@ app.post('/api/create-note', function(req,res){
         }
     })
 });
+
+app.post("/api/update-note", function(req, res) {
+    const newNoteName = req.body.notename
+    const newContent = req.body.content
+    const noteID = req.body.noteID
+
+    Note.updateOne(
+        // update note with the ID specified
+        {_id: noteID},
+
+        // set notename and content attributes to updated versions
+        { 
+            $set: {
+                notename: newNoteName,
+                contents: [newContent]
+            }
+        }
+    )
+    .then(function(obj) {
+        res.send("Updated object")
+    })
+    .catch(function(err) {
+        res.send(err)
+    })
+}) 
 
 // sends back all users & passwords for testing purposes
 app.get('/api/all-notes', function(req, res) {

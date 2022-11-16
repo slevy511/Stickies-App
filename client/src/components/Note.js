@@ -27,7 +27,8 @@ class Note extends React.Component{
         // Add note to database!
         axios.post("http://localhost:8000/api/create-note", {
             notename: this.state.noteName,
-            content: this.state.text
+            content: this.state.text,
+            // boardID: boardID prop goes here...
         })
         .then(function (response) {
             console.log(response);
@@ -36,8 +37,21 @@ class Note extends React.Component{
             console.log(error);
         });
 
-        // TODO: Tie in to database
-        console.log(this.state.noteName + ", " + this.state.text);
+
+        // TESTING UPDATE-NOTE
+
+        // axios.post("http://localhost:8000/api/update-note", {
+        //     notename: this.state.noteName,
+        //     content: this.state.text,
+        //     noteID: noteID prop goes here...
+        // })
+        // .then(function (response) {
+        //     console.log(response);
+        // })
+        // .catch(function (error) {
+        //     console.log(error);
+        // });
+
     }
 
     render() {
