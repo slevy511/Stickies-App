@@ -1,3 +1,7 @@
+
+textarea{
+    font-family: "Arial Black", "Impact", "Courier New", monospace;
+}
 .registration-form {
     display: flex;
     justify-content: center;
@@ -12,3 +16,28 @@
     padding: 10px;
     font-family: "Arial Black", "Impact", "Courier New", monospace;
 }
+
+#login{
+    background-color: #F3E779;
+    font-family: "Arial Black", "Impact", "Courier New", monospace;
+}
+#username{
+    background-color: #F3E779;
+    font-family: "Arial Black", "Impact", "Courier New", monospace;
+}
+
+/* doesnt do anything*/
+.button {
+    border: 0;
+    border-radius: 0.25rem;
+    background: #1E88E5;
+    color: rgb(230, 29, 29);
+    font-family: -system-ui, sans-serif;
+    font-size: 1rem;
+    line-height: 1.2;
+    white-space: nowrap;
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+    margin: 0.25rem;
+    cursor: pointer;
+  }

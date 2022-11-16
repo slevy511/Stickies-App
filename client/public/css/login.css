@@ -1,15 +1,161 @@
+textarea{
+    font-family: "Arial Black", "Impact", "Courier New", monospace;
+}
+
 .login-form {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     font-family: "Arial Black", "Impact", "Courier New", monospace;
+    font-size: 28px;
+    text-align: center;
 }
 
 .form{
     background-color: #F3E779;
     font-family: "Arial Black", "Impact", "Courier New", monospace;
 
-    display: inline-block;
+    display: grid;
     padding: 10px;
+
+    border: 5px solid rgb(0, 0, 0);
+    border-radius: 5px;
+
+    justify-content: center;
+    align-items: center;
+    
+    justify-content: space-around;
+    position: relative;
+    
+
 }
+
+.banner{
+    background-color: #F3E779;
+    font-family: "Arial Black", "Impact", "Courier New", monospace;
+
+    display: grid;
+    padding: 10px;
+
+    border: 5px solid rgb(0, 0, 0);
+    border-radius: 5px;
+
+    justify-content: center;
+    align-items: center;
+
+    position:fixed;
+    top: 70px;
+    
+    margin: auto;
+    clear:left;
+    height:auto;
+    
+    text-align:center;/* Add This*/
+
+    font-size: 60px;
+    
+    
+}
+
+
+
+input[type=username]{
+    width: 100px;
+    align-items: right;
+    justify-content: right;
+    font-family: "Arial Black", "Impact", "Courier New", monospace;
+    box-sizing: border-box;
+    border: 3px solid rgb(3, 133, 255);
+    border-radius: 0px;
+
+    text-align: left;
+    font-size: 20px;
+    padding: auto;
+    width: 330px;
+    background-color: #cee3fd;
+    display: inline-block;
+    float: right;
+}
+
+input[type=password]{
+    width: 100px;
+    align-items: right;
+    justify-content: right;
+    font-family: "Arial Black", "Impact", "Courier New", monospace;
+    box-sizing: border-box;
+    border: 3px solid rgb(3, 133, 255);
+    border-radius: 0px;
+
+    text-align: left;
+    font-size: 20px;
+    padding: auto;
+    width: 330px;
+    background-color: #cee3fd;
+    display: inline-block;
+    float: right;
+}
+
+/*login button*/
+input[type=submit]{
+    /*width: 100px;
+    justify-content: right;
+    align-items: right;
+    font-family: "Arial Black", "Impact", "Courier New", monospace;
+    box-sizing: border-box;
+    border: 2px solid rgb(3, 133, 255);
+    color: blue;
+    border-radius: 0px;*/
+    
+    display: inline-block;
+    background-color: #0374ff;
+    border-radius: 10px;
+    border: 4px double #cccccc;
+    color: #eeeeee;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 500px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 20px;
+ 
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgb(0, 0, 0);
+    opacity: 0.2; /* Firefox */
+    font-style: italic;
+  }
+
+  button[name=register] {
+    display: inline-block;
+    
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    display:grid;
+
+    background-color: #0374ff;
+    border-radius: 10px;
+    border: 4px double #cccccc;
+    color: #eeeeee;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 500px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: auto;
+   
+    
+      }
+
+
+
