@@ -203,7 +203,7 @@ app.get('/api/all-users', function(req, res) {
 
 /* BOARD API */
 
-app.post('/api/create-board/:userID/:boardname', function(req,res){
+app.post('/api/create-board/:userID/:boardname', async function(req,res){
     const userID = req.params.userID
     const newBoardName = req.params.boardname
     
@@ -216,23 +216,10 @@ app.post('/api/create-board/:userID/:boardname', function(req,res){
     const newBoardId = String(newBoard._id)
 
     // find the user and update its boardIds array to include the created board
-    User.findOne({_id: userID}, function(err, foundUser) {
-        if (err) {
-            res.send(err)
-        }
-        else {
-            if (foundUser !== null) {
-                // append the newBoardId to the current user's boardIds array
-                // and save it to database
-                foundUser.boardIds.push(newBoardId)
-                foundUser.save()
-            }
-            else {
-                res.send("User doesn't exist")
-            }
-        }
-    })
-
+    await User.updateOne(
+            {_id: mongoose.Types.ObjectId(userID)}, 
+            {$push: {boardIds: [newBoardId]}}
+    )
 
     // save that new board into the database
     newBoard.save(function(err) {
@@ -262,6 +249,38 @@ app.get('/api/search-board/:boardname', function(req, res) {
             res.send(foundName)
         }
     })
+})
+
+// returns all the boards for a specific user
+app.get("/api/get-all-boards/:username", function(req, res) {
+    const username = req.params.username
+    
+
+    User.findOne({username: username})
+    .then(function(foundUser) {
+        const allBoardIds = foundUser.boardIds
+        console.log(allBoardIds)
+        for (var i = 0; i < allBoardIds.length; i++) {
+            allBoardIds[i] = mongoose.Types.ObjectId(allBoardIds[i])
+        }
+        console.log(allBoardIds)
+        Board.find({_id: {$in: allBoardIds}}, function(err, allBoards) {
+            if (err) {
+                res.send(err)
+            }
+            else {
+                res.send(allBoards)
+            }
+        })
+
+    })
+    .catch(function(err) {
+        res.send(err)
+    })
+
+    
+    
+
 })
 
 app.post('/api/delete-board/:id', function(req, res) {
