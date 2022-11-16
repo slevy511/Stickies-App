@@ -6,7 +6,9 @@ const cors = require('cors')
 // enable access to all origins
 app.use(cors())
 
+// allows for req.body to get Axios POST data
 app.use(express.json());
+
 main().catch(err => console.log(err));
 
 async function main() {
@@ -21,9 +23,7 @@ const userSchema = new mongoose.Schema({
     username: String,
     password: String,
     // Array containing IDs of all boards belonging to user
-    boardIds: [{
-        id: String
-    }]
+    boardIds: [String]
 });
 
 const User = mongoose.model("user", userSchema);
@@ -33,9 +33,7 @@ const boardSchema = new mongoose.Schema({
     // Name of board
     boardname: String,
     // Array containing IDs of all notes belonging to board
-    noteIds: [{
-        id: String
-    }]
+    noteIds: [String]
 });
 
 const Board = mongoose.model("board", boardSchema);
@@ -73,14 +71,50 @@ const Note = mongoose.model("note", noteSchema);
 
 app.post('/api/create-user/:username/:password', function(req, res){
     // create a user, if and only if username is not in use
-
     const newUsername = req.params.username
     const newPassword = req.params.password
 
-    const newUser = new User({
-        username: newUsername,
-        password: newPassword
-    })
+    function createUser() {
+        // create 3 new boards for the new user
+        const newBoard1 = new Board({
+            boardname: "Home"
+        })
+
+        const newBoard2 = new Board({
+            boardname: "Shared"
+        })
+        
+        const newBoard3 = new Board({
+            boardname: "Polls and Charts"
+        })
+        
+        // store the board id's in array to store for user
+        const boardIDs = [newBoard1._id, newBoard2._id, newBoard3._id]
+
+        // store the boards in an array to insert all of them into database
+        const boardsToInsert = [newBoard1, newBoard2, newBoard3]
+
+        // insert the 3 boards created above
+        Board.insertMany(boardsToInsert)
+
+        // create user document
+        const newUser = new User({
+            username: newUsername,
+            password: newPassword,
+            boardIds: boardIDs
+        })
+
+        // save the new user (which points to the 3 default boards)
+        newUser.save(function(err) {
+            if (err) {
+                res.send(err)
+            }
+            else {
+                res.send(true)
+            }
+        })
+
+    }
 
     User.findOne({username: newUsername}, function(err, foundUser) {
         if (err) {
@@ -88,20 +122,14 @@ app.post('/api/create-user/:username/:password', function(req, res){
         }
         else {
             if (foundUser == null){
-                newUser.save(function(err){
-                    if (err) {
-                        res.send(err)
-                    }
-                    else {
-                        res.send(true)
-                    }
-                })
+                createUser()
             }
             else{
                 res.send(false)
             }
         }
     })
+
 })
 
 app.get('/api/valid-login/:username/:password', function(req, res) {
@@ -126,6 +154,7 @@ app.get('/api/valid-login/:username/:password', function(req, res) {
 
 })
 
+// to delete later, for testing only
 app.get('/api/search-user/:username', function(req, res) {
     // searching for a user
 
@@ -191,6 +220,8 @@ app.post('/api/create-board/:boardname', function(req,res){
     })
 
 });
+
+
 
 app.get('/api/search-board/:boardname', function(req, res) {
     // searching for a board
