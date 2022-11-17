@@ -3,7 +3,7 @@ textarea{
 }
 
 .login-form {
-    display: flex;
+    display: grid;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -27,6 +27,9 @@ textarea{
     
     justify-content: space-around;
     position: relative;
+    /*top: 100px;*/
+
+    font-size: 28px;
     
 
 }
@@ -44,23 +47,25 @@ textarea{
     justify-content: center;
     align-items: center;
 
-    position:fixed;
-    top: 70px;
+    position:relative;
+    top: auto;
     
     margin: auto;
-    clear:left;
-    height:auto;
+    
+    /*height:auto;*/
     
     text-align:center;/* Add This*/
 
     font-size: 60px;
+
+    box-sizing: border-box;
     
     
 }
 
 
-
-input[type=username]{
+/*username*/
+input[type=text]{
     width: 100px;
     align-items: right;
     justify-content: right;
@@ -70,11 +75,11 @@ input[type=username]{
     border-radius: 0px;
 
     text-align: left;
-    font-size: 20px;
+    font-size: 40px;
     padding: auto;
     width: 330px;
     background-color: #cee3fd;
-    display: inline-block;
+    display: grid;
     float: right;
 }
 
@@ -88,11 +93,11 @@ input[type=password]{
     border-radius: 0px;
 
     text-align: left;
-    font-size: 20px;
+    font-size: 40px;
     padding: auto;
     width: 330px;
     background-color: #cee3fd;
-    display: inline-block;
+    display: grid;
     float: right;
 }
 
@@ -107,21 +112,22 @@ input[type=submit]{
     color: blue;
     border-radius: 0px;*/
     
-    display: inline-block;
+    display: grid;
     background-color: #0374ff;
-    border-radius: 10px;
+    border-radius: 50px;
     border: 4px double #cccccc;
     color: #eeeeee;
     text-align: center;
-    font-size: 28px;
-    padding: 20px;
-    width: 500px;
+    font-size: 24px;
+    padding: 12px;
+    width: 400px;
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
     -o-transition: all 0.5s;
     transition: all 0.5s;
     cursor: pointer;
-    margin: 20px;
+    margin: auto;
+    float: inline-start;
  
 }
 
@@ -132,7 +138,7 @@ input[type=submit]{
   }
 
   button[name=register] {
-    display: inline-block;
+    display: grid;
     
     justify-content: center;
     align-items: center;
@@ -140,22 +146,39 @@ input[type=submit]{
     display:grid;
 
     background-color: #0374ff;
-    border-radius: 10px;
+    border-radius: 50px;
     border: 4px double #cccccc;
     color: #eeeeee;
     text-align: center;
-    font-size: 28px;
-    padding: 20px;
-    width: 500px;
+    font-size: 24px;
+    padding: 12px;
+    width: 400px;
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
     -o-transition: all 0.5s;
     transition: all 0.5s;
     cursor: pointer;
     margin: auto;
+    float: inline-start;
    
     
       }
 
 
+.logo {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    position: absolute;
+    }
 
+.logoRight {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    top: 0;
+    right: 0;
+    position: absolute;
+    }    

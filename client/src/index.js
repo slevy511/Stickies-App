@@ -22,7 +22,7 @@ class App extends React.Component{
   render(){
     return (
       <div>
-        <img className="logo" src={logo} alt={"Stickies!"} />
+        
         {this.state.active === 'LoginForm' ? <LoginForm setActive={this.setActive}/> : null}
         {this.state.active === 'RegistrationForm' ? <RegistrationForm setActive={this.setActive} /> : null}
         {this.state.active === 'Board' ? <Board setActive={this.setActive} /> : null}
