@@ -28,7 +28,7 @@ class Note extends React.Component{
         axios.post("http://localhost:8000/api/create-note", {
             notename: this.state.noteName,
             content: this.state.text,
-            // boardID: boardID prop goes here...
+            // boardID: boardID string goes here...
         })
         .then(function (response) {
             console.log(response);
@@ -66,7 +66,7 @@ class Note extends React.Component{
                         value={this.state.text}
                         onChange={this.handleChange} />
                     <br/>
-                    <input type="submit" name="save" value="Save Note" />
+                    <input type="submit" name="save" value="Save Note" className="saveButton" />
                 </form>
             </div>
         );

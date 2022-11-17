@@ -311,6 +311,29 @@ app.get('/api/all-boards', function(req, res) {
 
 /* NOTE API */
 
+app.get('/api/get-all-notes/:boardID', function(req, res)
+{
+    const boardID = req.params.boardID
+
+    Board.findOne({_id: boardID}, function(err, foundBoard) {
+        if(err){
+            res.send(err)
+        }
+        else{
+            const allNoteIds = foundBoard.noteIds
+            Note.find({_id: { $in: allNoteIds }}, function(err, allNotes){
+                if (err){
+                    res.send(err)
+                }
+                else{
+                    res.send(allNotes)
+                }
+            })
+        }
+    })
+
+})
+
 app.post('/api/create-note', async function(req,res){
     const newNoteName = req.body.notename
     const newContent = req.body.content
