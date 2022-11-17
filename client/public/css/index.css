@@ -23,3 +23,9 @@ code {
   position: absolute;
 }
 
+.appName {
+  left: 50px;
+  top: -15px;
+  position: absolute;
+  color: white;
+}

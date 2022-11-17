@@ -25,10 +25,10 @@ class Board extends React.Component{
         return(
             <>
             <div className="app-bar">
-            <button name="addnote" onClick={this.addnote}>
+            <button className="newnote" name="addnote" onClick={this.addnote}>
                 New Note
             </button>
-            <button name="logout" onClick={this.logout}>
+            <button className="logout" name="logout" onClick={this.logout}>
                 Log out
             </button>
             </div>

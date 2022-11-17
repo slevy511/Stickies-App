@@ -8,13 +8,32 @@ textarea {
     background-color: #F3E779;
     overflow: auto;
     resize: none;
+    font-size: 15px;
+    font-family: Arial;
 }
 
 .name{
     background-color: #F3E779;
     width: 250px;
+    font-size: 15px;
+    font-family: Arial;
 }
 
 .note {
     padding: 10px;
+}
+
+.saveButton {
+    /* background-color: #F3E779; */
+    color: black;
+    /* margin-top: 10px;  */
+    padding: 5px;
+    border: 1px solid black;
+    font-weight: bold;
+    /* border-radius: 10px; */
+}
+
+.saveButton:hover {
+    background-color: blue;
+    color: white;
 }

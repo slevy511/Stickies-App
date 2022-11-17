@@ -14,3 +14,19 @@
     background-color: darkblue;
   }
   
+  .logout{
+    margin-left: 5px;
+    font-weight: bold;
+  }
+
+  .newnote{
+    font-weight: bold;
+  }
+
+  .logout:hover{
+    background-color: #F3E779;
+  }
+
+  .newnote:hover{
+    background-color: #F3E779;
+  }

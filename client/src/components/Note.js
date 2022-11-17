@@ -66,7 +66,7 @@ class Note extends React.Component{
                         value={this.state.text}
                         onChange={this.handleChange} />
                     <br/>
-                    <input type="submit" name="save" value="Save Note" />
+                    <input type="submit" name="save" value="Save Note" className="saveButton" />
                 </form>
             </div>
         );
