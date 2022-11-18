@@ -61,11 +61,11 @@ class RegistrationForm extends React.Component {
                     </label>
         </form>
         <form className="form" onSubmit={this.handleSubmit}>
-          <header>
+          <header className="registerHeader">
             Register
             <small>
               <small>
-                <pre>
+                <pre className="registerPrompt">
                   {this.state.errstate === true ? "Please enter your username\nand password." : 
                   "That username is taken.\nTry another username."}
                 </pre>

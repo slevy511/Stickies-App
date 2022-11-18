@@ -34,7 +34,7 @@ class Board extends React.Component{
                             
                     </label>
             </form>
-            <button name="addnote" onClick={this.addnote}>
+            <button className="addnote" name="addnote" onClick={this.addnote}>
 
                 New Note
             </button>

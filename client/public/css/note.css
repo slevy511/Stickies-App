@@ -3,7 +3,7 @@ textarea {
     margin: 0;
     padding: .2em;
 
-    width: 210px;
+    width: 250px;
     height:200px;
 
     cursor: text;
@@ -24,7 +24,7 @@ textarea {
 .name{
     background-color: #F3E779;
 
-    width: 210px;
+    width: 250px;
     font-size: 10px;
     text-align: center;
     font-family: "Arial Black", "Impact", "Courier New", monospace;
@@ -33,14 +33,14 @@ textarea {
 
 .note {
     padding:  5px;
-    width: 210px;
+    width: 250px;
     text-align: center;
     font-family: "Arial Black", "Impact", "Courier New", monospace;
     
 }
 
 input[type=noteName]{
-    width: 210px;
+    width: 250px;
     align-items: center;
     justify-content: center;
     font-family: "Arial Black", "Impact", "Courier New", monospace;

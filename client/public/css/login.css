@@ -166,6 +166,14 @@ input[type=submit]{
       }
 
 
+.loginPrompt{
+    font-size: 30px;
+}      
+
+.loginHeader{
+    font-size: 60px;
+}
+
 .logo {
     width: 110px;
     height: 110px;
