@@ -8,7 +8,8 @@
   
   .app-bar{
     display: flex;
-    justify-content: flex-end;
+    
+    flex-direction: flex-end;
     height: 25px;
     padding: 15px;
     background-color: darkblue;
@@ -16,7 +17,18 @@
     
 
   }
+/*
+  .left-app-bar{
+    display: flex;
+    justify-content: left;
+    height: 25px;
+    padding: 15px;
+    background-color: darkblue;
 
+    
+
+  }
+*/
 /*
   .logout{
     font-family: "Arial Black", "Impact", "Courier New", monospace;
@@ -63,6 +75,8 @@
     position: relative;
     font-weight: bold;
     margin-right: 30px;
+    margin-left: auto;
+    white-space: nowrap;
   }
 
   button[name=logout] {
@@ -85,6 +99,8 @@
     font-weight: bold;
     margin-left: 100px;
     margin: -10px;
+    margin-right: 5px;
+    white-space: nowrap;
     
   }
 
@@ -108,7 +124,7 @@
     
     /*clear:center;*/
     /*top: -100px;*/
-    top: auto;
+    top: 10px;
     float: left;
 
     font-size: 28px;
@@ -120,11 +136,13 @@
     
 
     box-sizing: border-box;
-
-    top: 0;
-    left: 60px;
-    position: absolute;
+    
+    top: -10px;
+    left: 5px;
+    
     margin: 5px;
+    margin-right: 20px;
+    white-space:nowrap;
     
     
 }
@@ -133,9 +151,10 @@
     width: 63px;
     height: 63px;
     object-fit: cover;
-    top: 0;
-    left: 0;
-    position: absolute;
+   
+    position: relative;
+    margin-left:-10px;
+    margin-top: -15px;
     }  
 
  

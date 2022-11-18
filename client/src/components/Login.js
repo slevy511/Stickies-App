@@ -59,7 +59,9 @@ class LoginForm extends React.Component {
            
             <div className="login-form">
                 <img className="logo" src={logo} alt={"Stickies!"} />
+                <br/>
                 <img className="logoRight" src={logo} alt={"Stickies!"} />
+                <br/>
                 <form className="banner" onSubmit={this.handleSubmit}>
                     <label name="banner">
                             {"Welcome to Stickies! "}
