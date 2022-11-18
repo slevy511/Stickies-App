@@ -2,26 +2,33 @@ textarea {
     display: inline-block;
     margin: 0;
     padding: .2em;
+
     width: 210px;
     height:200px;
+
     cursor: text;
     background-color: #F3E779;
     overflow: auto;
     resize: none;
+
     text-align: left;
     font-family: "Arial Black", "Impact", "Courier New", monospace;
     box-sizing: border-box;
     border: 3px solid rgb(3, 133, 255);
     border-radius: 0px;
+
+    font-size: 15px;
+
 }
 
 .name{
     background-color: #F3E779;
+
     width: 210px;
     font-size: 10px;
     text-align: center;
     font-family: "Arial Black", "Impact", "Courier New", monospace;
-    padding: 5px;
+    padding: 10px;
 }
 
 .note {
@@ -82,7 +89,7 @@ input[type=saveButt]{
     color: #eeeeee;
     text-align: center;
     font-size: 12px;
-    padding: rpx;
+    padding: 5px; /*rpx*/
     width: 210px;
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
@@ -95,6 +102,8 @@ input[type=saveButt]{
     box-sizing: border-box;
     border: 3px solid rgb(3, 133, 255);
     border-radius: 0px;
+    
+    font-weight: bold;
 }
 
 
@@ -130,4 +139,9 @@ button[name=register] {
   
   }
 */
+
+
+
+
+
 

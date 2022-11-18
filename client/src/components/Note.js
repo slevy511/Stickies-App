@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 
 class Note extends React.Component{
@@ -22,9 +23,35 @@ class Note extends React.Component{
 
     handleSubmit(event) {
         event.preventDefault();
+        
+        // Add note to database!
+        axios.post("http://localhost:8000/api/create-note", {
+            notename: this.state.noteName,
+            content: this.state.text,
+            // boardID: boardID string goes here...
+        })
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 
-        // TODO: Tie in to database
-        console.log(this.state.noteName + ", " + this.state.text);
+
+        // TESTING UPDATE-NOTE
+
+        // axios.post("http://localhost:8000/api/update-note", {
+        //     notename: this.state.noteName,
+        //     content: this.state.text,
+        //     noteID: noteID prop goes here...
+        // })
+        // .then(function (response) {
+        //     console.log(response);
+        // })
+        // .catch(function (error) {
+        //     console.log(error);
+        // });
+
     }
 
     render() {
@@ -39,7 +66,11 @@ class Note extends React.Component{
                         value={this.state.text}
                         onChange={this.handleChange} />
                     <br/>
+
                     <input type="saveButt" name="save" value="Save Note" className="saveButton"/>
+
+             
+
                 </form>
             </div>
         );

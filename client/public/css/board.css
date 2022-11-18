@@ -17,20 +17,33 @@
 
   }
 
+
   .logout{
     font-family: "Arial Black", "Impact", "Courier New", monospace;
     font-size: 20px;
     background-color: #F3E779;
+    margin-left: 5px;
+    font-weight: bold;
   }
 
   .addnote{
     font-family: "Arial Black", "Impact", "Courier New", monospace;
     font-size: 20px;
     background-color: #F3E779;
+    font-weight: bold;
+  }
+  
+  .logout:hover{
+    background-color: #F3E779;
+  }
+
+  .addnote:hover{
+    background-color: #F3E779;
   }
 
   button[name=addnote] {
     display: inline-block;
+    
     background-color: #0374ff;
     border-radius: 50px;
     border: 4px double #cccccc;
@@ -120,3 +133,4 @@
 
  
   
+
