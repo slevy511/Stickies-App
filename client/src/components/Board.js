@@ -26,11 +26,10 @@ class Board extends React.Component{
         return(
             <>
             <div className="app-bar">
-
             <img className="logo2" src={logo} alt={"Stickies!"} />
             <form className="boardNameBanner" onSubmit={this.handleSubmit}>
                     <label name="banner">
-                            {"Board Name: "}
+                            {"*Board Name*"}
                             
                     </label>
             </form>
@@ -39,7 +38,7 @@ class Board extends React.Component{
                 New Note
             </button>
             <button className="logout" name="logout" onClick={this.logout}>
-                Log out
+                Log Out
             </button>
             </div>
             <div className="board">

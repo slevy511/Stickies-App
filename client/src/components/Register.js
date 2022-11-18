@@ -53,7 +53,9 @@ class RegistrationForm extends React.Component {
     return (
       <div className="registration-form">
         <img className="logo3" src={logo} alt={"Stickies!"} />
+        <br/>
         <img className="logo3right" src={logo} alt={"Stickies!"} />
+        <br/>
         <form className="banner" onSubmit={this.handleSubmit}>
                     <label name="banner">
                             {"Create an account below!"}
