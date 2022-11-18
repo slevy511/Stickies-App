@@ -1,5 +1,6 @@
 import React from 'react';
 import Note from './Note.js';
+import logo from './logo.png'
 
 class Board extends React.Component{
     constructor(props){
@@ -25,7 +26,16 @@ class Board extends React.Component{
         return(
             <>
             <div className="app-bar">
-            <button className="newnote" name="addnote" onClick={this.addnote}>
+
+            <img className="logo2" src={logo} alt={"Stickies!"} />
+            <form className="boardNameBanner" onSubmit={this.handleSubmit}>
+                    <label name="banner">
+                            {"Board Name: "}
+                            
+                    </label>
+            </form>
+            <button name="addnote" onClick={this.addnote}>
+
                 New Note
             </button>
             <button className="logout" name="logout" onClick={this.logout}>

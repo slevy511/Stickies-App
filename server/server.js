@@ -203,6 +203,7 @@ app.get('/api/all-users', function(req, res) {
 
 /* BOARD API */
 
+
 app.post('/api/create-board/:userID/:boardname', async function(req,res){
     const userID = req.params.userID
     const newBoardName = req.params.boardname
@@ -211,6 +212,7 @@ app.post('/api/create-board/:userID/:boardname', async function(req,res){
     const newBoard = new Board({
         boardname: newBoardName
     })
+
 
     // grab the board ID
     const newBoardId = String(newBoard._id)
@@ -235,6 +237,8 @@ app.post('/api/create-board/:userID/:boardname', async function(req,res){
 
 
 
+
+
 app.get('/api/search-board/:boardname', function(req, res) {
     // searching for a board
 
@@ -242,14 +246,18 @@ app.get('/api/search-board/:boardname', function(req, res) {
 
     // sends the board object that matches the boardname, error otherwise
     Board.findOne({boardname: searchName}, function(err, foundName) {
+
         if (err) {
             res.send(err)
         }
         else {
+
             res.send(foundName)
+
         }
     })
 })
+
 
 // returns all the boards for a specific user
 app.get("/api/get-all-boards/:username", function(req, res) {

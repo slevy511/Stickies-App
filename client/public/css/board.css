@@ -12,21 +12,125 @@
     height: 25px;
     padding: 15px;
     background-color: darkblue;
+
+    
+
   }
-  
+
+
   .logout{
+    font-family: "Arial Black", "Impact", "Courier New", monospace;
+    font-size: 20px;
+    background-color: #F3E779;
     margin-left: 5px;
     font-weight: bold;
   }
 
-  .newnote{
+  .addnote{
+    font-family: "Arial Black", "Impact", "Courier New", monospace;
+    font-size: 20px;
+    background-color: #F3E779;
     font-weight: bold;
   }
-
+  
   .logout:hover{
     background-color: #F3E779;
   }
 
-  .newnote:hover{
+  .addnote:hover{
     background-color: #F3E779;
   }
+
+  button[name=addnote] {
+    display: inline-block;
+    
+    background-color: #0374ff;
+    border-radius: 50px;
+    border: 4px double #cccccc;
+    color: #eeeeee;
+    text-align: center;
+    font-size: 14px;
+    padding: 0px;
+    width: 200px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 1px;
+    position: relative;
+  }
+
+  button[name=logout] {
+    display: inline-block;
+    background-color: #0374ff;
+    border-radius: 50px;
+    border: 4px double #cccccc;
+    color: #eeeeee;
+    text-align: center;
+    font-size: 14px;
+    padding: 0px;
+    width: 200px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 1px;
+    position: relative;
+    
+  }
+
+  .boardNameBanner{
+   /* background-color: #F3E779;
+    font-family: "Arial Black", "Impact", "Courier New", monospace;
+    font-size: 14px;
+    display: inline-block;
+    padding: 1px;
+
+    border: 5px solid rgb(0, 0, 0);
+    border-radius: 50px;
+*/
+    display: inline-block;
+    justify-content: left;
+    align-items: left;
+
+    position:relative;
+    z-index: 5;
+    
+    
+    /*clear:center;*/
+    /*top: -100px;*/
+    top: auto;
+    float: left;
+
+    font-size: 28px;
+    color: #eeeeee;
+    
+    
+    text-align:left;/* Add This*/
+
+    
+
+    box-sizing: border-box;
+
+    top: 0;
+    left: 60px;
+    position: absolute;
+    margin: 5px;
+    
+    
+}
+
+.logo2 {
+    width: 63px;
+    height: 63px;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    position: absolute;
+    }  
+
+ 
+  
+

@@ -1,4 +1,5 @@
 import React from 'react';
+import logo from './logo.png'
 import Axios from 'axios';
 
 class RegistrationForm extends React.Component {
@@ -51,6 +52,14 @@ class RegistrationForm extends React.Component {
   render() {
     return (
       <div className="registration-form">
+        <img className="logo3" src={logo} alt={"Stickies!"} />
+        <img className="logo3right" src={logo} alt={"Stickies!"} />
+        <form className="banner" onSubmit={this.handleSubmit}>
+                    <label name="banner">
+                            {"Create an account below!"}
+                            
+                    </label>
+        </form>
         <form className="form" onSubmit={this.handleSubmit}>
           <header>
             Register

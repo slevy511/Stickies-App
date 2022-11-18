@@ -1,5 +1,9 @@
 import React from 'react';
+
+import logo from './logo.png'
+
 import Axios from 'axios';
+
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -52,8 +56,22 @@ class LoginForm extends React.Component {
 
     render() {
         return (
+           
             <div className="login-form">
+                <img className="logo" src={logo} alt={"Stickies!"} />
+                <img className="logoRight" src={logo} alt={"Stickies!"} />
+                <form className="banner" onSubmit={this.handleSubmit}>
+                    <label name="banner">
+                            {"Welcome to Stickies! "}
+                            
+                    </label>
+                </form>
+                
                 <form className="form" onSubmit={this.handleSubmit}>
+
+                    
+                    <br/>
+
                     <header>
                         Login
                         <small>
@@ -65,6 +83,7 @@ class LoginForm extends React.Component {
                             </small>
                         </small>
                     </header>
+
                     <label>
                         {"Username: "}
                         <input name="username" type="text" placeholder="Username" value={this.state.username} onChange={this.handleChange} />
