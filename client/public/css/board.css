@@ -17,7 +17,7 @@
 
   }
 
-
+/*
   .logout{
     font-family: "Arial Black", "Impact", "Courier New", monospace;
     font-size: 20px;
@@ -32,13 +32,15 @@
     background-color: #F3E779;
     font-weight: bold;
   }
-  
+ */ 
   .logout:hover{
-    background-color: #F3E779;
+    background-color: #a49937;
   }
 
   .addnote:hover{
     background-color: #F3E779;
+    
+    color: rgb(0, 0, 0);
   }
 
   button[name=addnote] {
@@ -49,16 +51,18 @@
     border: 4px double #cccccc;
     color: #eeeeee;
     text-align: center;
-    font-size: 14px;
-    padding: 0px;
-    width: 200px;
+    font-size: 18px;
+    padding: 10px;
+    width: 150px;
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
     -o-transition: all 0.5s;
     transition: all 0.5s;
     cursor: pointer;
-    margin: 1px;
+    margin: -10px;
     position: relative;
+    font-weight: bold;
+    margin-right: 30px;
   }
 
   button[name=logout] {
@@ -68,9 +72,9 @@
     border: 4px double #cccccc;
     color: #eeeeee;
     text-align: center;
-    font-size: 14px;
-    padding: 0px;
-    width: 200px;
+    font-size: 18px;
+    padding: 10px;
+    width: 150px;
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
     -o-transition: all 0.5s;
@@ -78,6 +82,9 @@
     cursor: pointer;
     margin: 1px;
     position: relative;
+    font-weight: bold;
+    margin-left: 100px;
+    margin: -10px;
     
   }
 

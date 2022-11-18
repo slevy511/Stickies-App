@@ -24,6 +24,14 @@ textarea{
     box-sizing: border-box;
 }
 
+.registerHeader{
+    font-size: 60px;
+}
+
+.registerPrompt{
+    font-size: 30px;
+}
+
 #login{
     background-color: #F3E779;
     font-family: "Arial Black", "Impact", "Courier New", monospace;

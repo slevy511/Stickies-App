@@ -72,11 +72,11 @@ class LoginForm extends React.Component {
                     
                     <br/>
 
-                    <header>
+                    <header className="loginHeader">
                         Login
                         <small>
                             <small>
-                                <pre>
+                                <pre className="loginPrompt">
                                     {this.state.errstate === 0 ? "Please enter your username\nand password." : 
                                     "Incorrect username\nor password."}
                                 </pre>
