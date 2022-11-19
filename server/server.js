@@ -422,7 +422,14 @@ app.post('/api/create-note', async function(req,res){
 
     await Board.updateOne(
         {_id: boardID}, 
-        {$push: {noteIds: [newNoteID]}}
+        
+        // push the new note ID to the FRONT of the noteIds array
+        { $push: {
+            noteIds: {
+                $each: [newNoteID],
+                $position: 0
+            }
+        }}
     )
 
     newNote.save(function(err) {
@@ -584,6 +591,11 @@ app.post('/api/share-note', function(req, res){
     })
 })
 
+/* MOVE NOTE LEFT */
+app.post('/api/shift-left/:noteID', function(req, res) {
+    
+})
+
 // sends back all notes for testing purposes
 app.get('/api/all-notes', function(req, res) {
     Note.find(function(err, notes) {
@@ -604,14 +616,17 @@ app.get("/api/search", function(req, res) {
     const query = req.body.query
     const username = req.body.username
 
-    // get all notes for given user
+    // find user that matches username
     User.findOne({username: username}, function(err, foundUser) {
         if (err) {
             res.send(err)
         }
         else {
+            
+            // get all boardIds for that given user
             const allBoardIds = foundUser.boardIds
             
+            // convert board id array to array of board objects
             Board.find({_id: {$in: allBoardIds}}, function(err, allBoards) {
                 if (err) {
                     res.send(err)
