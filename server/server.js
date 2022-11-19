@@ -40,26 +40,12 @@ const Board = mongoose.model("board", boardSchema);
 
 /* NOTE SCHEMA AND MODEL */
 const noteSchema = new mongoose.Schema({
-    // Notes have three modes: Note, Chart, and Poll
-    mode: {type: String, default: "note"},
     notename: String,
     // Background color (modifies CSS)
     color: String,
     // Number of references to note - default is 1
     linkcount: {type: Number, default: 1},
-    // If mode is Note: array of length 1
-    // If mode is Chart: array of length 0
-    // If mode is Poll: array of the poll options
     contents: [String],
-
-    // Records responses to a poll
-    // If mode is not poll, NULL
-    responses: {
-        type: Map,
-        of: String
-    },
-    // Only for chart: poll to get data from
-    pollId: String
 });
 
 const Note = mongoose.model("note", noteSchema);
@@ -85,7 +71,7 @@ app.post('/api/create-user/:username/:password', function(req, res){
         })
         
         const newBoard3 = new Board({
-            boardname: "Polls and Charts"
+            boardname: "Search Results"
         })
         
         // store the board id's in array to store for user
