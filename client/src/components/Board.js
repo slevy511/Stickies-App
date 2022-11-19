@@ -2,7 +2,6 @@ import React from 'react';
 import Note from './Note.js';
 import logo from './logo.png'
 import Axios from 'axios';
-import LoginForm from './Login.js';
 
 class Board extends React.Component{
     constructor(props){
