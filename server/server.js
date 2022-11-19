@@ -113,7 +113,6 @@ app.post('/api/create-user/:username/:password', function(req, res){
                 res.send(true)
             }
         })
-
     }
 
     User.findOne({username: newUsername}, function(err, foundUser) {
@@ -171,6 +170,7 @@ app.get('/api/search-user/:username', function(req, res) {
     })
 })
 
+// TODO: FIX
 app.post('/api/delete-user/:username', function(req, res) {
     // searching for a user
 
@@ -203,7 +203,6 @@ app.get('/api/all-users', function(req, res) {
 
 /* BOARD API */
 
-
 app.post('/api/create-board/:userID/:boardname', async function(req,res){
     const userID = req.params.userID
     const newBoardName = req.params.boardname
@@ -212,7 +211,6 @@ app.post('/api/create-board/:userID/:boardname', async function(req,res){
     const newBoard = new Board({
         boardname: newBoardName
     })
-
 
     // grab the board ID
     const newBoardId = String(newBoard._id)
@@ -237,8 +235,6 @@ app.post('/api/create-board/:userID/:boardname', async function(req,res){
 
 
 
-
-
 app.get('/api/search-board/:boardname', function(req, res) {
     // searching for a board
 
@@ -246,18 +242,14 @@ app.get('/api/search-board/:boardname', function(req, res) {
 
     // sends the board object that matches the boardname, error otherwise
     Board.findOne({boardname: searchName}, function(err, foundName) {
-
         if (err) {
             res.send(err)
         }
         else {
-
             res.send(foundName)
-
         }
     })
 })
-
 
 // returns all the boards for a specific user
 app.get("/api/get-all-boards/:username", function(req, res) {
@@ -287,18 +279,38 @@ app.get("/api/get-all-boards/:username", function(req, res) {
 
 })
 
-app.post('/api/delete-board/:id', function(req, res) {
+app.post('/api/delete-board/:boardID', function(req, res) {
     // searching for a board
+    const boardID = req.params.boardID
 
-    const searchId = req.params.id
-
-    // sends the board object that matches the id, error otherwise
-    Board.deleteOne({_id: searchId}, function(err) {
+    Board.findById(mongoose.Types.ObjectId(boardID), async function(err, foundBoard){
         if (err) {
             res.send(err)
         }
         else {
-            res.send("Success!")
+            if (foundBoard == null){
+                res.send(false)
+            }
+            else {
+                // for each note in the board, decrement link count, and delete if no more links
+                for (noteID of foundBoard.noteIds){
+                    await Note.findByIdAndUpdate(mongoose.Types.ObjectId(noteID), {$inc: { linkcount: -1}})
+                    await Note.deleteOne({_id: noteID, linkcount: 0}, function(err) {
+                        if (err) {
+                            res.send(err)
+                        }
+                    })
+                }
+                // delete board
+                await Board.deleteOne({_id: boardID}, function(err) {
+                    if (err) {
+                        res.send(err)
+                    }
+                    else {
+                        res.send(true)
+                    }
+                })
+            }
         }
     })
 })
@@ -342,6 +354,74 @@ app.get('/api/get-all-notes/:boardID', function(req, res)
 
 })
 
+app.post('/api/create-or-update-note', async function(req, res){
+    const newNoteName = req.body.notename
+    const newContent = req.body.content
+    const boardID = req.body.boardID
+    const noteID = req.body.noteID
+
+    function updateNote() {
+        Note.updateOne(
+            // update note with the ID specified
+            {_id: noteID},
+
+            // set notename and content attribtues to updated versions
+            {
+                $set: {
+                    notename: newNoteName,
+                    contents: [newContent]
+                }
+            }, function(err){
+                if (err) {
+                    res.send(err)
+                }
+                else {
+                    res.send(true)
+                }
+            }
+        )
+    }
+
+    async function createNote(){
+        // create a new note
+        const newNote = new Note({
+            notename: newNoteName,
+            contents: [newContent]
+        })
+        // use the NEW note's ID, not the one provided (which does not exist)
+        newNoteID = newNote._id
+        
+        await Board.updateOne(
+            // update board with the ID specified
+            {_id: boardID},
+            {$push: {noteIds: [newNoteID]}}
+        )
+
+        await newNote.save(function(err) {
+            if (err) {
+                res.send(err)
+            }
+            else {
+                res.send(true)
+            }
+        })
+    }
+
+    Note.findById(mongoose.Types.ObjectId(noteID), function(err, foundNote) {
+        if (err) {
+            res.send(err)
+        }
+        else {
+            if (foundNote == null){
+                createNote()
+            }
+            else {
+                updateNote()
+            }
+        }
+    })
+});
+
 app.post('/api/create-note', async function(req,res){
     const newNoteName = req.body.notename
     const newContent = req.body.content
@@ -364,7 +444,7 @@ app.post('/api/create-note', async function(req,res){
             res.send(err)
         }
         else {
-            res.send("Success!")
+            res.send(newNote)
         }
     })
 });
@@ -394,7 +474,131 @@ app.post("/api/update-note", function(req, res) {
     })
 }) 
 
-// sends back all users & passwords for testing purposes
+app.post('/api/delete-note/', function(req, res) {
+    const noteID = req.body.noteID
+    const boardID = req.body.boardID
+
+    // ensure the board is in the database
+    Board.findById(mongoose.Types.ObjectId(boardID), function(err, foundBoard){
+        if (err){
+            res.send(err)
+            return
+        }
+        else {
+            if (foundBoard == null){
+                res.send(false)
+                return
+            }
+            else{
+                if (foundBoard.noteIds.includes(noteID)){
+                    // update specified board
+                    Board.updateOne({_id: boardID}, {$pull: {noteIds: noteID}}, function(err){
+                        if (err){
+                            res.send(err)
+                            return
+                        }
+                    })
+                    Note.findById(noteID, function(err, foundNote){
+                        if (err){
+                            res.send(err)
+                        }
+                        else{
+                            if (foundNote == null){
+                                res.send(false)
+                            }
+                            else{
+                                // If note currently has linkcount 1, delete it
+                                if (foundNote.linkcount == 1){
+                                    Note.deleteOne({_id: noteID, linkcount: 1}, function(err) {
+                                        if (err) {
+                                            res.send(err)
+                                            return
+                                        }
+                                    })
+                                }
+                                // Otherwise, decrement the link count
+                                else {
+                                    Note.findByIdAndUpdate(mongoose.Types.ObjectId(noteID), {$inc: { linkcount: -1}}, { new: true }, function(err){
+                                        if (err){
+                                            res.send(err)
+                                            return
+                                        }
+                                    })
+                                }
+                                res.send(true)
+                            }
+                        }
+                    })
+                }
+                else {
+                    res.send(false)
+                }
+            }
+        }
+    })
+})
+
+app.post('/api/share-note', function(req, res){
+    const noteID = req.body.noteID
+    const destUser = req.body.destUser
+
+    // ensure the note is in the database
+    Note.findById(mongoose.Types.ObjectId(noteID), function(err, foundNote) {
+        if (err) {
+            res.send(err)
+        }
+        else {
+            if (foundNote == null){
+                res.send(false)
+            }
+            else {
+                User.findOne({username: destUser}, function(err, foundUser){
+                    if (err) {
+                        res.send(err)
+                    }
+                    else {
+                        // if destUser is in the databse, get the id of their "shared" board
+                        // if not, return false
+                        if (foundUser == null){
+                            res.send(false)
+                        }
+                        else {
+                            // find the "Shared" board's ID
+                            const allBoardIds = foundUser.boardIds
+                            Board.findOne({_id: { $in : allBoardIds}, boardname: "Shared"}, function(err, foundBoard){
+                                if (err) {
+                                    res.send(err)
+                                }
+                                else {
+                                    if (foundBoard == null) {
+                                        res.send(false)
+                                    }
+                                    else {
+                                        Board.findByIdAndUpdate(foundBoard._id, {$push: {noteIds: [noteID]}}, function (err){
+                                            if (err){
+                                                res.send(err)
+                                            }
+                                        })
+                                        Note.findByIdAndUpdate(mongoose.Types.ObjectId(noteID), {$inc: { linkcount: 1} }, function(err, ){
+                                            if (err) {
+                                                res.send(err)
+                                            }
+                                            else{
+                                                res.send(true)
+                                            }
+                                        })
+                                    }
+                                }
+                            })
+                        }
+                    }
+                })
+            }
+        }
+    })
+})
+
+// sends back all notes for testing purposes
 app.get('/api/all-notes', function(req, res) {
     Note.find(function(err, notes) {
         if (err) {
@@ -404,22 +608,6 @@ app.get('/api/all-notes', function(req, res) {
         else {
             // users is an array of JavaScript user objects
             res.send(notes)
-        }
-    })
-})
-
-app.post('/api/delete-note/:id', function(req, res) {
-    // searching for a user
-
-    const searchId = req.params.id
-
-    // sends the user object that matches the username, error otherwise
-    Note.deleteOne({_id: searchId}, function(err) {
-        if (err) {
-            res.send(err)
-        }
-        else {
-            res.send("Success!")
         }
     })
 })

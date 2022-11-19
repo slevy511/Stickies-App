@@ -4,13 +4,15 @@ import React from 'react';
 class Note extends React.Component{
     constructor(props){
         super(props);
+        const contents = this.props.note.contents == null ? '' : this.props.note.contents[0]
+        // console.log(this.props.notes.contents)
         this.state = {
-            noteName: '',
-            text: '',
+            noteName: this.props.note.notename,
+            text: contents
         };
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     handleChange(event) {
@@ -21,37 +23,17 @@ class Note extends React.Component{
         });
     }
 
-    handleSubmit(event) {
+    async handleSubmit(event) {
         event.preventDefault();
-        
-        // Add note to database!
-        axios.post("http://localhost:8000/api/create-note", {
+        console.log(this.state.noteName)
+        console.log(this.state.text)
+        console.log(this.props.note)
+        // Update note in database
+        await axios.post("http://localhost:8000/api/update-note", {
             notename: this.state.noteName,
             content: this.state.text,
-            // boardID: boardID string goes here...
+            noteID: this.props.note._id
         })
-        .then(function (response) {
-            console.log(response);
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
-
-
-        // TESTING UPDATE-NOTE
-
-        // axios.post("http://localhost:8000/api/update-note", {
-        //     notename: this.state.noteName,
-        //     content: this.state.text,
-        //     noteID: noteID prop goes here...
-        // })
-        // .then(function (response) {
-        //     console.log(response);
-        // })
-        // .catch(function (error) {
-        //     console.log(error);
-        // });
-
     }
 
     render() {
@@ -66,11 +48,10 @@ class Note extends React.Component{
                         value={this.state.text}
                         onChange={this.handleChange} />
                     <br/>
-
-                    <input type="saveButt" name="save" value="Save Note" className="saveButton"/>
-
-             
-
+                    <input type="submit" name="save" value="Save Note" className="saveButton"/>
+                    <button name="delete" onClick={() => this.props.deletenote(this.props.note._id, this.props.ind)}>
+                        Delete Note
+                    </button>
                 </form>
             </div>
         );

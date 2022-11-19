@@ -1,25 +1,55 @@
 import React from 'react';
 import Note from './Note.js';
 import logo from './logo.png'
+import Axios from 'axios';
+import LoginForm from './Login.js';
 
 class Board extends React.Component{
     constructor(props){
-        super(props);
+        super(props)
         this.state = {
-            notes: [0]
+            notes: []
         }
-        this.logout = this.logout.bind(this);
-        this.addnote = this.addnote.bind(this);
+
+        this.getNotes = this.getNotes.bind(this)
+        this.logout = this.logout.bind(this)
+        this.addnote = this.addnote.bind(this)
+        this.deletenote = this.deletenote.bind(this)
+
+        this.getNotes()
     }
 
     logout() {
-        this.props.setActive('LoginForm');
+        this.props.logout()
     }
 
-    addnote() {
+    async getNotes(){
+        const all_notes = await Axios.get("http://localhost:8000/api/get-all-notes/" + this.props.activeBoard._id)
+        this.setState({notes: all_notes.data})
+    }
+
+    async addnote() {
+        const newnote = await Axios.post("http://localhost:8000/api/create-note", {
+            notename: '',
+            content: '',
+            boardID: this.props.activeBoard._id
+        })
         this.setState({
-            notes: this.state.notes.concat(this.state.notes[this.state.notes.length - 1] + 1)
+            notes: this.state.notes.concat(newnote.data)
         });
+    }
+
+    async deletenote(noteID_in, index) {
+        await Axios.post("http://localhost:8000/api/delete-note", {
+            noteID: noteID_in,
+            boardID: this.props.activeBoard._id
+        })
+        console.log(index)
+        const notes = this.state.notes
+        notes.splice(index, 1)
+        this.setState({
+            notes: notes
+        })
     }
 
     render() {
@@ -27,14 +57,12 @@ class Board extends React.Component{
             <>
             <div className="app-bar">
             <img className="logo2" src={logo} alt={"Stickies!"} />
-            <form className="boardNameBanner" onSubmit={this.handleSubmit}>
+            <div className="boardNameBanner">
                     <label name="banner">
-                            {"*Board Name*"}
-                            
+                            {this.props.activeBoard.boardname}        
                     </label>
-            </form>
+            </div>
             <button className="addnote" name="addnote" onClick={this.addnote}>
-
                 New Note
             </button>
             <button className="logout" name="logout" onClick={this.logout}>
@@ -44,7 +72,13 @@ class Board extends React.Component{
             <div className="board">
                 {this.state.notes.map((note, index) => {
                     return(
-                        < Note key={index} />
+                        < Note
+                        note={note}
+                        boardID={this.props.activeBoard._id}
+                        user={this.props.user}
+                        deletenote={(i, j) => this.deletenote(i, j)}
+                        ind={index}
+                        key={note._id} />
                     );
                 })}
             </div>
