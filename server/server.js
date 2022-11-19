@@ -7,7 +7,7 @@ const cors = require('cors')
 app.use(cors())
 
 // allows for req.body to get Axios POST data
-app.use(express.json());
+app.use(express.json())
 
 main().catch(err => console.log(err));
 
@@ -50,8 +50,8 @@ const noteSchema = new mongoose.Schema({
 
 const Note = mongoose.model("note", noteSchema);
 
-/* ***************** API ENDPOINTS ***************** */
 
+/* ***************** API ENDPOINTS ***************** */
 
 /* USER API */
 
@@ -598,9 +598,57 @@ app.get('/api/all-notes', function(req, res) {
     })
 })
 
-app.post('/', function(req, res, next) {
-    res.send("all working!: POST")
-});
+
+/* SEARCH FUNCTIONALITY */
+app.get("/api/search", function(req, res) {
+    const query = req.body.query
+    const username = req.body.username
+
+    // get all notes for given user
+    User.findOne({username: username}, function(err, foundUser) {
+        if (err) {
+            res.send(err)
+        }
+        else {
+            const allBoardIds = foundUser.boardIds
+            
+            Board.find({_id: {$in: allBoardIds}}, function(err, allBoards) {
+                if (err) {
+                    res.send(err)
+                }
+                else {
+                    // we now have an array of all board objects for that user
+
+                    const allNoteIds = []
+                    for (const board of allBoards) {
+                        // append all the note id arrays together into one gigantic note id array
+                        // if you want to look up the triple dots, it's called a spread operator
+                        allNoteIds.push(...board.noteIds)
+                    }
+
+                    // convert note id array into array of note objects
+                    Note.find({_id: {$in: allNoteIds}}, function(err, allNotes) {
+                        if (err) {
+                            res.send(err)
+                        }
+                        else {
+                            const search_results = []
+                            for (const note of allNotes) {
+                                if ((note.notename).includes(query) || (note.contents[0].includes(query))) {
+                                    search_results.push(note)
+                                }
+                            }
+                            res.send(search_results)
+                        }
+                    })
+
+                }
+            }) 
+
+        }
+    })
+
+})
 
 app.listen(8000, function(req, res) {
     console.log("Listening on port 8000")
