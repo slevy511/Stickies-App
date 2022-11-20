@@ -21,6 +21,7 @@ textarea {
 
 }
 
+/*doesn't seem to do anything atm*/
 .name{
     background-color: #F3E779;
 
@@ -31,6 +32,7 @@ textarea {
     padding: 10px;
 }
 
+/* controls the whole note */
 .note {
     padding:  5px;
     width: 250px;
@@ -39,7 +41,8 @@ textarea {
     
 }
 
-input[type=noteName]{
+/* "Name Your Note!" input */
+.name{    
     width: 250px;
     align-items: center;
     justify-content: center;
@@ -59,9 +62,8 @@ input[type=noteName]{
     border-radius: 50px;*/
 }
 
-input[type=saveButt]{
- 
-    
+
+.saveButton{
     display: grid;
     background-color: #0374ff;
     border-radius: 50px;
@@ -78,67 +80,42 @@ input[type=saveButt]{
     cursor: pointer;
     margin: auto;
     float: inline-start;
- 
-}
 
-.saveButton{
-    display: grid;
-    background-color: #0374ff;
-    border-radius: 50px;
-    border: 4px double #cccccc;
-    color: #eeeeee;
-    text-align: center;
-    font-size: 12px;
-    padding: 5px; /*rpx*/
-    width: 210px;
-    -webkit-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    -o-transition: all 0.5s;
-    transition: all 0.5s;
-    cursor: pointer;
-    margin: auto;
-    float: inline-start;
+    outline: none;
 
-    box-sizing: border-box;
-    border: 3px solid rgb(3, 133, 255);
-    border-radius: 0px;
     
-    font-weight: bold;
 }
+
+/*ignore*/
+/*
+.saveButton span{
+  color: transparent;
+  text-shadow: 0 0 0 #2196f3;
+  cursor: none;
+  border-radius: 50%;
+       
+        background-color: rgba(0, 0, 0, 0.3);
+  
+        width: 100px;
+        height: 100px;
+        margin-top: -50px;
+        
+        margin-left: -50px;
+  
+        animation: ripple 1s;
+        opacity: 0;
+}
+*/
+
 
 
 
 .saveButton:hover {
     background-color: blue;
     color: rgb(255, 255, 255);
+    
 }
 
-/*controls registration button on login page still
-button[name=register] {
-    display: inline-block;
-    background-color: #0374ff;
-    border-radius: 10px;
-    border: 4px double #cccccc;
-    color: #eeeeee;
-    text-align: center;
-    font-size: 28px;
-    padding: 20px;
-    width: 500px;
-    -webkit-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    -o-transition: all 0.5s;
-    transition: all 0.5s;
-    cursor: pointer;
-    margin: auto;
-    justify-content: right;
-    align-items: right;
-    
-    
-  
-  
-  
-  }
-*/
 
 
 

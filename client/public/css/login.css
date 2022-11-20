@@ -35,6 +35,28 @@ textarea{
 
 }
 
+/* left logo */
+.logo {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    position: absolute;
+    padding-bottom:10px;
+    }
+
+/* right logo */
+.logoRight {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    top: 0;
+    right: 0;
+    position: absolute;
+   
+}
+
 .banner{
     background-color: #F3E779;
     font-family: "Arial Black", "Impact", "Courier New", monospace;
@@ -65,9 +87,16 @@ textarea{
     
 }
 
+.loginHeader{
+    font-size: 60px;
+}
 
-/*username*/
-input[type=text]{
+.loginPrompt{
+    font-size: 30px;
+}      
+
+/*username input*/
+.userName{    
     width: 100px;
     align-items: right;
     justify-content: right;
@@ -85,7 +114,8 @@ input[type=text]{
     float: right;
 }
 
-input[type=password]{
+/*password input*/
+.passWord{  
     width: 100px;
     align-items: right;
     justify-content: right;
@@ -104,7 +134,7 @@ input[type=password]{
 }
 
 /*login button*/
-input[type=submit]{
+.logIn{    
     /*width: 100px;
     justify-content: right;
     align-items: right;
@@ -133,13 +163,23 @@ input[type=submit]{
  
 }
 
+.logIn:hover{
+    background-color: #a49937;
+    
+    /*color: rgb(0, 0, 0);*/
+  }
+
+      
+
+/*placeholder text for username and password fields"*/
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: rgb(0, 0, 0);
     opacity: 0.2; /* Firefox */
     font-style: italic;
   }
 
-  button[name=register] {
+/* "Register Now" button */
+.register{  
     display: grid;
     
     justify-content: center;
@@ -164,40 +204,17 @@ input[type=submit]{
     float: inline-start;
    
     
-      }
-
-
-.loginPrompt{
-    font-size: 30px;
-}      
-
-.loginHeader{
-    font-size: 60px;
-}
-
-.logo {
-    width: 110px;
-    height: 110px;
-    object-fit: cover;
-    top: 0;
-    left: 0;
-    position: absolute;
-    padding-bottom:10px;
     }
 
-.logoRight {
-    width: 110px;
-    height: 110px;
-    object-fit: cover;
-    top: 0;
-    right: 0;
-    position: absolute;
-   
-    }    
+.register:hover{
+    background-color: #a49937;
+    
+    /*color: rgb(0, 0, 0);*/
+}    
 
-
-
+/*doesn't do anything anymore */
 header{
-    font-size: x-large;
-    text-align: center;
-}
+        font-size: x-large;
+        text-align: center;
+    }
+    
