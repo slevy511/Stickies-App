@@ -116,6 +116,37 @@ textarea {
     
 }
 
+.deleteNote{
+    display: grid;
+    background-color: #0374ff;
+    border-radius: 50px;
+    border: 4px double #cccccc;
+    color: #eeeeee;
+    text-align: center;
+    font-size: 14px;
+    padding: 4px;
+    width: 120px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: auto;
+    float: inline-start;
+
+    outline: none;
+
+    
+}
+
+.deleteNote:hover {
+    background-color: blue;
+    color: rgb(255, 255, 255);
+    
+}
+
+
+
 
 
 

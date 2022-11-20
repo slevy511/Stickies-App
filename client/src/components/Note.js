@@ -49,7 +49,7 @@ class Note extends React.Component{
                         onChange={this.handleChange} />
                     <br/>
                     <input type="submit" name="save" value="Save Note" className="saveButton"/>
-                    <button name="delete" onClick={() => this.props.deletenote(this.props.note._id, this.props.ind)}>
+                    <button name="delete" className="deleteNote" onClick={() => this.props.deletenote(this.props.note._id, this.props.ind)}>
                         Delete Note
                     </button>
                 </form>
