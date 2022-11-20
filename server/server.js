@@ -422,7 +422,14 @@ app.post('/api/create-note', async function(req,res){
 
     await Board.updateOne(
         {_id: boardID}, 
-        {$push: {noteIds: [newNoteID]}}
+        
+        // push the new note ID to the FRONT of the noteIds array
+        { $push: {
+            noteIds: {
+                $each: [newNoteID],
+                $position: 0
+            }
+        }}
     )
 
     newNote.save(function(err) {
@@ -584,6 +591,92 @@ app.post('/api/share-note', function(req, res){
     })
 })
 
+/* MOVE NOTE */
+app.post('/api/shift-left/:boardID/:noteID', function(req, res) {
+    // shifts note ID left and returns new array of notes in correct order
+    const boardID = req.params.boardID
+    const noteID = req.params.noteID
+    
+    Board.findOne({_id: boardID}, function(err, foundBoard) {
+        if (err) {
+            res.send(err)
+        }
+        else {
+            const noteIDs = foundBoard.noteIds
+            const noteIndex = noteIDs.indexOf(noteID)
+
+            if (noteIndex === -1) {
+                res.send("Error: Cannot find note with that note ID in the board")
+            }
+            else {
+                if (noteIndex === 0) {
+                    // cannot shift left, so do nothing
+                    res.send(noteIDs)
+                }
+                else {
+                    // switch noteID with the one before it
+                    let temp = noteIDs[noteIndex - 1]
+                    noteIDs[noteIndex - 1] = noteID
+                    noteIDs[noteIndex] = temp
+                    
+                    // save new array into the database
+                    Board.updateOne({_id: boardID}, { $set: {noteIds: noteIDs}}, function(err, response) {
+                        if (err) {
+                            res.send(err)
+                        }
+                        else {
+                            res.send(noteIDs)
+                        }
+                    })
+                }
+            }
+        }
+    })
+})
+
+app.post('/api/shift-right/:boardID/:noteID', function(req, res) {
+    // shifts note ID right and returns new array of notes in correct order
+    const boardID = req.params.boardID
+    const noteID = req.params.noteID
+    
+    Board.findOne({_id: boardID}, function(err, foundBoard) {
+        if (err) {
+            res.send(err)
+        }
+        else {
+            const noteIDs = foundBoard.noteIds
+            const noteIndex = noteIDs.indexOf(noteID)
+
+            if (noteIndex === -1) {
+                res.send("Error: Cannot find note with that note ID in the board")
+            }
+            else {
+                if (noteIndex === (noteIDs.length - 1)) {
+                    // if it's last element, we can't shift right
+                    res.send(noteIDs)
+                }
+                else {
+                    // switch noteID with the one after it
+                    let temp = noteIDs[noteIndex + 1]
+                    noteIDs[noteIndex + 1] = noteID
+                    noteIDs[noteIndex] = temp
+                    
+                    // save new array into the database
+                    Board.updateOne({_id: boardID}, { $set: {noteIds: noteIDs}}, function(err, response) {
+                        if (err) {
+                            res.send(err)
+                        }
+                        else {
+                            res.send(noteIDs)
+                        }
+                    })
+                }
+            }
+        }
+    })    
+})
+
+
 // sends back all notes for testing purposes
 app.get('/api/all-notes', function(req, res) {
     Note.find(function(err, notes) {
@@ -604,14 +697,17 @@ app.get("/api/search", function(req, res) {
     const query = req.body.query
     const username = req.body.username
 
-    // get all notes for given user
+    // find user that matches username
     User.findOne({username: username}, function(err, foundUser) {
         if (err) {
             res.send(err)
         }
         else {
+            
+            // get all boardIds for that given user
             const allBoardIds = foundUser.boardIds
             
+            // convert board id array to array of board objects
             Board.find({_id: {$in: allBoardIds}}, function(err, allBoards) {
                 if (err) {
                     res.send(err)
