@@ -6,80 +6,92 @@
     width: 100vw;
   }
   
-  .app-bar{
-    display: flex;
-    
-    flex-direction: flex-end;
-    height: 25px;
-    padding: 15px;
-    background-color: darkblue;
+/* app bar at the top */  
+.app-bar{
+  display: flex;
+  
+  flex-direction: flex-end;
+  height: 25px;
+  padding: 15px;
+  background-color: darkblue;
 
-    
+}
 
-  }
-/*
-  .left-app-bar{
-    display: flex;
-    justify-content: left;
-    height: 25px;
-    padding: 15px;
-    background-color: darkblue;
+/* top left corner logo */
+.logo2 {
+  width: 63px;
+  height: 63px;
+  object-fit: cover;
+ 
+  position: relative;
+  margin-left:-10px;
+  margin-top: -15px;
+  }  
 
-    
-
-  }
-*/
-/*
-  .logout{
-    font-family: "Arial Black", "Impact", "Courier New", monospace;
-    font-size: 20px;
-    background-color: #F3E779;
-    margin-left: 5px;
-    font-weight: bold;
-  }
-
-  .addnote{
-    font-family: "Arial Black", "Impact", "Courier New", monospace;
-    font-size: 20px;
-    background-color: #F3E779;
-    font-weight: bold;
-  }
- */ 
-  .logout:hover{
-    background-color: #a49937;
-  }
-
-  .addnote:hover{
-    background-color: #F3E779;
-    
-    color: rgb(0, 0, 0);
-  }
-
-  button[name=addnote] {
+/* "*Board Name*" Text at top */  
+.boardNameBanner{
+   
     display: inline-block;
-    
-    background-color: #0374ff;
-    border-radius: 50px;
-    border: 4px double #cccccc;
-    color: #eeeeee;
-    text-align: center;
-    font-size: 18px;
-    padding: 10px;
-    width: 150px;
-    -webkit-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    -o-transition: all 0.5s;
-    transition: all 0.5s;
-    cursor: pointer;
-    margin: -10px;
-    position: relative;
-    font-weight: bold;
-    margin-right: 30px;
-    margin-left: auto;
-    white-space: nowrap;
-  }
+    justify-content: left;
+    align-items: left;
 
-  button[name=logout] {
+    position:relative;
+    z-index: 5;
+      
+    /*clear:center;*/
+    /*top: -100px;*/
+    top: 10px;
+    float: left;
+
+    font-size: 28px;
+    color: #eeeeee;
+     
+    text-align:left;/* Add This*/
+    box-sizing: border-box;
+    
+    top: -10px;
+    left: 5px;
+    
+    margin: 5px;
+    margin-right: 20px;
+    white-space:nowrap;
+    
+    
+} 
+
+/* "New Note" Button */
+.addnote{  
+  display: inline-block;
+  
+  background-color: #0374ff;
+  border-radius: 50px;
+  border: 4px double #cccccc;
+  color: #eeeeee;
+  text-align: center;
+  font-size: 18px;
+  padding: 10px;
+  width: 150px;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: -10px;
+  position: relative;
+  font-weight: bold;
+  margin-right: 30px;
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.addnote:hover{
+  background-color: #F3E779;
+  
+  color: rgb(0, 0, 0);
+}
+
+  /* "Log out" button */
+.logout{
     display: inline-block;
     background-color: #0374ff;
     border-radius: 50px;
@@ -104,58 +116,11 @@
     
   }
 
-  .boardNameBanner{
-   /* background-color: #F3E779;
-    font-family: "Arial Black", "Impact", "Courier New", monospace;
-    font-size: 14px;
-    display: inline-block;
-    padding: 1px;
+.logout:hover{
+    background-color: #a49937;
+  }  
 
-    border: 5px solid rgb(0, 0, 0);
-    border-radius: 50px;
-*/
-    display: inline-block;
-    justify-content: left;
-    align-items: left;
 
-    position:relative;
-    z-index: 5;
-    
-    
-    /*clear:center;*/
-    /*top: -100px;*/
-    top: 10px;
-    float: left;
-
-    font-size: 28px;
-    color: #eeeeee;
-    
-    
-    text-align:left;/* Add This*/
-
-    
-
-    box-sizing: border-box;
-    
-    top: -10px;
-    left: 5px;
-    
-    margin: 5px;
-    margin-right: 20px;
-    white-space:nowrap;
-    
-    
-}
-
-.logo2 {
-    width: 63px;
-    height: 63px;
-    object-fit: cover;
-   
-    position: relative;
-    margin-left:-10px;
-    margin-top: -15px;
-    }  
 
  
   

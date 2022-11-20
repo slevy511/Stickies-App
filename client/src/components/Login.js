@@ -88,19 +88,19 @@ class LoginForm extends React.Component {
 
                     <label>
                         {"Username: "}
-                        <input name="username" type="text" placeholder="Username" value={this.state.username} onChange={this.handleChange} />
+                        <input className="userName" name="username" type="text" placeholder="Username" value={this.state.username} onChange={this.handleChange} />
                     </label>
                     <br/>
                     <label>
                         {"Password: "}
-                        <input name="password" type="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} />
+                        <input className="passWord" name="password" type="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} />
                     </label>
                     <br/>
-                    <input type="submit" name="login" value="Log in" />
+                    <input type="submit" className="logIn" name="login" value="Log in" />
                     <br/>
                     {"Don't have an account?"}
                     <br/>
-                    <button name="register" onClick={this.register} >
+                    <button name="register" className="register" onClick={this.register} >
                         Register now
                     </button>
                 </form>
