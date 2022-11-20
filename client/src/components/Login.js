@@ -41,10 +41,10 @@ class LoginForm extends React.Component {
             else{
                 const response = await Axios.get("http://localhost:8000/api/valid-login/" + this.state.username + "/" + this.state.password)
                 if(response.data){
-                    this.props.setActive('Board');
+                    this.props.login(this.state.username)
                 }
                 else{
-                    this.setState({errstate: 1});
+                    this.setState({errstate: 1})
                 }
             }
         }

@@ -39,7 +39,7 @@ class RegistrationForm extends React.Component {
           const created = await Axios.post("http://localhost:8000/api/create-user/" + this.state.username + "/" + this.state.password)
           this.setState({errstate: created.data});
           if (created.data){
-            this.props.setActive('Board');
+            this.props.login(this.state.username)
           }
         }
     }
