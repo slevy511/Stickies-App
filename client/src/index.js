@@ -24,6 +24,7 @@ class App extends React.Component{
     this.boardSelect = this.boardSelect.bind(this)
     this.createBoard = this.createBoard.bind(this)
     this.deleteBoard = this.deleteBoard.bind(this)
+    this.search = this.search.bind(this)
   }
 
   async login(uname){
@@ -88,6 +89,20 @@ class App extends React.Component{
     }
   }
 
+  async search(searchString){
+    console.log(searchString)
+    const changed = await Axios.post("http://localhost:8000/api/search-user", {
+      query: searchString,
+      username: this.state.user
+    })
+    if (changed){
+      const all_boards = await Axios.get("http://localhost:8000/api/get-all-boards/" + this.state.user)
+      const bds = all_boards.data
+      const next = !(this.state.toggle)
+      this.setState({boards: bds, boardNum: 2, toggle: next})
+    }
+  }
+
   render(){
     const activeBoard = this.state.boards[this.state.boardNum]
     return (
@@ -106,7 +121,7 @@ class App extends React.Component{
         : null}
         {this.state.active === 'Board' ?
         <Lowerbar boards={this.state.boards} boardNum={this.state.boardNum} boardSelect={this.boardSelect}
-        createBoard={this.createBoard} deleteBoard={this.deleteBoard} />
+        createBoard={this.createBoard} deleteBoard={this.deleteBoard} search={this.search} />
         : null}
       </div>
     );
