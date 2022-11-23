@@ -301,33 +301,33 @@ app.post('/api/delete-board/:boardID', function(req, res) {
     // searching for a board
     const boardID = req.params.boardID
 
+    // handle notes contained in board
     Board.findById(mongoose.Types.ObjectId(boardID), async function(err, foundBoard){
         if (err) {
             res.send(err)
         }
         else {
-            if (foundBoard == null){
-                res.send(false)
+            // if the board is present:
+            if (foundBoard != null) {
+                // for each note in the board, decrement link count, and delete if no more links
+                const allNoteIds = foundBoard.noteIds
+                await Note.updateMany({_id: { $in : allNoteIds}}, {$inc: { linkcount: -1 }})
+                await Note.deleteMany({_id: { $in : allNoteIds}, linkcount: 0})
+            }
+        }
+    })
+
+    // delete board
+    Board.deleteOne({_id: boardID}, function(err, result) {
+        if (err) {
+            res.send(err)
+        }
+        else {
+            if (result.deletedCount == 1){
+                res.send(true)
             }
             else {
-                // for each note in the board, decrement link count, and delete if no more links
-                for (noteID of foundBoard.noteIds){
-                    await Note.findByIdAndUpdate(mongoose.Types.ObjectId(noteID), {$inc: { linkcount: -1}})
-                    await Note.deleteOne({_id: noteID, linkcount: 0}, function(err) {
-                        if (err) {
-                            res.send(err)
-                        }
-                    })
-                }
-                // delete board
-                await Board.deleteOne({_id: boardID}, function(err) {
-                    if (err) {
-                        res.send(err)
-                    }
-                    else {
-                        res.send(true)
-                    }
-                })
+                res.send(false)
             }
         }
     })
