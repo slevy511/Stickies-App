@@ -13,12 +13,14 @@ class App extends React.Component{
       active: 'LoginForm',
       user: null,
       boardNum: 0,
-      boards: []
+      boards: [],
+      toggle: false
     }
 
     this.setActive = this.setActive.bind(this)
     this.login = this.login.bind(this)
     this.logout = this.logout.bind(this)
+    this.boardSelect = this.boardSelect.bind(this)
   }
 
   async login(uname){
@@ -35,7 +37,16 @@ class App extends React.Component{
     this.setState({active: 'LoginForm', user: null, boardNum: 0, boards: []})
   }
 
+  boardSelect(event){
+    const next = !(this.state.toggle)
+    this.setState({
+      boardNum: event.target.value, toggle: next
+    })
+  }
+
   render(){
+    const activeBoard = this.state.boards[this.state.boardNum]
+    console.log(activeBoard)
     return (
       <div>
         {this.state.active === 'LoginForm' ?
@@ -44,8 +55,20 @@ class App extends React.Component{
         {this.state.active === 'RegistrationForm' ?
         <RegistrationForm login={this.login} setActive={this.setActive} />
         : null}
+        {this.state.active === 'Board' && this.state.toggle ?
+        <Board logout={this.logout} user={this.state.user} activeBoard={activeBoard}/>
+        : null}
+        {this.state.active === 'Board' && !this.state.toggle ?
+        <Board logout={this.logout} user={this.state.user} activeBoard={activeBoard}/>
+        : null}
         {this.state.active === 'Board' ?
-        <Board logout={this.logout} user={this.state.user} activeBoard={this.state.boards[this.state.boardNum]}/>
+        <div className="lower-bar">
+          <select value={this.state.boardNum} onChange={this.boardSelect}>
+            <option value="0">{this.state.boards[0].boardname}</option>
+            <option value="1">{this.state.boards[1].boardname}</option>
+            <option value="2">{this.state.boards[2].boardname}</option>
+          </select>
+        </div>
         : null}
       </div>
     );

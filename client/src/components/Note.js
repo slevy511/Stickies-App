@@ -5,7 +5,6 @@ class Note extends React.Component{
     constructor(props){
         super(props);
         const contents = this.props.note.contents == null ? '' : this.props.note.contents[0]
-        // console.log(this.props.notes.contents)
         this.state = {
             noteName: this.props.note.notename,
             text: contents
@@ -25,9 +24,6 @@ class Note extends React.Component{
 
     async handleSubmit(event) {
         event.preventDefault();
-        console.log(this.state.noteName)
-        console.log(this.state.text)
-        console.log(this.props.note)
         // Update note in database
         await axios.post("http://localhost:8000/api/update-note", {
             notename: this.state.noteName,
