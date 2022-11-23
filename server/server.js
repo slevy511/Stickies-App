@@ -114,7 +114,6 @@ app.post('/api/create-user/:username/:password', function(req, res){
             }
         }
     })
-
 })
 
 app.get('/api/valid-login/:username/:password', function(req, res) {
@@ -189,34 +188,67 @@ app.get('/api/all-users', function(req, res) {
 
 /* BOARD API */
 
-app.post('/api/create-board/:userID/:boardname', async function(req,res){
-    const userID = req.params.userID
-    const newBoardName = req.params.boardname
+app.post('/api/create-board', async function(req,res){
+    // create a board, if and only if that user doesn't already have a board with that name
+    const uname = req.body.username
+    const newBoardName = req.body.boardname
     
-    // create new board with inputted title
-    const newBoard = new Board({
-        boardname: newBoardName
-    })
+    async function createBoard() {
+        // create new board with inputted title
+        const newBoard = new Board({
+            boardname: newBoardName
+        })
 
-    // grab the board ID
-    const newBoardId = String(newBoard._id)
+        // grab the board ID
+        const newBoardId = String(newBoard._id)
 
-    // find the user and update its boardIds array to include the created board
-    await User.updateOne(
-            {_id: userID}, 
+        // find the user and update its boardIds array to include the created board
+        await User.updateOne(
+            {username: uname}, 
             {$push: {boardIds: [newBoardId]}}
-    )
+        )
 
-    // save that new board into the database
-    newBoard.save(function(err) {
+        // save that new board into the database
+        newBoard.save(function(err) {
+            if (err) {
+                res.send(err)
+            }
+            else {
+                res.send(true)
+            }
+        })
+    }
+
+    User.findOne({username: uname}, async function(err, foundUser) {
         if (err) {
             res.send(err)
         }
         else {
-            res.send("Success!")
+            // user does not exist
+            if (foundUser == null){
+                res.send(false)
+            }
+            // user exists
+            else{
+                const allBoardIds = foundUser.boardIds
+                Board.findOne({_id: {$in : allBoardIds}, boardname: newBoardName}, async function(err, foundBoard){
+                    if (err) {
+                        res.send(err)
+                    }
+                    else {
+                        // if the board doesn't exist for that user, create the board
+                        if (foundBoard == null) {
+                            createBoard()
+                        }
+                        // otherwise, false
+                        else {
+                            res.send(false)
+                        }
+                    }
+                })
+            }
         }
     })
-
 });
 
 
@@ -265,37 +297,46 @@ app.get("/api/get-all-boards/:username", function(req, res) {
 
 })
 
-app.post('/api/delete-board/:boardID', function(req, res) {
+app.post('/api/delete-board', function(req, res) {
     // searching for a board
-    const boardID = req.params.boardID
+    const boardID = req.body.boardID
+    const uname = req.body.username
 
+    // handle notes contained in board
     Board.findById(mongoose.Types.ObjectId(boardID), async function(err, foundBoard){
         if (err) {
             res.send(err)
         }
         else {
-            if (foundBoard == null){
-                res.send(false)
+            // if the board is present:
+            if (foundBoard != null) {
+                // for each note in the board, decrement link count, and delete if no more links
+                const allNoteIds = foundBoard.noteIds
+                await Note.updateMany({_id: { $in : allNoteIds}}, {$inc: { linkcount: -1 }})
+                await Note.deleteMany({_id: { $in : allNoteIds}, linkcount: 0})
+            }
+        }
+    })
+
+    // remove board from user
+    User.updateOne({username: uname}, {$pull: {boardIds: boardID}}, function(err){
+        if (err) {
+            res.send(err)
+            return
+        }
+    })
+
+    // delete board
+    Board.deleteOne({_id: boardID}, function(err, result) {
+        if (err) {
+            res.send(err)
+        }
+        else {
+            if (result.deletedCount == 1){
+                res.send(true)
             }
             else {
-                // for each note in the board, decrement link count, and delete if no more links
-                for (noteID of foundBoard.noteIds){
-                    await Note.findByIdAndUpdate(mongoose.Types.ObjectId(noteID), {$inc: { linkcount: -1}})
-                    await Note.deleteOne({_id: noteID, linkcount: 0}, function(err) {
-                        if (err) {
-                            res.send(err)
-                        }
-                    })
-                }
-                // delete board
-                await Board.deleteOne({_id: boardID}, function(err) {
-                    if (err) {
-                        res.send(err)
-                    }
-                    else {
-                        res.send(true)
-                    }
-                })
+                res.send(false)
             }
         }
     })
@@ -737,13 +778,10 @@ app.get("/api/search", function(req, res) {
                             res.send(search_results)
                         }
                     })
-
                 }
             }) 
-
         }
     })
-
 })
 
 app.listen(8000, function(req, res) {

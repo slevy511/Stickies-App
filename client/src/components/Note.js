@@ -1,18 +1,19 @@
-import axios from 'axios';
+import axios, { Axios } from 'axios';
 import React from 'react';
 
 class Note extends React.Component{
     constructor(props){
         super(props);
         const contents = this.props.note.contents == null ? '' : this.props.note.contents[0]
-        // console.log(this.props.notes.contents)
         this.state = {
             noteName: this.props.note.notename,
-            text: contents
+            text: contents,
+            targetUser: ''
         };
 
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.shareNote = this.shareNote.bind(this)
     }
 
     handleChange(event) {
@@ -25,15 +26,30 @@ class Note extends React.Component{
 
     async handleSubmit(event) {
         event.preventDefault();
-        console.log(this.state.noteName)
-        console.log(this.state.text)
-        console.log(this.props.note)
         // Update note in database
         await axios.post("http://localhost:8000/api/update-note", {
             notename: this.state.noteName,
             content: this.state.text,
             noteID: this.props.note._id
         })
+    }
+
+    async shareNote() {
+        const targetUser = this.state.targetUser
+        if (targetUser === ''){
+
+        }
+        else {
+            const shared = await axios.post("http://localhost:8000/api/share-note", {
+                noteID: this.props.note._id,
+                destUser: targetUser
+            })
+            if (shared.data){
+                this.setState({
+                    targetUser: ''
+                })
+            }
+        }
     }
 
     render() {
@@ -51,6 +67,10 @@ class Note extends React.Component{
                     <input type="submit" name="save" value="Save Note" className="saveButton"/>
                     <button name="delete" className="deleteNote" onClick={() => this.props.deletenote(this.props.note._id, this.props.ind)}>
                         Delete Note
+                    </button>
+                    <input type="text" className="shareTarget" name="targetUser" placeholder="Share your note!" value={this.state.targetUser} onChange={this.handleChange} />
+                    <button name="share" className="shareNote" onClick={this.shareNote}>
+                        Share Note
                     </button>
                 </form>
             </div>
