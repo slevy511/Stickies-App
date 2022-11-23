@@ -72,7 +72,10 @@ class App extends React.Component{
       console.log("Default boards - cannot delete")
     }
     else{
-      const deleted = await Axios.post("http://localhost:8000/api/delete-board/" + this.state.boards[this.state.boardNum]._id)
+      const deleted = await Axios.post("http://localhost:8000/api/delete-board", {
+        boardID: this.state.boards[this.state.boardNum]._id,
+        username: this.state.user
+      })
       if (deleted){
         const all_boards = await Axios.get("http://localhost:8000/api/get-all-boards/" + this.state.user)
         const bds = all_boards.data

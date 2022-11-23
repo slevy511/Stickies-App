@@ -12,8 +12,10 @@ class Lowerbar extends React.Component{
     }
 
     handleChange(event) {
+        const target = event.target;
+        const name = target.name;
         this.setState({
-            newBoardName: event.target.value
+            [name]: event.target.value
         })
     }
 

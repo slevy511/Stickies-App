@@ -297,9 +297,10 @@ app.get("/api/get-all-boards/:username", function(req, res) {
 
 })
 
-app.post('/api/delete-board/:boardID', function(req, res) {
+app.post('/api/delete-board', function(req, res) {
     // searching for a board
-    const boardID = req.params.boardID
+    const boardID = req.body.boardID
+    const uname = req.body.username
 
     // handle notes contained in board
     Board.findById(mongoose.Types.ObjectId(boardID), async function(err, foundBoard){
@@ -314,6 +315,14 @@ app.post('/api/delete-board/:boardID', function(req, res) {
                 await Note.updateMany({_id: { $in : allNoteIds}}, {$inc: { linkcount: -1 }})
                 await Note.deleteMany({_id: { $in : allNoteIds}, linkcount: 0})
             }
+        }
+    })
+
+    // remove board from user
+    User.updateOne({username: uname}, {$pull: {boardIds: boardID}}, function(err){
+        if (err) {
+            res.send(err)
+            return
         }
     })
 
@@ -769,13 +778,10 @@ app.get("/api/search", function(req, res) {
                             res.send(search_results)
                         }
                     })
-
                 }
             }) 
-
         }
     })
-
 })
 
 app.listen(8000, function(req, res) {
