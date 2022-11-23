@@ -14,6 +14,7 @@ class Board extends React.Component{
         this.logout = this.logout.bind(this)
         this.addnote = this.addnote.bind(this)
         this.deletenote = this.deletenote.bind(this)
+        this.addButton = this.addButton.bind(this)
 
         this.getNotes()
     }
@@ -51,6 +52,20 @@ class Board extends React.Component{
         })
     }
 
+    addButton(){
+        console.log(this.props.boardNum)
+        if (this.props.boardNum == 1 || this.props.boardNum == 2){
+            return null
+        }
+        else{
+            return(
+                <button className="addnote" name="addnote" onClick={this.addnote}>
+                    New Note
+                </button>
+            )
+        }
+    }
+
     render() {
         return(
             <>
@@ -61,9 +76,7 @@ class Board extends React.Component{
                             {this.props.activeBoard.boardname}        
                     </label>
             </div>
-            <button className="addnote" name="addnote" onClick={this.addnote}>
-                New Note
-            </button>
+            {this.addButton()}
             <button className="logout" name="logout" onClick={this.logout}>
                 Log Out
             </button>
