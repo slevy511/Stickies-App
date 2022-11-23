@@ -4,6 +4,7 @@ import Axios from 'axios';
 import LoginForm from './components/Login'
 import RegistrationForm from './components/Register'
 import Board from './components/Board'
+import Lowerbar from './components/Lowerbar'
 import logo from './logo.png'
 
 class App extends React.Component{
@@ -21,6 +22,8 @@ class App extends React.Component{
     this.login = this.login.bind(this)
     this.logout = this.logout.bind(this)
     this.boardSelect = this.boardSelect.bind(this)
+    this.createBoard = this.createBoard.bind(this)
+    this.deleteBoard = this.deleteBoard.bind(this)
   }
 
   async login(uname){
@@ -44,9 +47,46 @@ class App extends React.Component{
     })
   }
 
+  async createBoard(boardName){
+    if (boardName === ''){
+      
+    }
+    else {
+      const created = await Axios.post("http://localhost:8000/api/create-board", {
+        username: this.state.user,
+        boardname: boardName
+      })
+      if (created.data){
+        const all_boards = await Axios.get("http://localhost:8000/api/get-all-boards/" + this.state.user)
+        const bds = all_boards.data
+        this.setState({boards: bds})
+      }
+      else {
+        
+      }
+    }
+  }
+
+  async deleteBoard(){
+    if (this.state.boardNum <= 2){
+      console.log("Default boards - cannot delete")
+    }
+    else{
+      const deleted = await Axios.post("http://localhost:8000/api/delete-board/" + this.state.boards[this.state.boardNum]._id)
+      if (deleted){
+        const all_boards = await Axios.get("http://localhost:8000/api/get-all-boards/" + this.state.user)
+        const bds = all_boards.data
+        const next = !(this.state.toggle)
+        this.setState({boards: bds, boardNum: 0, toggle: next})
+      }
+      else{
+
+      }
+    }
+  }
+
   render(){
     const activeBoard = this.state.boards[this.state.boardNum]
-    console.log(activeBoard)
     return (
       <div>
         {this.state.active === 'LoginForm' ?
@@ -62,13 +102,8 @@ class App extends React.Component{
         <Board logout={this.logout} user={this.state.user} activeBoard={activeBoard}/>
         : null}
         {this.state.active === 'Board' ?
-        <div className="lower-bar">
-          <select value={this.state.boardNum} onChange={this.boardSelect}>
-            <option value="0">{this.state.boards[0].boardname}</option>
-            <option value="1">{this.state.boards[1].boardname}</option>
-            <option value="2">{this.state.boards[2].boardname}</option>
-          </select>
-        </div>
+        <Lowerbar boards={this.state.boards} boardNum={this.state.boardNum} boardSelect={this.boardSelect}
+        createBoard={this.createBoard} deleteBoard={this.deleteBoard} />
         : null}
       </div>
     );

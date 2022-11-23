@@ -114,7 +114,6 @@ app.post('/api/create-user/:username/:password', function(req, res){
             }
         }
     })
-
 })
 
 app.get('/api/valid-login/:username/:password', function(req, res) {
@@ -189,34 +188,67 @@ app.get('/api/all-users', function(req, res) {
 
 /* BOARD API */
 
-app.post('/api/create-board/:userID/:boardname', async function(req,res){
-    const userID = req.params.userID
-    const newBoardName = req.params.boardname
+app.post('/api/create-board', async function(req,res){
+    // create a board, if and only if that user doesn't already have a board with that name
+    const uname = req.body.username
+    const newBoardName = req.body.boardname
     
-    // create new board with inputted title
-    const newBoard = new Board({
-        boardname: newBoardName
-    })
+    async function createBoard() {
+        // create new board with inputted title
+        const newBoard = new Board({
+            boardname: newBoardName
+        })
 
-    // grab the board ID
-    const newBoardId = String(newBoard._id)
+        // grab the board ID
+        const newBoardId = String(newBoard._id)
 
-    // find the user and update its boardIds array to include the created board
-    await User.updateOne(
-            {_id: userID}, 
+        // find the user and update its boardIds array to include the created board
+        await User.updateOne(
+            {username: uname}, 
             {$push: {boardIds: [newBoardId]}}
-    )
+        )
 
-    // save that new board into the database
-    newBoard.save(function(err) {
+        // save that new board into the database
+        newBoard.save(function(err) {
+            if (err) {
+                res.send(err)
+            }
+            else {
+                res.send(true)
+            }
+        })
+    }
+
+    User.findOne({username: uname}, async function(err, foundUser) {
         if (err) {
             res.send(err)
         }
         else {
-            res.send("Success!")
+            // user does not exist
+            if (foundUser == null){
+                res.send(false)
+            }
+            // user exists
+            else{
+                const allBoardIds = foundUser.boardIds
+                Board.findOne({_id: {$in : allBoardIds}, boardname: newBoardName}, async function(err, foundBoard){
+                    if (err) {
+                        res.send(err)
+                    }
+                    else {
+                        // if the board doesn't exist for that user, create the board
+                        if (foundBoard == null) {
+                            createBoard()
+                        }
+                        // otherwise, false
+                        else {
+                            res.send(false)
+                        }
+                    }
+                })
+            }
         }
     })
-
 });
 
 
