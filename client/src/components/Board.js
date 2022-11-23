@@ -73,6 +73,7 @@ class Board extends React.Component{
                     return(
                         < Note
                         note={note}
+                        boardNum={this.props.boardNum}
                         boardID={this.props.activeBoard._id}
                         user={this.props.user}
                         deletenote={(i, j) => this.deletenote(i, j)}
