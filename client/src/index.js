@@ -70,27 +70,26 @@ class App extends React.Component{
 
   async deleteBoard(){
     if (this.state.boardNum <= 2){
-      console.log("Default boards - cannot delete")
+      window.alert("You cannot delete the default board '" + this.state.boards[this.state.boardNum].boardname + "'")
     }
     else{
-      const deleted = await Axios.post("http://localhost:8000/api/delete-board", {
-        boardID: this.state.boards[this.state.boardNum]._id,
-        username: this.state.user
-      })
-      if (deleted){
-        const all_boards = await Axios.get("http://localhost:8000/api/get-all-boards/" + this.state.user)
-        const bds = all_boards.data
-        const next = !(this.state.toggle)
-        this.setState({boards: bds, boardNum: 0, toggle: next})
-      }
-      else{
-
+      if(window.confirm("Delete board: '" + this.state.boards[this.state.boardNum].boardname + "'\nAre you sure?")){
+        const deleted = await Axios.post("http://localhost:8000/api/delete-board", {
+          boardID: this.state.boards[this.state.boardNum]._id,
+          username: this.state.user
+        })
+        if (deleted){
+          const all_boards = await Axios.get("http://localhost:8000/api/get-all-boards/" + this.state.user)
+          const bds = all_boards.data
+          const next = !(this.state.toggle)
+          this.setState({boards: bds, boardNum: 0, toggle: next})
+        }
       }
     }
   }
 
   async search(searchString){
-    console.log(searchString)
+
     const changed = await Axios.post("http://localhost:8000/api/search-user", {
       query: searchString,
       username: this.state.user

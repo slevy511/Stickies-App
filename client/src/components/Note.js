@@ -59,7 +59,7 @@ class Note extends React.Component{
         }
         else{
             return(
-                <button name="delete" className="deleteNote" onClick={() => this.props.deletenote(this.props.note._id, this.props.ind)}>
+                <button name="delete" className="deleteNote" onClick={() => this.props.deletenote(this.props.note._id, this.props.ind, this.state.noteName)}>
                     Delete Note
                 </button>
             )

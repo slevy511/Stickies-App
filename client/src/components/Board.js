@@ -39,21 +39,21 @@ class Board extends React.Component{
         });
     }
 
-    async deletenote(noteID_in, index) {
-        await Axios.post("http://localhost:8000/api/delete-note", {
-            noteID: noteID_in,
-            boardID: this.props.activeBoard._id
-        })
-        console.log(index)
-        const notes = this.state.notes
-        notes.splice(index, 1)
-        this.setState({
-            notes: notes
-        })
+    async deletenote(noteID_in, index, notename) {
+        if (window.confirm("Delete note: '" + notename + "'\nAre you sure?")){
+            await Axios.post("http://localhost:8000/api/delete-note", {
+                noteID: noteID_in,
+                boardID: this.props.activeBoard._id
+            })
+            const notes = this.state.notes
+            notes.splice(index, 1)
+            this.setState({
+                notes: notes
+            })
+        }
     }
 
     addButton(){
-        console.log(this.props.boardNum)
         if (this.props.boardNum == 1 || this.props.boardNum == 2){
             return null
         }
@@ -89,7 +89,7 @@ class Board extends React.Component{
                         boardNum={this.props.boardNum}
                         boardID={this.props.activeBoard._id}
                         user={this.props.user}
-                        deletenote={(i, j) => this.deletenote(i, j)}
+                        deletenote={(i, j, k) => this.deletenote(i, j, k)}
                         ind={index}
                         key={note._id} />
                     );
