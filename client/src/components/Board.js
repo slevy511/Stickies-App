@@ -14,6 +14,7 @@ class Board extends React.Component{
         this.logout = this.logout.bind(this)
         this.addnote = this.addnote.bind(this)
         this.deletenote = this.deletenote.bind(this)
+        this.addButton = this.addButton.bind(this)
 
         this.getNotes()
     }
@@ -38,17 +39,31 @@ class Board extends React.Component{
         });
     }
 
-    async deletenote(noteID_in, index) {
-        await Axios.post("http://localhost:8000/api/delete-note", {
-            noteID: noteID_in,
-            boardID: this.props.activeBoard._id
-        })
-        console.log(index)
-        const notes = this.state.notes
-        notes.splice(index, 1)
-        this.setState({
-            notes: notes
-        })
+    async deletenote(noteID_in, index, notename) {
+        if (window.confirm("Delete note: '" + notename + "'\nAre you sure?")){
+            await Axios.post("http://localhost:8000/api/delete-note", {
+                noteID: noteID_in,
+                boardID: this.props.activeBoard._id
+            })
+            const notes = this.state.notes
+            notes.splice(index, 1)
+            this.setState({
+                notes: notes
+            })
+        }
+    }
+
+    addButton(){
+        if (this.props.boardNum == 1 || this.props.boardNum == 2){
+            return null
+        }
+        else{
+            return(
+                <button className="addnote" name="addnote" onClick={this.addnote}>
+                    New Note
+                </button>
+            )
+        }
     }
 
     render() {
@@ -61,9 +76,7 @@ class Board extends React.Component{
                             {this.props.activeBoard.boardname}        
                     </label>
             </div>
-            <button className="addnote" name="addnote" onClick={this.addnote}>
-                New Note
-            </button>
+            {this.addButton()}
             <button className="logout" name="logout" onClick={this.logout}>
                 Log Out
             </button>
@@ -73,9 +86,10 @@ class Board extends React.Component{
                     return(
                         < Note
                         note={note}
+                        boardNum={this.props.boardNum}
                         boardID={this.props.activeBoard._id}
                         user={this.props.user}
-                        deletenote={(i, j) => this.deletenote(i, j)}
+                        deletenote={(i, j, k) => this.deletenote(i, j, k)}
                         ind={index}
                         key={note._id} />
                     );

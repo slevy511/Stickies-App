@@ -784,6 +784,61 @@ app.get("/api/search", function(req, res) {
     })
 })
 
+app.post("/api/search-user", async function(req, res) {
+    const query = req.body.query.toLowerCase()
+    const username = req.body.username
+
+    // find user who made search request
+    const foundUser = await User.findOne({username: username})
+
+    // if the user doesn't exist, send false
+    if (foundUser == null){
+        res.send(false)
+    }
+    // otherwise, carry out search
+    else{
+        // get all of the user's boards
+        const allBoardIds = foundUser.boardIds
+
+        const allBoards = await Board.find({_id: {$in: allBoardIds}})
+
+        const allNoteIds = []
+        for (const board of allBoards){
+            // append all the note id arrays together into one gigantic note id array
+            allNoteIds.push(...board.noteIds)
+        }
+
+        // get all of the user's notes
+        const allNotes = await Note.find({_id: {$in: allNoteIds}})
+
+        const search_results = []
+
+        // search every note for the query string (case insensitive)
+        for (const note of allNotes) {
+            if ((note.notename).toLowerCase().includes(query) || (note.contents[0].toLowerCase().includes(query))){
+                search_results.push(note._id)
+            }
+        }
+
+        // update the Search Results board
+        Board.updateOne({_id: {$in: allBoardIds}, boardname: "Search Results"}, {noteIds: search_results}, function(err, results){
+            if (err){
+                res.send(err)
+            }
+            else {
+                // if the board has been changed, send true
+                if (results.modifiedCount == 1){
+                    res.send(true)
+                }
+                // otherwise, send false
+                else {
+                    res.send(false)
+                }
+            }
+        })
+    }
+})
+
 app.listen(8000, function(req, res) {
     console.log("Listening on port 8000")
 })

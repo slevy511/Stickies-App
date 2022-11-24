@@ -24,6 +24,7 @@ class App extends React.Component{
     this.boardSelect = this.boardSelect.bind(this)
     this.createBoard = this.createBoard.bind(this)
     this.deleteBoard = this.deleteBoard.bind(this)
+    this.search = this.search.bind(this)
   }
 
   async login(uname){
@@ -69,22 +70,35 @@ class App extends React.Component{
 
   async deleteBoard(){
     if (this.state.boardNum <= 2){
-      console.log("Default boards - cannot delete")
+      window.alert("You cannot delete the default board '" + this.state.boards[this.state.boardNum].boardname + "'")
     }
     else{
-      const deleted = await Axios.post("http://localhost:8000/api/delete-board", {
-        boardID: this.state.boards[this.state.boardNum]._id,
-        username: this.state.user
-      })
-      if (deleted){
-        const all_boards = await Axios.get("http://localhost:8000/api/get-all-boards/" + this.state.user)
-        const bds = all_boards.data
-        const next = !(this.state.toggle)
-        this.setState({boards: bds, boardNum: 0, toggle: next})
+      if(window.confirm("Delete board: '" + this.state.boards[this.state.boardNum].boardname + "'\nAre you sure?")){
+        const deleted = await Axios.post("http://localhost:8000/api/delete-board", {
+          boardID: this.state.boards[this.state.boardNum]._id,
+          username: this.state.user
+        })
+        if (deleted){
+          const all_boards = await Axios.get("http://localhost:8000/api/get-all-boards/" + this.state.user)
+          const bds = all_boards.data
+          const next = !(this.state.toggle)
+          this.setState({boards: bds, boardNum: 0, toggle: next})
+        }
       }
-      else{
+    }
+  }
 
-      }
+  async search(searchString){
+
+    const changed = await Axios.post("http://localhost:8000/api/search-user", {
+      query: searchString,
+      username: this.state.user
+    })
+    if (changed){
+      const all_boards = await Axios.get("http://localhost:8000/api/get-all-boards/" + this.state.user)
+      const bds = all_boards.data
+      const next = !(this.state.toggle)
+      this.setState({boards: bds, boardNum: 2, toggle: next})
     }
   }
 
@@ -99,14 +113,14 @@ class App extends React.Component{
         <RegistrationForm login={this.login} setActive={this.setActive} />
         : null}
         {this.state.active === 'Board' && this.state.toggle ?
-        <Board logout={this.logout} user={this.state.user} activeBoard={activeBoard}/>
+        <Board logout={this.logout} user={this.state.user} activeBoard={activeBoard} boardNum={this.state.boardNum}/>
         : null}
         {this.state.active === 'Board' && !this.state.toggle ?
-        <Board logout={this.logout} user={this.state.user} activeBoard={activeBoard}/>
+        <Board logout={this.logout} user={this.state.user} activeBoard={activeBoard} boardNum={this.state.boardNum} />
         : null}
         {this.state.active === 'Board' ?
         <Lowerbar boards={this.state.boards} boardNum={this.state.boardNum} boardSelect={this.boardSelect}
-        createBoard={this.createBoard} deleteBoard={this.deleteBoard} />
+        createBoard={this.createBoard} deleteBoard={this.deleteBoard} search={this.search} />
         : null}
       </div>
     );

@@ -14,6 +14,7 @@ class Note extends React.Component{
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.shareNote = this.shareNote.bind(this)
+        this.deleteButton = this.deleteButton.bind(this)
     }
 
     handleChange(event) {
@@ -52,6 +53,19 @@ class Note extends React.Component{
         }
     }
 
+    deleteButton(){
+        if (this.props.boardNum == 2){
+            return null
+        }
+        else{
+            return(
+                <button name="delete" className="deleteNote" onClick={() => this.props.deletenote(this.props.note._id, this.props.ind, this.state.noteName)}>
+                    Delete Note
+                </button>
+            )
+        }
+    }
+
     render() {
         return(
             <div>
@@ -65,9 +79,7 @@ class Note extends React.Component{
                         onChange={this.handleChange} />
                     <br/>
                     <input type="submit" name="save" value="Save Note" className="saveButton"/>
-                    <button name="delete" className="deleteNote" onClick={() => this.props.deletenote(this.props.note._id, this.props.ind)}>
-                        Delete Note
-                    </button>
+                    {this.deleteButton()}
                     <input type="text" className="shareTarget" name="targetUser" placeholder="Share your note!" value={this.state.targetUser} onChange={this.handleChange} />
                     <button name="share" className="shareNote" onClick={this.shareNote}>
                         Share Note
