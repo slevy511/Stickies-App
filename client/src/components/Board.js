@@ -15,6 +15,8 @@ class Board extends React.Component{
         this.addnote = this.addnote.bind(this)
         this.deletenote = this.deletenote.bind(this)
         this.addButton = this.addButton.bind(this)
+        this.leftShift = this.leftShift.bind(this)
+        this.rightShift = this.rightShift.bind(this)
 
         this.getNotes()
     }
@@ -50,6 +52,26 @@ class Board extends React.Component{
             this.setState({
                 notes: notes
             })
+        }
+    }
+
+    async leftShift(index){
+        const shifted = await Axios.post("http://localhost:8000/api/shift-left", {
+            boardID: this.props.activeBoard._id,
+            ind: index
+        })
+        if (shifted.data){
+            this.getNotes()
+        }
+    }
+
+    async rightShift(index){
+        const shifted = await Axios.post("http://localhost:8000/api/shift-right", {
+            boardID: this.props.activeBoard._id,
+            ind: index
+        })
+        if (shifted.data){
+            this.getNotes()
         }
     }
 
@@ -90,6 +112,8 @@ class Board extends React.Component{
                         boardID={this.props.activeBoard._id}
                         user={this.props.user}
                         deletenote={(i, j, k) => this.deletenote(i, j, k)}
+                        rightShift={(i) => this.rightShift(i)}
+                        leftShift={(i) => this.leftShift(i)}
                         ind={index}
                         key={note._id} />
                     );
