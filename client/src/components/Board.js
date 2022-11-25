@@ -36,9 +36,7 @@ class Board extends React.Component{
             content: '',
             boardID: this.props.activeBoard._id
         })
-        this.setState({
-            notes: this.state.notes.concat(newnote.data)
-        });
+        this.getNotes()
     }
 
     async deletenote(noteID_in, index, notename) {
@@ -47,11 +45,7 @@ class Board extends React.Component{
                 noteID: noteID_in,
                 boardID: this.props.activeBoard._id
             })
-            const notes = this.state.notes
-            notes.splice(index, 1)
-            this.setState({
-                notes: notes
-            })
+            this.getNotes()
         }
     }
 
