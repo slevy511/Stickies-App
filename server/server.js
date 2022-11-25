@@ -139,7 +139,16 @@ app.get('/api/valid-login/:username/:password', function(req, res) {
                 res.send(false)
             }
             else{
-                res.send(foundUser.password == password)
+                // res.send(foundUser.password == password)
+                bcrypt.compare(password, foundUser.password, function(err, result) {
+                    
+                    if (err) {
+                        res.send(err)
+                    }
+                    else {
+                        res.send(result)
+                    }
+                });
             }
         }
     })
