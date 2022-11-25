@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const app = express()
 const cors = require('cors')
+const decrypt = require('decrypt');
 
 // enable access to all origins
 app.use(cors())
@@ -59,7 +60,8 @@ app.post('/api/create-user/:username/:password', function(req, res){
     // create a user, if and only if username is not in use
     const newUsername = req.params.username
     const newPassword = req.params.password
-
+    const saltRounds = 10;
+    
     function createUser() {
         // create 3 new boards for the new user
         const newBoard1 = new Board({
@@ -82,23 +84,29 @@ app.post('/api/create-user/:username/:password', function(req, res){
 
         // insert the 3 boards created above
         Board.insertMany(boardsToInsert)
+        
+        bcrypt.hash(newPassword, saltRounds, function(err, hash) {
+            // Store hash in your password DB.
 
-        // create user document
-        const newUser = new User({
-            username: newUsername,
-            password: newPassword,
-            boardIds: boardIDs
-        })
+        
+            // create user document
+            const newUser = new User({
+                username: newUsername,
+                password: hash,
+                boardIds: boardIDs
+            })
 
-        // save the new user (which points to the 3 default boards)
-        newUser.save(function(err) {
-            if (err) {
-                res.send(err)
-            }
-            else {
-                res.send(true)
-            }
-        })
+            // save the new user (which points to the 3 default boards)
+            newUser.save(function(err) {
+                if (err) {
+                    res.send(err)
+                }
+                else {
+                    res.send(true)
+                }
+            })
+        }); 
+
     }
 
     User.findOne({username: newUsername}, function(err, foundUser) {
