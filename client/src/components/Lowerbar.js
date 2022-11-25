@@ -39,7 +39,7 @@ class Lowerbar extends React.Component{
 
     render(){
         return(
-            <div className='lowerbar'>
+            <div className="lowerbar">
                 <select value={this.props.boardNum} onChange={this.props.boardSelect}>
                     { this.props.boards.map((board, index) => <option key={index} value={index}>{board.boardname}</option>)}
                 </select>
