@@ -624,7 +624,10 @@ app.post("/api/search-user", async function(req, res) {
         const allNoteIds = []
         for (const board of allBoards){
             // append all the note id arrays together into one gigantic note id array
-            allNoteIds.push(...board.noteIds)
+            // do not check notes already in the Search Results board
+            if (board.boardname != "Search Results"){
+                allNoteIds.push(...board.noteIds)
+            }
         }
 
         // get all of the user's notes
