@@ -63,7 +63,7 @@ textarea {
 }
 
 
-.saveButton{
+.saveButtonUnchanged{
     display: grid;
     background-color: #0374ff;
     border-radius: 50px;
@@ -81,37 +81,38 @@ textarea {
     margin: auto;
     float: inline-start;
 
-    outline: none;
+    outline: none; 
+}
 
+.saveButtonUnchanged:hover {
+    background-color: blue;
+    color: rgb(255, 255, 255);
     
 }
 
-/*ignore*/
-/*
-.saveButton span{
-  color: transparent;
-  text-shadow: 0 0 0 #2196f3;
-  cursor: none;
-  border-radius: 50%;
-       
-        background-color: rgba(0, 0, 0, 0.3);
-  
-        width: 100px;
-        height: 100px;
-        margin-top: -50px;
-        
-        margin-left: -50px;
-  
-        animation: ripple 1s;
-        opacity: 0;
+.saveButtonChanged{
+    display: grid;
+    background-color: #800000;
+    border-radius: 50px;
+    border: 4px double #cccccc;
+    color: #eeeeee;
+    text-align: center;
+    font-size: 14px;
+    padding: 4px;
+    width: 120px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: auto;
+    float: inline-start;
+
+    outline: none; 
 }
-*/
 
-
-
-
-.saveButton:hover {
-    background-color: blue;
+.saveButtonChanged:hover {
+    background-color: red;
     color: rgb(255, 255, 255);
     
 }

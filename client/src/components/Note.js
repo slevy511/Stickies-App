@@ -8,20 +8,23 @@ class Note extends React.Component{
         this.state = {
             noteName: this.props.note.notename,
             text: contents,
-            targetUser: ''
+            targetUser: '',
+            changed: false
         };
 
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.shareNote = this.shareNote.bind(this)
         this.deleteButton = this.deleteButton.bind(this)
+        this.saveButton = this.saveButton.bind(this)
     }
 
     handleChange(event) {
         const target = event.target;
         const name = target.name;
         this.setState({
-            [name]: event.target.value
+            [name]: event.target.value,
+            changed: true
         });
     }
 
@@ -32,6 +35,9 @@ class Note extends React.Component{
             notename: this.state.noteName,
             content: this.state.text,
             noteID: this.props.note._id
+        })
+        this.setState({
+            changed: false
         })
     }
 
@@ -66,6 +72,19 @@ class Note extends React.Component{
         }
     }
 
+    saveButton(){
+        if (this.state.changed){
+            return(
+                <input type="submit" name="save" value="Save Note" className="saveButtonChanged"/>
+            )
+        }
+        else {
+            return(
+                <input type="submit" name="save" value="Save Note" className="saveButtonUnchanged"/>
+            )
+        }
+    }
+
     render() {
         return(
             <div>
@@ -78,7 +97,7 @@ class Note extends React.Component{
                         value={this.state.text}
                         onChange={this.handleChange} />
                     <br/>
-                    <input type="submit" name="save" value="Save Note" className="saveButton"/>
+                    {this.saveButton()}
                     {this.deleteButton()}
                     <input type="text" className="shareTarget" name="targetUser" placeholder="Share your note!" value={this.state.targetUser} onChange={this.handleChange} />
                     <button name="share" className="shareNote" onClick={this.shareNote}>
