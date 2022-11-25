@@ -373,7 +373,9 @@ app.get('/api/get-all-notes/:boardID', function(req, res)
             for (const noteID of allNoteIds) {
                 // for each note ID, in order, find the corresponding note and push it to the array
                 const foundNote = await Note.findOne({_id: noteID})
-                allNotes.push(foundNote)
+                if (foundNote != null){
+                    allNotes.push(foundNote)
+                }
             }
             res.send(allNotes)
         }
