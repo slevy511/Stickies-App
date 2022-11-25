@@ -66,7 +66,7 @@ class Note extends React.Component{
         else{
             return(
                 <button name="delete" className="deleteNote" onClick={() => this.props.deletenote(this.props.note._id, this.props.ind, this.state.noteName)}>
-                    Delete Note
+                    X
                 </button>
             )
         }
@@ -90,6 +90,7 @@ class Note extends React.Component{
             <div>
                 <form className='note' onSubmit={this.handleSubmit}>
                     <input className="name" name="noteName" type="text" placeholder="Name your note!" value={this.state.noteName} onChange={this.handleChange} />
+                    {this.deleteButton()}
                     <br/>
                     <textarea
                         name="text"
@@ -97,17 +98,16 @@ class Note extends React.Component{
                         value={this.state.text}
                         onChange={this.handleChange} />
                     <br/>
-                    {this.saveButton()}
-                    {this.deleteButton()}
-                    <input type="text" className="shareTarget" name="targetUser" placeholder="Share your note!" value={this.state.targetUser} onChange={this.handleChange} />
-                    <button name="share" className="shareNote" onClick={this.shareNote}>
-                        Share Note
-                    </button>
                     <button name="left" className="leftShift" onClick={() => this.props.leftShift(this.props.ind)}>
-                        Left
+                        ←
                     </button>
                     <button name="right" className="rightShift" onClick={() => this.props.rightShift(this.props.ind)}>
-                        Right
+                        → 
+                    </button>
+                    {this.saveButton()}
+                    <input type="text" className="shareTarget" name="targetUser" placeholder="Share your note!" value={this.state.targetUser} onChange={this.handleChange} />
+                    <button name="share" className="shareNote" onClick={this.shareNote}>
+                        Share
                     </button>
                 </form>
             </div>
