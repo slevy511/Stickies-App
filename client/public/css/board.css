@@ -65,7 +65,7 @@
   
   background-color: #0374ff;
   border-radius: 5px;
-  border: 4px double #cccccc;
+  /* border: 4px double #cccccc; */
   color: #eeeeee;
   text-align: center;
   font-size: 18px;
@@ -95,7 +95,7 @@
     display: inline-block;
     background-color: #0374ff;
     border-radius: 5px;
-    border: 4px double #cccccc;
+    /* border: 4px double #cccccc; */
     color: #eeeeee;
     text-align: center;
     font-size: 18px;
@@ -124,7 +124,7 @@
     display: grid;
     background-color: #0374ff;
     border-radius: 5px;
-    border: 4px double #cccccc;
+    /* border: 4px double #cccccc; */
     color: #eeeeee;
     text-align: center;
     font-size: 14px;
@@ -144,7 +144,7 @@
 .createBoard{
   background-color: #0374ff;
   border-radius: 5px;
-  border: 4px double #cccccc;
+  /* border: 4px double #cccccc; */
   color: #eeeeee;
 
   text-align: center;
@@ -170,7 +170,7 @@
 .searchButton{
   background-color: #0374ff;
   border-radius: 5px;
-  border: 4px double #cccccc;
+  /* border: 4px double #cccccc; */
   color: #eeeeee;
 
   text-align: center;
@@ -196,7 +196,7 @@
 .deleteBoard{
   background-color: #0374ff;
   border-radius: 5px;
-  border: 4px double #cccccc;
+  /* border: 4px double #cccccc; */
   color: #eeeeee;
 
   text-align: center;
@@ -235,7 +235,7 @@
   text-align: left;
   font-family: "Arial Black", "Impact", "Courier New", monospace;
   box-sizing: border-box;
-  border: 3px solid rgb(3, 133, 255);
+  /* border: 3px solid rgb(3, 133, 255); */
   border-radius: 0px;
 
   /* font-size: 15px; */
@@ -257,7 +257,7 @@
   text-align: left;
   font-family: "Arial Black", "Impact", "Courier New", monospace;
   box-sizing: border-box;
-  border: 3px solid rgb(3, 133, 255);
+  /* border: 3px solid rgb(3, 133, 255); */
   border-radius: 0px;
 
   /* font-size: 15px; */

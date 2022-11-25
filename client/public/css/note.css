@@ -14,7 +14,7 @@ textarea {
     text-align: left;
     font-family: "Arial Black", "Impact", "Courier New", monospace;
     box-sizing: border-box;
-    border: 3px solid rgb(3, 133, 255);
+    /* border: 3px solid rgb(3, 133, 255); */
     border-radius: 0px;
 
     font-size: 15px;
@@ -48,7 +48,7 @@ textarea {
     justify-content: center;
     font-family: "Arial Black", "Impact", "Courier New", monospace;
     box-sizing: border-box;
-    border: 3px solid rgb(3, 133, 255);
+    /* border: 3px solid rgb(3, 133, 255); */
     border-radius: 0px;
 
     text-align: Center;
@@ -66,8 +66,8 @@ textarea {
 .saveButtonUnchanged{
     
     background-color: #0374ff;
-    border-radius: 50px;
-    border: 4px double #cccccc;
+    border-radius: 5px;
+    /* border: 4px double #cccccc; */
     color: #eeeeee;
     text-align: center;
     font-size: 14px;
@@ -93,8 +93,8 @@ textarea {
 .saveButtonChanged{
     
     background-color: #800000;
-    border-radius: 50px;
-    border: 4px double #cccccc;
+    border-radius: 5px;
+    /* border: 4px double #cccccc; */
     color: #eeeeee;
     text-align: center;
     font-size: 14px;
@@ -120,8 +120,8 @@ textarea {
 .deleteNote{
     
     background-color: #0374ff;
-    border-radius: 50px;
-    border: 4px double #cccccc;
+    border-radius: 5px;
+    /* border: 4px double #cccccc; */
     color: #eeeeee;
     text-align: center;
     font-size: 14px;
@@ -153,8 +153,8 @@ textarea {
     justify-content: center;
     font-family: "Arial Black", "Impact", "Courier New", monospace;
     box-sizing: border-box;
-    border: 3px solid rgb(3, 133, 255);
-    border-radius: 50px;
+    /* border: 3px solid rgb(3, 133, 255); */
+    border-radius: 5px;
 
     text-align: center;
     font-size: 10px;
@@ -173,8 +173,8 @@ textarea {
 .shareNote{
     
     background-color: #0374ff;
-    border-radius: 50px;
-    border: 4px double #cccccc;
+    border-radius: 5px;
+    /* border: 4px double #cccccc; */
     color: #eeeeee;
     text-align: center;
     font-size: 11px;
@@ -202,8 +202,8 @@ textarea {
 .leftShift{
     
     background-color: #0374ff;
-    border-radius: 50px;
-    border: 4px double #cccccc;
+    border-radius: 5px;
+    /* border: 4px double #cccccc; */
     color: #eeeeee;
     text-align: center;
     font-size: 11px;
@@ -231,8 +231,8 @@ textarea {
 .rightShift{
  
     background-color: #0374ff;
-    border-radius: 50px;
-    border: 4px double #cccccc;
+    border-radius: 5px;
+    /* border: 4px double #cccccc; */
     color: #eeeeee;
     text-align: center;
     font-size: 11px;
