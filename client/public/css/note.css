@@ -21,7 +21,7 @@ textarea {
 
 }
 
-/*doesn't seem to do anything atm*/
+/* doesn't seem to do anything atm
 .name{
     background-color: #F3E779;
 
@@ -30,7 +30,7 @@ textarea {
     text-align: center;
     font-family: "Arial Black", "Impact", "Courier New", monospace;
     padding: 10px;
-}
+} */
 
 /* controls the whole note */
 .note {
@@ -43,18 +43,19 @@ textarea {
 
 /* "Name Your Note!" input */
 .name{    
-    width: 250px;
+    width: 210px;
+    height: 37px;
     align-items: center;
     justify-content: center;
     font-family: "Arial Black", "Impact", "Courier New", monospace;
     box-sizing: border-box;
     /* border: 3px solid rgb(3, 133, 255); */
     border-radius: 0px;
-
     text-align: Center;
     font-size: 20px;
     padding:5px;
     
+    float: left;
     
     background-color: #cee3fd;
     /*display: grid;
@@ -62,6 +63,34 @@ textarea {
     border-radius: 50px;*/
 }
 
+.deleteNote{
+    
+    background-color: #0374ff;
+    /* border-radius: 5px; */
+    /* border: 4px double #cccccc; */
+    color: #eeeeee;
+    text-align: center;
+    font-size: 20px;
+    padding: 5px;
+    width: 40px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    cursor: pointer;
+    /* margin: auto; */
+    float: left;
+
+    outline: none;
+
+    
+}
+
+.deleteNote:hover {
+    background-color: blue;
+    color: rgb(255, 255, 255);
+    
+}
 
 .saveButtonUnchanged{
     
@@ -70,16 +99,17 @@ textarea {
     /* border: 4px double #cccccc; */
     color: #eeeeee;
     text-align: center;
-    font-size: 14px;
+    font-size: 15px;
+    height: 34px;
     padding: 4px;
-    width: 120px;
+    width: 110px;
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
     -o-transition: all 0.5s;
     transition: all 0.5s;
     cursor: pointer;
     margin: auto;
-    float: inline-start;
+    float: left;
 
     outline: none; 
 }
@@ -97,16 +127,17 @@ textarea {
     /* border: 4px double #cccccc; */
     color: #eeeeee;
     text-align: center;
-    font-size: 14px;
+    font-size: 15px;
+    height: 34px;
     padding: 4px;
-    width: 120px;
+    width: 110px;
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
     -o-transition: all 0.5s;
     transition: all 0.5s;
     cursor: pointer;
     margin: auto;
-    float: inline-start;
+    float: left;
 
     outline: none; 
 }
@@ -117,38 +148,8 @@ textarea {
     
 }
 
-.deleteNote{
-    
-    background-color: #0374ff;
-    border-radius: 5px;
-    /* border: 4px double #cccccc; */
-    color: #eeeeee;
-    text-align: center;
-    font-size: 14px;
-    padding: 4px;
-    width: 120px;
-    -webkit-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    -o-transition: all 0.5s;
-    transition: all 0.5s;
-    cursor: pointer;
-    margin: auto;
-    float: inline-start;
-
-    outline: none;
-
-    
-}
-
-.deleteNote:hover {
-    background-color: blue;
-    color: rgb(255, 255, 255);
-    
-}
-
-
 .shareTarget{
-    width: 240px;
+    width: 180px;
     align-items: center;
     justify-content: center;
     font-family: "Arial Black", "Impact", "Courier New", monospace;
@@ -157,13 +158,13 @@ textarea {
     border-radius: 5px;
 
     text-align: center;
-    font-size: 10px;
+    font-size: 15px;
     padding:3px;
     display:block;
     
     background-color: #cee3fd;
     margin: auto;
-    float: inline-start;
+    float: left;
     /*display: grid;
     float: inline-start;
     border-radius: 50px;*/
@@ -171,7 +172,8 @@ textarea {
 }
 
 .shareNote{
-    
+    padding-bottom: 15px;
+    height: 30px;
     background-color: #0374ff;
     border-radius: 5px;
     /* border: 4px double #cccccc; */
@@ -186,7 +188,7 @@ textarea {
     transition: all 0.5s;
     cursor: pointer;
     margin: auto;
-    float: inline-start;
+    float: left;
     white-space: nowrap;
     outline: none;
 
@@ -206,7 +208,8 @@ textarea {
     /* border: 4px double #cccccc; */
     color: #eeeeee;
     text-align: center;
-    font-size: 11px;
+    /* height: 24px; */
+    font-size: 20px;
     padding: 4px;
     width: 70px;
     -webkit-transition: all 0.5s;
@@ -215,7 +218,7 @@ textarea {
     transition: all 0.5s;
     cursor: pointer;
     margin: auto;
-    float: inline-start;
+    float: left;
     white-space: nowrap;
     outline: none;
 
@@ -235,7 +238,7 @@ textarea {
     /* border: 4px double #cccccc; */
     color: #eeeeee;
     text-align: center;
-    font-size: 11px;
+    font-size: 20px;
     padding: 4px;
     width: 70px;
     -webkit-transition: all 0.5s;
@@ -244,7 +247,7 @@ textarea {
     transition: all 0.5s;
     cursor: pointer;
     margin: auto;
-    float: inline-start;
+    float: left;
     white-space: nowrap;
     outline: none;
 
