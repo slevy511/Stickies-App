@@ -138,40 +138,6 @@ app.get('/api/valid-login/:username/:password', function(req, res) {
 
 })
 
-// to delete later, for testing only
-app.get('/api/search-user/:username', function(req, res) {
-    // searching for a user
-
-    const searchUsername = req.params.username
-
-    // sends the user object that matches the username, error otherwise
-    User.findOne({username: searchUsername}, function(err, foundUser) {
-        if (err) {
-            res.send(err)
-        }
-        else {
-            res.send(foundUser)
-        }
-    })
-})
-
-// TODO: FIX
-app.post('/api/delete-user/:username', function(req, res) {
-    // searching for a user
-
-    const searchUsername = req.params.username
-
-    // sends the user object that matches the username, error otherwise
-    User.deleteOne({username: searchUsername}, function(err) {
-        if (err) {
-            res.send(err)
-        }
-        else {
-            res.send("Success!")
-        }
-    })
-})
-
 // sends back all users & passwords for testing purposes
 app.get('/api/all-users', function(req, res) {
     User.find(function(err, users) {
@@ -250,24 +216,6 @@ app.post('/api/create-board', async function(req,res){
         }
     })
 });
-
-
-
-app.get('/api/search-board/:boardname', function(req, res) {
-    // searching for a board
-
-    const searchName = req.params.boardname
-
-    // sends the board object that matches the boardname, error otherwise
-    Board.findOne({boardname: searchName}, function(err, foundName) {
-        if (err) {
-            res.send(err)
-        }
-        else {
-            res.send(foundName)
-        }
-    })
-})
 
 // returns all the boards for a specific user
 app.get("/api/get-all-boards/:username", function(req, res) {
@@ -382,74 +330,6 @@ app.get('/api/get-all-notes/:boardID', function(req, res)
     })
 
 })
-
-app.post('/api/create-or-update-note', async function(req, res){
-    const newNoteName = req.body.notename
-    const newContent = req.body.content
-    const boardID = req.body.boardID
-    const noteID = req.body.noteID
-
-    function updateNote() {
-        Note.updateOne(
-            // update note with the ID specified
-            {_id: noteID},
-
-            // set notename and content attribtues to updated versions
-            {
-                $set: {
-                    notename: newNoteName,
-                    contents: [newContent]
-                }
-            }, function(err){
-                if (err) {
-                    res.send(err)
-                }
-                else {
-                    res.send(true)
-                }
-            }
-        )
-    }
-
-    async function createNote(){
-        // create a new note
-        const newNote = new Note({
-            notename: newNoteName,
-            contents: [newContent]
-        })
-        // use the NEW note's ID, not the one provided (which does not exist)
-        newNoteID = newNote._id
-        
-        await Board.updateOne(
-            // update board with the ID specified
-            {_id: boardID},
-            {$push: {noteIds: [newNoteID]}}
-        )
-
-        await newNote.save(function(err) {
-            if (err) {
-                res.send(err)
-            }
-            else {
-                res.send(true)
-            }
-        })
-    }
-
-    Note.findById(mongoose.Types.ObjectId(noteID), function(err, foundNote) {
-        if (err) {
-            res.send(err)
-        }
-        else {
-            if (foundNote == null){
-                createNote()
-            }
-            else {
-                updateNote()
-            }
-        }
-    })
-});
 
 app.post('/api/create-note', async function(req,res){
     const newNoteName = req.body.notename
@@ -723,56 +603,6 @@ app.get('/api/all-notes', function(req, res) {
 
 
 /* SEARCH FUNCTIONALITY */
-app.get("/api/search", function(req, res) {
-    const query = req.body.query
-    const username = req.body.username
-
-    // find user that matches username
-    User.findOne({username: username}, function(err, foundUser) {
-        if (err) {
-            res.send(err)
-        }
-        else {
-            
-            // get all boardIds for that given user
-            const allBoardIds = foundUser.boardIds
-            
-            // convert board id array to array of board objects
-            Board.find({_id: {$in: allBoardIds}}, function(err, allBoards) {
-                if (err) {
-                    res.send(err)
-                }
-                else {
-                    // we now have an array of all board objects for that user
-
-                    const allNoteIds = []
-                    for (const board of allBoards) {
-                        // append all the note id arrays together into one gigantic note id array
-                        // if you want to look up the triple dots, it's called a spread operator
-                        allNoteIds.push(...board.noteIds)
-                    }
-
-                    // convert note id array into array of note objects
-                    Note.find({_id: {$in: allNoteIds}}, function(err, allNotes) {
-                        if (err) {
-                            res.send(err)
-                        }
-                        else {
-                            const search_results = []
-                            for (const note of allNotes) {
-                                if ((note.notename).includes(query) || (note.contents[0].includes(query))) {
-                                    search_results.push(note)
-                                }
-                            }
-                            res.send(search_results)
-                        }
-                    })
-                }
-            }) 
-        }
-    })
-})
-
 app.post("/api/search-user", async function(req, res) {
     const query = req.body.query.toLowerCase()
     const username = req.body.username
