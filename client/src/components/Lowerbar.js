@@ -46,7 +46,7 @@ class Lowerbar extends React.Component{
 
                 <input className="boardname" name="newBoardName" type="text" placeholder="Name your new board"
             value={this.state.newBoardName} onChange={this.handleChange} />
-                <button name="newboard" className="createBoard" onClick={this.createNewBoard}>
+                <button className="createBoard" name="newboard" onClick={this.createNewBoard}>
                     Create new board
                 </button>
                 <button name="deleteboard" className="deleteBoard" onClick={this.props.deleteBoard}>
