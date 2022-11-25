@@ -107,7 +107,7 @@ class Note extends React.Component{
                     {this.saveButton()}
                     <input type="text" className="shareTarget" name="targetUser" placeholder="Share your note!" value={this.state.targetUser} onChange={this.handleChange} />
                     <button name="share" className="shareNote" onClick={this.shareNote}>
-                        Share Note
+                        Share
                     </button>
                 </form>
             </div>
