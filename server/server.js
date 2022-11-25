@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const app = express()
 const cors = require('cors')
-const decrypt = require('decrypt');
+const bcrypt = require('bcrypt');
 
 // enable access to all origins
 app.use(cors())
