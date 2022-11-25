@@ -4,6 +4,8 @@ Project Group 35 Fall 2022
 ## Stickies App
 Our project is a web application that gives users the ability to create named boards of sticky notes. Users make an account and create sticky notes that they can organize into various personal boards. Users can sort and save sticky notes, and then search to find them.
 
+### Both the Frontend and Backend must be running for the app to work.
+
 ## How to Run the Frontend (client directory)
 1. Make sure you have an up-to-date version of Node installed. `node --version` must be at least 16.17.0, which is the LTS version.
 2. `cd` into a local directory you want to work in
