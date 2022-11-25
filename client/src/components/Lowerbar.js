@@ -40,13 +40,13 @@ class Lowerbar extends React.Component{
     render(){
         return(
             <div className='lowerbar'>
-                <select value={this.props.boardNum} onChange={this.props.boardSelect}>
+                <select className="boardSelection" value={this.props.boardNum} onChange={this.props.boardSelect}>
                     { this.props.boards.map((board, index) => <option key={index} value={index}>{board.boardname}</option>)}
                 </select>
 
                 <input className="boardname" name="newBoardName" type="text" placeholder="Name your new board"
             value={this.state.newBoardName} onChange={this.handleChange} />
-                <button className="createBoard" name="newboard" onClick={this.createNewBoard}>
+                <button name="newboard" className="createBoard" onClick={this.createNewBoard}>
                     Create new board
                 </button>
                 <button name="deleteboard" className="deleteBoard" onClick={this.props.deleteBoard}>
