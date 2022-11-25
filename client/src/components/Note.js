@@ -84,6 +84,12 @@ class Note extends React.Component{
                     <button name="share" className="shareNote" onClick={this.shareNote}>
                         Share Note
                     </button>
+                    <button name="left" className="leftShift" onClick={() => this.props.leftShift(this.props.ind)}>
+                        Left
+                    </button>
+                    <button name="right" className="rightShift" onClick={() => this.props.rightShift(this.props.ind)}>
+                        Right
+                    </button>
                 </form>
             </div>
         );

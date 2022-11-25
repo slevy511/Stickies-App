@@ -15,6 +15,8 @@ class Board extends React.Component{
         this.addnote = this.addnote.bind(this)
         this.deletenote = this.deletenote.bind(this)
         this.addButton = this.addButton.bind(this)
+        this.leftShift = this.leftShift.bind(this)
+        this.rightShift = this.rightShift.bind(this)
 
         this.getNotes()
     }
@@ -34,9 +36,7 @@ class Board extends React.Component{
             content: '',
             boardID: this.props.activeBoard._id
         })
-        this.setState({
-            notes: this.state.notes.concat(newnote.data)
-        });
+        this.getNotes()
     }
 
     async deletenote(noteID_in, index, notename) {
@@ -45,11 +45,27 @@ class Board extends React.Component{
                 noteID: noteID_in,
                 boardID: this.props.activeBoard._id
             })
-            const notes = this.state.notes
-            notes.splice(index, 1)
-            this.setState({
-                notes: notes
-            })
+            this.getNotes()
+        }
+    }
+
+    async leftShift(index){
+        const shifted = await Axios.post("http://localhost:8000/api/shift-left", {
+            boardID: this.props.activeBoard._id,
+            ind: index
+        })
+        if (shifted.data){
+            this.getNotes()
+        }
+    }
+
+    async rightShift(index){
+        const shifted = await Axios.post("http://localhost:8000/api/shift-right", {
+            boardID: this.props.activeBoard._id,
+            ind: index
+        })
+        if (shifted.data){
+            this.getNotes()
         }
     }
 
@@ -90,6 +106,8 @@ class Board extends React.Component{
                         boardID={this.props.activeBoard._id}
                         user={this.props.user}
                         deletenote={(i, j, k) => this.deletenote(i, j, k)}
+                        rightShift={(i) => this.rightShift(i)}
+                        leftShift={(i) => this.leftShift(i)}
                         ind={index}
                         key={note._id} />
                     );
