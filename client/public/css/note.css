@@ -64,7 +64,7 @@ textarea {
 
 
 .saveButtonUnchanged{
-    display: grid;
+    
     background-color: #0374ff;
     border-radius: 50px;
     border: 4px double #cccccc;
@@ -91,7 +91,7 @@ textarea {
 }
 
 .saveButtonChanged{
-    display: grid;
+    
     background-color: #800000;
     border-radius: 50px;
     border: 4px double #cccccc;
@@ -118,7 +118,7 @@ textarea {
 }
 
 .deleteNote{
-    display: grid;
+    
     background-color: #0374ff;
     border-radius: 50px;
     border: 4px double #cccccc;
@@ -147,8 +147,115 @@ textarea {
 }
 
 
+.shareTarget{
+    width: 240px;
+    align-items: center;
+    justify-content: center;
+    font-family: "Arial Black", "Impact", "Courier New", monospace;
+    box-sizing: border-box;
+    border: 3px solid rgb(3, 133, 255);
+    border-radius: 50px;
 
+    text-align: center;
+    font-size: 10px;
+    padding:3px;
+    display:block;
+    
+    background-color: #cee3fd;
+    margin: auto;
+    float: inline-start;
+    /*display: grid;
+    float: inline-start;
+    border-radius: 50px;*/
+    white-space: nowrap;
+}
 
+.shareNote{
+    
+    background-color: #0374ff;
+    border-radius: 50px;
+    border: 4px double #cccccc;
+    color: #eeeeee;
+    text-align: center;
+    font-size: 11px;
+    padding: 4px;
+    width: 70px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: auto;
+    float: inline-start;
+    white-space: nowrap;
+    outline: none;
+
+    
+}
+
+.shareNote:hover {
+    background-color: blue;
+    color: rgb(255, 255, 255);
+    
+}
+
+.leftShift{
+    
+    background-color: #0374ff;
+    border-radius: 50px;
+    border: 4px double #cccccc;
+    color: #eeeeee;
+    text-align: center;
+    font-size: 11px;
+    padding: 4px;
+    width: 70px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: auto;
+    float: inline-start;
+    white-space: nowrap;
+    outline: none;
+
+    
+}
+
+.leftShift:hover {
+    background-color: blue;
+    color: rgb(255, 255, 255);
+    
+}
+
+.rightShift{
+ 
+    background-color: #0374ff;
+    border-radius: 50px;
+    border: 4px double #cccccc;
+    color: #eeeeee;
+    text-align: center;
+    font-size: 11px;
+    padding: 4px;
+    width: 70px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: auto;
+    float: inline-start;
+    white-space: nowrap;
+    outline: none;
+
+    
+}
+
+.rightShift:hover {
+    background-color: blue;
+    color: rgb(255, 255, 255);
+    
+}
 
 
 
