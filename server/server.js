@@ -360,22 +360,22 @@ app.get('/api/all-boards', function(req, res) {
 
 app.get('/api/get-all-notes/:boardID', function(req, res)
 {
+    // return all notes in a board, matching the order of the IDs in the board
     const boardID = req.params.boardID
 
-    Board.findOne({_id: boardID}, function(err, foundBoard) {
+    Board.findOne({_id: boardID}, async function(err, foundBoard) {
         if(err){
             res.send(err)
         }
         else{
             const allNoteIds = foundBoard.noteIds
-            Note.find({_id: { $in: allNoteIds }}, function(err, allNotes){
-                if (err){
-                    res.send(err)
-                }
-                else{
-                    res.send(allNotes)
-                }
-            })
+            const allNotes = []
+            for (const noteID of allNoteIds) {
+                // for each note ID, in order, find the corresponding note and push it to the array
+                const foundNote = await Note.findOne({_id: noteID})
+                allNotes.push(foundNote)
+            }
+            res.send(allNotes)
         }
     })
 
@@ -633,52 +633,45 @@ app.post('/api/share-note', function(req, res){
 })
 
 /* MOVE NOTE */
-app.post('/api/shift-left/:boardID/:noteID', function(req, res) {
-    // shifts note ID left and returns new array of notes in correct order
-    const boardID = req.params.boardID
-    const noteID = req.params.noteID
-    
-    Board.findOne({_id: boardID}, function(err, foundBoard) {
-        if (err) {
-            res.send(err)
-        }
-        else {
-            const noteIDs = foundBoard.noteIds
-            const noteIndex = noteIDs.indexOf(noteID)
+app.post('/api/shift-left', function(req, res) {
+    // shifts note at specified index left and returns true if order is changed
+    const boardID = req.body.boardID
+    const index = req.body.ind
 
-            if (noteIndex === -1) {
-                res.send("Error: Cannot find note with that note ID in the board")
+    if (index === 0){
+        res.send(false)
+    }
+    else{
+        Board.findOne({_id: boardID}, function(err, foundBoard) {
+            if (err) {
+                res.send(err)
             }
             else {
-                if (noteIndex === 0) {
-                    // cannot shift left, so do nothing
-                    res.send(noteIDs)
-                }
-                else {
-                    // switch noteID with the one before it
-                    let temp = noteIDs[noteIndex - 1]
-                    noteIDs[noteIndex - 1] = noteID
-                    noteIDs[noteIndex] = temp
-                    
-                    // save new array into the database
-                    Board.updateOne({_id: boardID}, { $set: {noteIds: noteIDs}}, function(err, response) {
-                        if (err) {
-                            res.send(err)
-                        }
-                        else {
-                            res.send(noteIDs)
-                        }
-                    })
-                }
+                const noteIDs = foundBoard.noteIds
+
+                // switch noteID with the one before it
+                let temp = noteIDs[index - 1]
+                noteIDs[index - 1] = noteIDs[index]
+                noteIDs[index] = temp
+                
+                // save new array into the database
+                Board.updateOne({_id: boardID}, { $set: {noteIds: noteIDs}}, function(err) {
+                    if (err) {
+                        res.send(err)
+                    }
+                    else {
+                        res.send(true)
+                    }
+                })
             }
-        }
-    })
+        })
+    }
 })
 
-app.post('/api/shift-right/:boardID/:noteID', function(req, res) {
+app.post('/api/shift-right', function(req, res) {
     // shifts note ID right and returns new array of notes in correct order
-    const boardID = req.params.boardID
-    const noteID = req.params.noteID
+    const boardID = req.body.boardID
+    const index = req.body.ind
     
     Board.findOne({_id: boardID}, function(err, foundBoard) {
         if (err) {
@@ -686,32 +679,26 @@ app.post('/api/shift-right/:boardID/:noteID', function(req, res) {
         }
         else {
             const noteIDs = foundBoard.noteIds
-            const noteIndex = noteIDs.indexOf(noteID)
 
-            if (noteIndex === -1) {
-                res.send("Error: Cannot find note with that note ID in the board")
+            // if it's the last element, we can't shift right
+            if (noteIDs.length === index + 1){
+                res.send(false)
             }
-            else {
-                if (noteIndex === (noteIDs.length - 1)) {
-                    // if it's last element, we can't shift right
-                    res.send(noteIDs)
-                }
-                else {
-                    // switch noteID with the one after it
-                    let temp = noteIDs[noteIndex + 1]
-                    noteIDs[noteIndex + 1] = noteID
-                    noteIDs[noteIndex] = temp
-                    
-                    // save new array into the database
-                    Board.updateOne({_id: boardID}, { $set: {noteIds: noteIDs}}, function(err, response) {
-                        if (err) {
-                            res.send(err)
-                        }
-                        else {
-                            res.send(noteIDs)
-                        }
-                    })
-                }
+            else{
+                // switch noteID at index with one after it
+                let temp = noteIDs[index + 1]
+                noteIDs[index + 1] = noteIDs[index]
+                noteIDs[index] = temp
+
+                // save new array into the database
+                Board.updateOne({_id: boardID}, { $set: {noteIds: noteIDs}}, function(err) {
+                    if (err) {
+                        res.send(err)
+                    }
+                    else {
+                        res.send(true)
+                    }
+                })
             }
         }
     })    
