@@ -8,7 +8,7 @@ textarea{
     align-items: center;
     height: 100vh;
     font-family: "Arial Black", "Impact", "Courier New", monospace;
-    font-size: 28px;
+    font-size: 5px;
     text-align: center;
 }
 
@@ -27,10 +27,12 @@ textarea{
     align-items: center;
     
     justify-content: space-around;
-    position: relative;
-    /*top: 100px;*/
+    position: absolute;
+    top: -50px;
 
-    font-size: 28px;
+    font-size: 26px;
+
+    margin-top: -90px;
     
 
 }
@@ -57,6 +59,7 @@ textarea{
    
 }
 
+/* welcome to stickies! banner */
 .banner{
     background-color: #F3E779;
     font-family: "Arial Black", "Impact", "Courier New", monospace;
@@ -81,7 +84,7 @@ textarea{
     
     text-align:center;/* Add This*/
 
-    font-size: 60px;
+    font-size: 40px;
 
     box-sizing: border-box;
     
@@ -89,11 +92,12 @@ textarea{
 }
 
 .loginHeader{
-    font-size: 60px;
+    font-size: 40px;
+    margin-top: -50px;
 }
 
 .loginPrompt{
-    font-size: 30px;
+    font-size: 20px;
 }      
 
 /*username input*/
@@ -107,7 +111,7 @@ textarea{
     border-radius: 0px;
 
     text-align: left;
-    font-size: 40px;
+    font-size: 26px;
     padding: auto;
     width: 330px;
     background-color: #cee3fd;
@@ -126,7 +130,7 @@ textarea{
     border-radius: 0px;
 
     text-align: left;
-    font-size: 40px;
+    font-size: 26px;
     padding: auto;
     width: 330px;
     background-color: #cee3fd;
@@ -151,7 +155,7 @@ textarea{
     /* border: 4px double #cccccc; */
     color: #eeeeee;
     text-align: center;
-    font-size: 24px;
+    font-size: 16px;
     padding: 12px;
     width: 400px;
     -webkit-transition: all 0.5s;
@@ -160,6 +164,8 @@ textarea{
     transition: all 0.5s;
     cursor: pointer;
     margin: auto;
+    margin-bottom: -100px;
+    margin-top: -100px;
     float: inline-start;
  
 }
@@ -193,7 +199,7 @@ textarea{
     /* border: 4px double #cccccc; */
     color: #eeeeee;
     text-align: center;
-    font-size: 24px;
+    font-size: 16px;
     padding: 12px;
     width: 400px;
     -webkit-transition: all 0.5s;
@@ -213,9 +219,9 @@ textarea{
     /*color: rgb(0, 0, 0);*/
 }    
 
-/*doesn't do anything anymore */
+/* doesn't do anything anymore
 header{
         font-size: x-large;
         text-align: center;
-    }
+    } */
     
