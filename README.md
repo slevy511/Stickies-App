@@ -4,7 +4,21 @@ Project Group 35 Fall 2022
 ## Stickies App
 Our project is a web application that gives users the ability to create named boards of sticky notes. Users make an account and create sticky notes that they can organize into various personal boards. Users can sort and save sticky notes, and then search to find them.
 
-### Both the Frontend and Backend must be running for the app to work.
+### .env file
+Make sure you create a `.env` file within the `server` directory — it contains the MongoDB Atlas URI that can't be pushed onto GitHub for security reasons, so you'll have to create it in order to run the project locally.
+
+Inside the `.env` file, add this line:
+```
+MONGO_ATLAS_URI="INSERT URI HERE"
+```
+So if your mongo atlas URI was `mongodb+srv://test:test@cluster0.notarealdb.mongodb.net/fake_db?retryWrites=true`
+
+your `.env` file should contain
+```
+MONGO_ATLAS_URI="mongodb+srv://test:test@cluster0.notarealdb.mongodb.net/fake_db?retryWrites=true"
+```
+
+**Note: both frontend and backend must be running simultaneously for the application to work**
 
 ## How to Run the Frontend (client directory)
 1. Make sure you have an up-to-date version of Node installed. `node --version` must be at least 16.17.0, which is the LTS version.

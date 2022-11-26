@@ -3,6 +3,9 @@ const mongoose = require("mongoose");
 const app = express()
 const cors = require('cors')
 const bcrypt = require('bcrypt');
+const dotenv = require('dotenv')
+
+dotenv.config()
 
 // enable access to all origins
 app.use(cors())
@@ -12,9 +15,15 @@ app.use(express.json())
 
 main().catch(err => console.log(err));
 
+// get URI from .env file
+
+
+// connect to mongoDB database
 async function main() {
-  await mongoose.connect('mongodb+srv://root:root@stickies.p61illk.mongodb.net/stickies_db?retryWrites=true');
+    let URI = process.env.MONGO_ATLAS_URI
+    mongoose.connect(URI);
 }
+
 
 /* ***************** SCHEMAS AND MODELS ***************** */
 

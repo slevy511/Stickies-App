@@ -27,3 +27,8 @@ yarn-error.log*
 # package files in root
 package-lock.json
 package.json
+
+# .env files
+.env
+/client/.env
+/server/.env
