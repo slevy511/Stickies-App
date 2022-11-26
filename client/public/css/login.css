@@ -61,6 +61,7 @@ textarea{
     background-color: #F3E779;
     font-family: "Arial Black", "Impact", "Courier New", monospace;
 
+    width: 1000px;
     display: grid;
     padding: 10px;
     margin-top: 10px;
@@ -146,8 +147,8 @@ textarea{
     
     display: grid;
     background-color: #0374ff;
-    border-radius: 50px;
-    border: 4px double #cccccc;
+    border-radius: 5px;
+    /* border: 4px double #cccccc; */
     color: #eeeeee;
     text-align: center;
     font-size: 24px;
@@ -188,8 +189,8 @@ textarea{
     display:grid;
 
     background-color: #0374ff;
-    border-radius: 50px;
-    border: 4px double #cccccc;
+    border-radius: 5px;
+    /* border: 4px double #cccccc; */
     color: #eeeeee;
     text-align: center;
     font-size: 24px;

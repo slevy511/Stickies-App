@@ -141,11 +141,30 @@
     outline: none; 
   }
 
+  /* create lower bar */
+.lowerbar{
+  background-color: darkblue;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 100%;
+  
+
+  position:fixed;
+  bottom: 0px;
+}
+
+.boardSelect{
+  margin-left: 10px;
+}
+
+/*createBoard button*/
 .createBoard{
   background-color: #0374ff;
   border-radius: 5px;
+  padding: 4px;
   /* border: 4px double #cccccc; */
   color: #eeeeee;
+  font-size: 15px;
 
   text-align: center;
   /* font-size: 14px;
@@ -167,42 +186,16 @@
   color: rgb(255, 255, 255);
 }
 
-.searchButton{
-  background-color: #0374ff;
-  border-radius: 5px;
-  /* border: 4px double #cccccc; */
-  color: #eeeeee;
-
-  text-align: center;
-  /* font-size: 14px;
-  padding: 4px;
-  width: 120px; */
-  -webkit-transition: all 0.5s;
-  -moz-transition: all 0.5s;
-  -o-transition: all 0.5s;
-  transition: all 0.5s;
-  cursor: pointer;
-  margin: auto;
-  float: inline-start;
-
-  outline: none; 
-}
-
-.searchButton:hover{
-  background-color: blue;
-  color: rgb(255, 255, 255);
-}
-
+/* delete board button */
 .deleteBoard{
   background-color: #0374ff;
   border-radius: 5px;
-  /* border: 4px double #cccccc; */
+  padding: 4px;
   color: #eeeeee;
+  font-size: 15px;
 
   text-align: center;
-  /* font-size: 14px;
-  padding: 4px;
-  width: 120px; */
+
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
   -o-transition: all 0.5s;
@@ -212,6 +205,8 @@
   float: inline-start;
 
   outline: none; 
+
+  margin-right: 525px;
 }
 
 .deleteBoard:hover{
@@ -219,6 +214,7 @@
   color: rgb(255, 255, 255);
 }
 
+/* boardname input */
 .boardname{
   display: inline-block;
   margin: 0;
@@ -241,13 +237,11 @@
   /* font-size: 15px; */
 }
 
+/* search input */
 .search{
   display: inline-block;
   margin: 0;
   padding: .2em;
-
-  /* width: 250px;
-  height:200px; */
 
   cursor: text;
   background-color: #F3E779;
@@ -257,13 +251,32 @@
   text-align: left;
   font-family: "Arial Black", "Impact", "Courier New", monospace;
   box-sizing: border-box;
-  /* border: 3px solid rgb(3, 133, 255); */
   border-radius: 0px;
-
-  /* font-size: 15px; */
 }
 
+/* search button */
+.searchButton{
+  background-color: #0374ff;
+  border-radius: 5px;
+  padding: 4px;
+  color: #eeeeee;
+  font-size: 15px;
 
-/* .search{
-  object-position: right
-} */
+  text-align: center;
+
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: auto;
+  float: inline-start;
+
+  outline: none; 
+}
+
+.searchButton:hover{
+  background-color: blue;
+  color: rgb(255, 255, 255);
+}
+
