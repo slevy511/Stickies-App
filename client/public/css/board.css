@@ -206,7 +206,7 @@
 
   outline: none; 
 
-  margin-right: 525px;
+  /* margin-right: 525px; */
 }
 
 .deleteBoard:hover{
@@ -240,8 +240,9 @@
 /* search input */
 .search{
   display: inline-block;
-  margin: 0;
+  /* margin: 0; */
   padding: .2em;
+  margin-right: 5px;
 
   cursor: text;
   background-color: #F3E779;
@@ -252,6 +253,8 @@
   font-family: "Arial Black", "Impact", "Courier New", monospace;
   box-sizing: border-box;
   border-radius: 0px;
+
+  float: right;
 }
 
 /* search button */
@@ -270,7 +273,7 @@
   transition: all 0.5s;
   cursor: pointer;
   margin: auto;
-  float: inline-start;
+  float: right;
 
   outline: none; 
 }
