@@ -163,7 +163,20 @@
 
 .boardSelect{
   margin-left: 10px;
+  
+  background-color: #0374ff;
+  border-radius: 5px;
+  padding: 4px;
+  color: #eeeeee;
+  font-size: 15px;
+  border-color: black;
 }
+
+.boardSelect-content{
+  
+}
+
+
 
 /*createBoard button*/
 .createBoard{
@@ -290,4 +303,6 @@
   background-color: blue;
   color: rgb(255, 255, 255);
 }
+
+
 

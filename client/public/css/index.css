@@ -25,3 +25,24 @@ code {
   left: 0;
   position: absolute;
 }
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #0374ff #F3E779;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #F3E779;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #0374ff;
+  border-radius: 15px;
+  border: 1px solid #000000;
+}
