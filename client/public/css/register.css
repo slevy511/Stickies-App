@@ -9,7 +9,7 @@ textarea{
     align-items: center;
     height: 100vh;
     box-sizing: border-box;
-    font-family: "Arial Black", "Impact", "Courier New", monospace;
+    font-family: "Consolas", "monaco", monospace;
 }
 
 .form {
@@ -17,7 +17,7 @@ textarea{
     /*display: inline-flexbox;*/
     display: grid;
     padding: 10px;
-    font-family: "Arial Black", "Impact", "Courier New", monospace;
+    font-family: "Consolas", "monaco", monospace;
     font-size: 26px;
     position: relative;
     z-index: 3;
@@ -26,11 +26,11 @@ textarea{
 
 #login{
     background-color: #F3E779;
-    font-family: "Arial Black", "Impact", "Courier New", monospace;
+    font-family: "Consolas", "monaco", monospace;
 }
 #username{
     background-color: #F3E779;
-    font-family: "Arial Black", "Impact", "Courier New", monospace;
+    font-family: "Consolas", "monaco", monospace;
 }
 
 
@@ -104,7 +104,7 @@ textarea{
     width: 100px;
     align-items: right;
     justify-content: right;
-    font-family: "Arial Black", "Impact", "Courier New", monospace;
+    font-family: "Consolas", "monaco", monospace;
     box-sizing: border-box;
     border: 3px solid rgb(3, 133, 255);
     border-radius: 0px;
@@ -123,8 +123,7 @@ textarea{
     width: 100px;
     align-items: right;
     justify-content: right;
-    font-family: "Arial Black", "Impact", "Courier New", monospace;
-    box-sizing: border-box;
+    font-family: "Consolas", "monaco", monospace;
     border: 3px solid rgb(3, 133, 255);
     border-radius: 0px;
 
