@@ -64,7 +64,9 @@
   /* display: inline-block; */
   
   background-color: #0374ff;
-  border-radius: 5px;
+  
+  border: 2px solid black;
+
   /* border: 4px double #cccccc; */
   color: #eeeeee;
   text-align: center;
@@ -98,7 +100,7 @@
 .logout{
     /* display: inline-block; */
     background-color: #0374ff;
-    border-radius: 5px;
+    border: 2px solid black;
     /* border: 4px double #cccccc; */
     color: #eeeeee;
     text-align: center;
@@ -162,11 +164,10 @@
 }
 
 .boardSelect{
-  margin-left: 10px;
-  
+  height: 35px;
+  margin-top: 5px;
   background-color: #0374ff;
-  border-radius: 5px;
-  padding: 4px;
+  border: 2px solid black;
   color: #eeeeee;
   font-size: 15px;
   border-color: black;
@@ -181,8 +182,10 @@
 /*createBoard button*/
 .createBoard{
   background-color: #0374ff;
-  border-radius: 5px;
+  border: 2px solid black;
+  margin: 4px;
   padding: 4px;
+  height: 35px;
   /* border: 4px double #cccccc; */
   color: #eeeeee;
   font-size: 15px;
@@ -191,13 +194,7 @@
   /* font-size: 14px;
   padding: 4px;
   width: 120px; */
-  -webkit-transition: all 0.5s;
-  -moz-transition: all 0.5s;
-  -o-transition: all 0.5s;
-  transition: all 0.5s;
-  cursor: pointer;
-  margin: auto;
-  float: inline-start;
+  /* float: left; */
 
   outline: none; 
 }
@@ -210,7 +207,9 @@
 /* delete board button */
 .deleteBoard{
   background-color: #0374ff;
-  border-radius: 5px;
+  border: 2px solid black;
+  margin: 4px;
+  height: 35px;
   padding: 4px;
   color: #eeeeee;
   font-size: 15px;
@@ -222,7 +221,6 @@
   -o-transition: all 0.5s;
   transition: all 0.5s;
   cursor: pointer;
-  margin: auto;
   float: inline-start;
 
   outline: none; 
@@ -238,33 +236,27 @@
 /* boardname input */
 .boardname{
   display: inline-block;
-  margin: 0;
-  padding: .2em;
-
-  /* width: 250px;
-  height:200px; */
-
+  /* margin: 0; */
+  margin-right: 5px;
+  height: 35px;
   cursor: text;
   background-color: #F3E779;
   overflow: auto;
   resize: none;
 
   text-align: left;
-  font-family: "Arial Black", "Impact", "Courier New", monospace;
+  font-family: "Arial", "Courier New", monospace;
   box-sizing: border-box;
-  /* border: 3px solid rgb(3, 133, 255); */
   border-radius: 0px;
-
-  /* font-size: 15px; */
+  border: 2px solid black;
 }
 
 /* search input */
 .search{
   display: inline-block;
   /* margin: 0; */
-  padding: .2em;
   margin-right: 5px;
-
+  height: 35px;
   cursor: text;
   background-color: #F3E779;
   overflow: auto;
@@ -274,14 +266,15 @@
   font-family: "Arial Black", "Impact", "Courier New", monospace;
   box-sizing: border-box;
   border-radius: 0px;
-
+  border: 2px solid black;
   float: right;
 }
 
 /* search button */
 .searchButton{
   background-color: #0374ff;
-  border-radius: 5px;
+  border: 2px solid black;
+  height: 35px;
   padding: 4px;
   color: #eeeeee;
   font-size: 15px;
