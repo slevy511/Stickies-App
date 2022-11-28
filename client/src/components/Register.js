@@ -9,7 +9,7 @@ class RegistrationForm extends React.Component {
       username: '',
       password: '',
       log: false,
-      errstate: true,
+      errstate: 0,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -37,9 +37,11 @@ class RegistrationForm extends React.Component {
         }
         else {
           const created = await Axios.post("http://localhost:8000/api/create-user/" + this.state.username + "/" + this.state.password)
-          this.setState({errstate: created.data});
           if (created.data){
             this.props.login(this.state.username)
+          }
+          else{
+            this.setState({errstate: 1});
           }
         }
     }
@@ -51,24 +53,24 @@ class RegistrationForm extends React.Component {
 
   render() {
     return (
-      <div className="registration-form">
-        <img className="logo3" src={logo} alt={"Stickies!"} />
+      <div className="startup-form">
+        <img className="logo" src={logo} alt={"Stickies!"} />
         <br/>
-        <img className="logo3right" src={logo} alt={"Stickies!"} />
+        <img className="logoRight" src={logo} alt={"Stickies!"} />
         <br/>
-        <form className="banner" onSubmit={this.handleSubmit}>
-                    <label name="banner">
-                            {"Create an account below!"}
-                            
-                    </label>
-        </form>
+        <div className="banner">
+          <label name="banner">
+                  {"Create an account below!"}
+                  
+          </label>
+        </div>
         <form className="form" onSubmit={this.handleSubmit}>
-          <header className="registerHeader">
+          <header className="startupHeader">
             Register
             <small>
               <small>
-                <pre className="registerPrompt">
-                  {this.state.errstate === true ? "Please enter a username\nand password." : 
+                <pre className="messagePrompt">
+                  {this.state.errstate === 0 ? "Please enter a username\nand password." : 
                   "That username is taken.\nTry another username."}
                 </pre>
               </small>
@@ -84,11 +86,11 @@ class RegistrationForm extends React.Component {
             <input name="password" className="passWord" type="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} />
           </label>
           <br/>
-          <input type="submit" name="login" className="createAccount" value="Create Account" />
+          <input type="submit" name="login" className="takeAction" value="Create Account" />
           <br/>
           {"Already have an account?"}
           <br/>
-          <button name="login" className="LogIn" onClick={this.login} >
+          <button name="login" className="switchPage" onClick={this.login} >
             Log in
           </button>
         </form>
