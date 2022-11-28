@@ -15,6 +15,7 @@ class Note extends React.Component{
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.shareNote = this.shareNote.bind(this)
+        this.shareNote2 = this.shareNote2.bind(this)
         this.deleteButton = this.deleteButton.bind(this)
         this.saveButton = this.saveButton.bind(this)
     }
@@ -30,6 +31,14 @@ class Note extends React.Component{
                 changed: true
             })
         }
+    }
+
+    handleSelect(event) {
+        const target = event.target;
+        const name = target.name;
+        this.setState({
+            [name]: event.target.value
+        })
     }
 
     async handleSubmit(event) {
@@ -63,6 +72,28 @@ class Note extends React.Component{
                     targetUser: ''
                 })
             }
+        }
+    }
+
+    async shareNote2() {
+        const targetUser = this.props.user
+        const targetBoard = this.state.targetBoard
+        if (targetUser === ''){
+
+        }
+        else if (targetUser === this.props.user) {
+            const shared = await axios.post("http://localhost:8000/api/share-note-2", {
+                noteID: this.props.note._id,
+                destUser: targetUser
+            })
+            if (shared.data){
+                this.setState({
+                    targetUser: ''
+                })
+            }
+        }
+        else {
+            
         }
     }
 
@@ -113,10 +144,15 @@ class Note extends React.Component{
                         → 
                     </button>
                     {this.saveButton()}
+                    <br/>
+                    <select className="boardSelect" value={this.props.boardNum} onChange={this.props.boardSelect}>
+                        { this.props.boards.map((note, board, index) => <option key={index} value={index}>{note.notename}{board.boardname}</option>)}
+                    </select>
                     <input type="text" className="shareTarget" name="targetUser" placeholder="Share Note! Enter a valid user." value={this.state.targetUser} onChange={this.handleChange} />
                     <button name="share" className="shareNote" onClick={this.shareNote}>
                         Share
                     </button>
+                    
                 </form>
             </div>
         );

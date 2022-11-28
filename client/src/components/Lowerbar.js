@@ -43,6 +43,7 @@ class Lowerbar extends React.Component{
                 <select className="boardSelect" value={this.props.boardNum} onChange={this.props.boardSelect}>
                     { this.props.boards.map((board, index) => <option key={index} value={index}>{board.boardname}</option>)}
                 </select>
+                
 
                 <input className="boardname" name="newBoardName" type="text" placeholder="Name your new board"
             value={this.state.newBoardName} onChange={this.handleChange} />
