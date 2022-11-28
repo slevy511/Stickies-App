@@ -50,6 +50,9 @@ class Note extends React.Component{
         if (targetUser === ''){
 
         }
+        else if (targetUser === this.props.user) {
+
+        }
         else {
             const shared = await axios.post("http://localhost:8000/api/share-note", {
                 noteID: this.props.note._id,
