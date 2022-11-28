@@ -44,6 +44,7 @@ textarea {
     border-radius: 0px;
 
     font-size: 12px;
+    border: 2px solid black;
 }
 
 /* doesn't seem to do anything atm
@@ -69,20 +70,22 @@ textarea {
 /* "Name Your Note!" input */
 .name{    
     width: 210px;
-    height: 37px;
+    height: 40px;
     align-items: center;
     justify-content: center;
-    font-family: "Arial Black", "Impact", "Courier New", monospace;
+    font-family: "Arial", "Courier New", monospace;
     box-sizing: border-box;
     /* border: 3px solid rgb(3, 133, 255); */
     border-radius: 0px;
     text-align: Center;
     font-size: 20px;
-    padding:5px;
     
+    font-style: normal;
     float: left;
     
     background-color: #cee3fd;
+
+    border: 2px solid black;
     /*display: grid;
     float: inline-start;
     border-radius: 50px;*/
@@ -98,14 +101,9 @@ textarea {
     font-size: 20px;
     padding: 5px;
     width: 40px;
-    -webkit-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    -o-transition: all 0.5s;
-    transition: all 0.5s;
-    cursor: pointer;
-    /* margin: auto; */
+    height: 40px;
     float: left;
-
+    border: 2px solid black;
     outline: none;
 
     
@@ -120,23 +118,16 @@ textarea {
 .saveButtonUnchanged{
     
     background-color: #0374ff;
-    border-radius: 5px;
+    border-radius: 0px;
     /* border: 4px double #cccccc; */
     color: #eeeeee;
     text-align: center;
     font-size: 15px;
-    height: 34px;
+    height: 35px;
     padding: 4px;
     width: 110px;
-    -webkit-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    -o-transition: all 0.5s;
-    transition: all 0.5s;
-    cursor: pointer;
-    margin: auto;
-    float: left;
 
-    outline: none; 
+    border: 2px solid black;
 }
 
 .saveButtonUnchanged:hover {
@@ -146,25 +137,17 @@ textarea {
 }
 
 .saveButtonChanged{
-    
-    background-color: #800000;
-    border-radius: 5px;
+    background-color: rgb(194, 194, 66);
+    color: black;
     /* border: 4px double #cccccc; */
     color: #eeeeee;
     text-align: center;
     font-size: 15px;
-    height: 34px;
+    height: 35px;
     padding: 4px;
     width: 110px;
-    -webkit-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    -o-transition: all 0.5s;
-    transition: all 0.5s;
-    cursor: pointer;
-    margin: auto;
-    float: left;
 
-    outline: none; 
+    border: 2px solid black;
 }
 
 .saveButtonChanged:hover {
@@ -175,15 +158,16 @@ textarea {
 
 .shareTarget{
     width: 180px;
+    height: 35px;
     align-items: center;
     justify-content: center;
-    font-family: "Arial Black", "Impact", "Courier New", monospace;
+    font-family: "Arial", "Courier New", monospace;
+
     box-sizing: border-box;
     /* border: 3px solid rgb(3, 133, 255); */
-    border-radius: 5px;
 
     text-align: center;
-    font-size: 10px;
+    font-size: 12px;
     padding:3px;
     display:block;
     
@@ -194,29 +178,23 @@ textarea {
     float: inline-start;
     border-radius: 50px;*/
     white-space: nowrap;
+
+    border: 2px solid black;
 }
 
 .shareNote{
-    padding-bottom: 15px;
+    
     height: 30px;
     background-color: #0374ff;
-    border-radius: 5px;
+    border-radius: 0px;
     /* border: 4px double #cccccc; */
     color: #eeeeee;
     text-align: center;
     font-size: 15px;
     padding: 4px;
     width: 70px;
-    -webkit-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    -o-transition: all 0.5s;
-    transition: all 0.5s;
-    cursor: pointer;
-    margin: auto;
-    float: left;
-    white-space: nowrap;
-    outline: none;
-
+    height: 35px;
+    border: 2px solid black;
     
 }
 
@@ -229,7 +207,7 @@ textarea {
 .leftShift{
     
     background-color: #0374ff;
-    border-radius: 5px;
+    border-radius: 0px;
     /* border: 4px double #cccccc; */
     color: #eeeeee;
     text-align: center;
@@ -237,15 +215,12 @@ textarea {
     font-size: 20px;
     padding: 4px;
     width: 70px;
-    -webkit-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    -o-transition: all 0.5s;
-    transition: all 0.5s;
-    cursor: pointer;
+    height: 35px;
     margin: auto;
     float: left;
-    white-space: nowrap;
-    outline: none;
+
+    border: 2px solid black;
+    
 
     
 }
@@ -259,22 +234,19 @@ textarea {
 .rightShift{
  
     background-color: #0374ff;
-    border-radius: 5px;
+    border-radius: 0px;
     /* border: 4px double #cccccc; */
     color: #eeeeee;
     text-align: center;
+    /* height: 24px; */
     font-size: 20px;
     padding: 4px;
     width: 70px;
-    -webkit-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    -o-transition: all 0.5s;
-    transition: all 0.5s;
-    cursor: pointer;
+    height: 35px;
     margin: auto;
     float: left;
-    white-space: nowrap;
-    outline: none;
+
+    border: 2px solid black;
 
     
 }
