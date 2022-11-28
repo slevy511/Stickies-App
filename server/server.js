@@ -516,19 +516,24 @@ app.post('/api/share-note', function(req, res){
                                         res.send(false)
                                     }
                                     else {
-                                        Board.findByIdAndUpdate(foundBoard._id, {$push: {noteIds: [noteID]}}, function (err){
-                                            if (err){
-                                                res.send(err)
-                                            }
-                                        })
-                                        Note.findByIdAndUpdate(mongoose.Types.ObjectId(noteID), {$inc: { linkcount: 1} }, function(err, ){
-                                            if (err) {
-                                                res.send(err)
-                                            }
-                                            else{
-                                                res.send(true)
-                                            }
-                                        })
+                                        if (!foundBoard.noteIds.includes(noteID)){
+                                            Board.findByIdAndUpdate(foundBoard._id, {$push: {noteIds: [noteID]}}, function (err){
+                                                if (err){
+                                                    res.send(err)
+                                                }
+                                            })
+                                            Note.findByIdAndUpdate(mongoose.Types.ObjectId(noteID), {$inc: { linkcount: 1} }, function(err, ){
+                                                if (err) {
+                                                    res.send(err)
+                                                }
+                                                else{
+                                                    res.send(true)
+                                                }
+                                            })
+                                        }
+                                        else{
+                                            res.send(true)
+                                        }                                        
                                     }
                                 }
                             })

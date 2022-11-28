@@ -24,8 +24,12 @@ class Note extends React.Component{
         const name = target.name;
         this.setState({
             [name]: event.target.value,
-            changed: true
         });
+        if (name != "targetUser"){
+            this.setState({
+                changed: true
+            })
+        }
     }
 
     async handleSubmit(event) {
@@ -44,6 +48,9 @@ class Note extends React.Component{
     async shareNote() {
         const targetUser = this.state.targetUser
         if (targetUser === ''){
+
+        }
+        else if (targetUser === this.props.user) {
 
         }
         else {
