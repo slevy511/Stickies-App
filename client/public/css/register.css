@@ -22,6 +22,8 @@ textarea{
     position: relative;
     z-index: 3;
     box-sizing: border-box;
+    margin-top: +100px;
+    overflow: hidden;
 }
 
 #login{
@@ -92,7 +94,8 @@ textarea{
 }
 
 .registerHeader{
-    font-size: 40px;
+    font-size: 25px;
+    margin-top: -5px;
 }
 
 .registerPrompt{
@@ -162,7 +165,7 @@ textarea{
 }
 
 .createAccount:hover{
-    background-color: #a49937;
+    background-color: #373630;
     
     /*color: rgb(0, 0, 0);*/
 }
@@ -197,7 +200,7 @@ textarea{
 }
 
 .LogIn:hover{
-    background-color: #a49937;
+    background-color: #373630;
     
     /*color: rgb(0, 0, 0);*/
 }
