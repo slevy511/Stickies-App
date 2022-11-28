@@ -7,19 +7,17 @@ textarea{
     justify-content: center;
     align-items: center;
     height: 100vh;
-    font-family: "Arial Black", "Impact", "Courier New", monospace;
+    font-family: "Consolas", "monaco", monospace;
     font-size: 5px;
     text-align: center;
 }
 
 .form{
     background-color: #F3E779;
-    font-family: "Arial Black", "Impact", "Courier New", monospace;
-
-    display: grid;
+    font-family: "Consolas", "monaco", monospace;
+    min-width: 500px;
+    display: block;
     padding: 10px;
-
-
     border: 5px solid rgb(0, 0, 0);
     border-radius: 5px;
 
@@ -32,7 +30,8 @@ textarea{
 
     font-size: 26px;
 
-    margin-top: -90px;
+    margin-top: +100px;
+    overflow: hidden;
     
 
 }
@@ -63,10 +62,8 @@ textarea{
 .banner{
     background-color: #F3E779;
     font-family: "Arial Black", "Impact", "Courier New", monospace;
-
-    width: 1000px;
     display: grid;
-    padding: 10px;
+    padding: 5px;
     margin-top: 10px;
 
     border: 5px solid rgb(0, 0, 0);
@@ -87,13 +84,13 @@ textarea{
     font-size: 40px;
 
     box-sizing: border-box;
-    
+    overflow: hidden;
     
 }
 
 .loginHeader{
-    font-size: 40px;
-    margin-top: -50px;
+    font-size: 25px;
+    margin-top: -30px;
 }
 
 .loginPrompt{
@@ -105,18 +102,19 @@ textarea{
     width: 100px;
     align-items: right;
     justify-content: right;
-    font-family: "Arial Black", "Impact", "Courier New", monospace;
+    font-family: "Consolas", "monaco", monospace;
     box-sizing: border-box;
     border: 3px solid rgb(3, 133, 255);
     border-radius: 0px;
 
     text-align: left;
-    font-size: 26px;
+    font-size: 23px;
     padding: auto;
     width: 330px;
     background-color: #cee3fd;
     display: grid;
     float: right;
+    position: relative;
 }
 
 /*password input*/
@@ -124,18 +122,19 @@ textarea{
     width: 100px;
     align-items: right;
     justify-content: right;
-    font-family: "Arial Black", "Impact", "Courier New", monospace;
+    font-family: "Consolas", "monaco", monospace;
     box-sizing: border-box;
     border: 3px solid rgb(3, 133, 255);
     border-radius: 0px;
 
     text-align: left;
-    font-size: 26px;
+    font-size: 23px;
     padding: auto;
     width: 330px;
     background-color: #cee3fd;
     display: grid;
     float: right;
+    position: relative;
 }
 
 /*login button*/
@@ -149,13 +148,14 @@ textarea{
     color: blue;
     border-radius: 0px;*/
     
+    font-family: "Consolas", "monaco", monospace;
     display: grid;
     background-color: #0374ff;
     border-radius: 5px;
     /* border: 4px double #cccccc; */
     color: #eeeeee;
     text-align: center;
-    font-size: 16px;
+    font-size: 14px;
     padding: 12px;
     width: 400px;
     -webkit-transition: all 0.5s;
@@ -171,7 +171,7 @@ textarea{
 }
 
 .logIn:hover{
-    background-color: #a49937;
+    background-color: #373630;
     
     /*color: rgb(0, 0, 0);*/
   }
@@ -189,6 +189,8 @@ textarea{
 .register{  
     display: grid;
     
+    font-family: "Consolas", "monaco", monospace;
+
     justify-content: center;
     align-items: center;
     position: relative;
@@ -199,7 +201,7 @@ textarea{
     /* border: 4px double #cccccc; */
     color: #eeeeee;
     text-align: center;
-    font-size: 16px;
+    font-size: 14px;
     padding: 12px;
     width: 400px;
     -webkit-transition: all 0.5s;
@@ -214,7 +216,7 @@ textarea{
     }
 
 .register:hover{
-    background-color: #a49937;
+    background-color: #373630;
     
     /*color: rgb(0, 0, 0);*/
 }    
