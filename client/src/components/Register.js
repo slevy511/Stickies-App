@@ -65,8 +65,8 @@ class RegistrationForm extends React.Component {
           </label>
         </div>
         <form className="form" onSubmit={this.handleSubmit}>
+          <br/>
           <header className="startupHeader">
-            Register
             <small>
               <small>
                 <pre className="messagePrompt">

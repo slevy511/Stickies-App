@@ -68,8 +68,8 @@ class LoginForm extends React.Component {
                     </label>
                 </div>
                 <form className="form" onSubmit={this.handleSubmit}>
+                    <br/>
                     <header className="startupHeader">
-                        Login
                         <small>
                             <small>
                                 <pre className="messagePrompt">
