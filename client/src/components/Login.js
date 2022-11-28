@@ -56,51 +56,44 @@ class LoginForm extends React.Component {
 
     render() {
         return (
-           
-            <div className="login-form">
+            <div className="startup-form">
                 <img className="logo" src={logo} alt={"Stickies!"} />
                 <br/>
                 <img className="logoRight" src={logo} alt={"Stickies!"} />
                 <br/>
-                <form className="banner" onSubmit={this.handleSubmit}>
+                <div className="banner">
                     <label name="banner">
                             {"Welcome to Stickies! "}
                             
                     </label>
-                </form>
-                
+                </div>
                 <form className="form" onSubmit={this.handleSubmit}>
-
-                    
                     <br/>
-
-                    <header className="loginHeader">
-                        Login
+                    <header className="startupHeader">
                         <small>
                             <small>
-                                <pre className="loginPrompt">
+                                <pre className="messagePrompt">
                                     {this.state.errstate === 0 ? "Please enter your username\nand password." : 
                                     "Incorrect username\nor password."}
                                 </pre>
                             </small>
                         </small>
                     </header>
-
                     <label>
                         {"Username: "}
-                        <input className="userName" name="username" type="text" placeholder="Username" value={this.state.username} onChange={this.handleChange} />
+                        <input name="username" className="userName" type="text" placeholder="Username" value={this.state.username} onChange={this.handleChange} />
                     </label>
                     <br/>
                     <label>
                         {"Password: "}
-                        <input className="passWord" name="password" type="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} />
+                        <input  name="password" className="passWord" type="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} />
                     </label>
                     <br/>
-                    <input type="submit" className="logIn" name="login" value="Log in" />
+                    <input type="submit" className="takeAction" name="login" value="Log in" />
                     <br/>
                     {"Don't have an account?"}
                     <br/>
-                    <button name="register" className="register" onClick={this.register} >
+                    <button name="register" className="switchPage" onClick={this.register} >
                         Register now
                     </button>
                 </form>

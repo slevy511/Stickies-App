@@ -1,29 +1,29 @@
-
 textarea{
-    font-family: "Arial Black", "Impact", "Courier New", monospace;
-    
-}
-.registration-form {
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    box-sizing: border-box;
-    font-family: "Consolas", "monaco", monospace;
+    font-family: "Arial Black", "Impact", "Courier New", monospace;   
 }
 
 .form {
     background-color: #F3E779;
-    /*display: inline-flexbox;*/
+    font-family: "Consolas", "monaco", monospace;
+
+    width: auto;
+    /* min-width: 500px; */
     display: grid;
     padding: 10px;
-    font-family: "Consolas", "monaco", monospace;
+    
+    border: 5px solid rgb(0, 0, 0);
+    border-radius: 5px;
+
+    justify-content: center;
+    align-items: center;
+
     font-size: 26px;
     position: relative;
     z-index: 3;
     box-sizing: border-box;
-    margin-top: +100px;
     overflow: hidden;
+
+    top: -50px;
 }
 
 #login{
@@ -35,35 +35,35 @@ textarea{
     font-family: "Consolas", "monaco", monospace;
 }
 
-
-/*left logo*/  
-.logo3 {
+/* left logo */
+.logo {
     width: 110px;
     height: 110px;
     object-fit: cover;
     top: 0;
     left: 0;
     position: absolute;
+    padding-bottom:10px;
 }
-    
-/*right logo*/    
-.logo3right {
+
+/* right logo */
+.logoRight {
     width: 110px;
     height: 110px;
     object-fit: cover;
     top: 0;
     right: 0;
     position: absolute;
-} 
+}
 
-
-/* "Create an account below!" banner */
+/* Top Banner */
 .banner{
     background-color: #F3E779;
     font-family: "Arial Black", "Impact", "Courier New", monospace;
 
     width: 700px;
     display: inline-block;
+
     padding: 10px;
     margin-top: 10px;
 
@@ -74,31 +74,29 @@ textarea{
     justify-content: center;
     align-items: center;
 
-    position:relative;
+    position: relative;
     z-index: 5;
-    
-    
-    /*clear:center;*/
-    /*top: -100px;*/
+
     top: auto;
-    /* float: center; */
+
     
-    
-    text-align:center;/* Add This*/
+    margin: auto;
+
+    text-align:center;
 
     font-size: 40px;
 
     box-sizing: border-box;
-    
-    
+
+    overflow: hidden;
 }
 
-.registerHeader{
+.startupHeader{
     font-size: 25px;
-    margin-top: -5px;
+    margin-top: -30px;
 }
 
-.registerPrompt{
+.messagePrompt{
     font-size: 20px;
 }
 
@@ -119,6 +117,8 @@ textarea{
     background-color: #cee3fd;
     display: grid;
     float: right;
+
+    position: relative;
 }
 
 /* "create a password" field*/
@@ -139,39 +139,8 @@ textarea{
     float: right;
 }
 
-/* "Create Account" button */
-.createAccount{    
-    
-    display: grid;
-    background-color: #0374ff;
-    border-radius: 5px;
-    /* border: 4px double #cccccc; */
-    color: #eeeeee;
-    text-align: center;
-    font-size: 16px;
-    padding: 12px;
-    width: 400px;
-    -webkit-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    -o-transition: all 0.5s;
-    transition: all 0.5s;
-    cursor: pointer;
-    margin: auto;
-    float: inline-start;
-
-    margin-bottom: -100px;
-    margin-top: -100px;
- 
-}
-
-.createAccount:hover{
-    background-color: #373630;
-    
-    /*color: rgb(0, 0, 0);*/
-}
-
-/* "Log in" button*/
-.LogIn{    
+/* "Log in" or "Registration" button that calls databse */
+.takeAction{    
     display: grid;
     
     justify-content: center;
@@ -181,7 +150,7 @@ textarea{
 
     background-color: #0374ff;
     border-radius: 5px;
-    /* border: 4px double #cccccc; */
+
     color: #eeeeee;
     text-align: center;
     font-size: 16px;
@@ -195,19 +164,59 @@ textarea{
     margin: auto;
 
     box-sizing: border-box;
-   
-    
 }
 
-.LogIn:hover{
+.takeAction:hover{
     background-color: #373630;
-    
-    /*color: rgb(0, 0, 0);*/
 }
 
-
-header{
-    font-size: x-large;
+.startup-form {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: "Consolas", "monaco", monospace;
+    font-size: 5px;
     text-align: center;
+
+    box-sizing: border-box;
 }
 
+/* Button to switch between pages */
+.switchPage{  
+    display: grid;
+    
+    font-family: "Consolas", "monaco", monospace;
+
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    display:grid;
+
+    background-color: #0374ff;
+    border-radius: 5px;
+
+    color: #eeeeee;
+    text-align: center;
+    font-size: 14px;
+    padding: 12px;
+    width: 400px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: auto;
+    float: inline-start;
+}
+
+.switchPage:hover{
+    background-color: #373630;
+}
+    
+/*placeholder text for username and password fields"*/
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgb(0, 0, 0);
+    opacity: 0.2; /* Firefox */
+    font-style: italic;
+}
