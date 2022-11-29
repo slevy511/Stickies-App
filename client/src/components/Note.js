@@ -33,7 +33,7 @@ class Note extends React.Component{
         }
     }
 
-    handleSelect(event) {
+    async handleSelect(event) {
         const target = event.target;
         const name = target.name;
         this.setState({
@@ -76,25 +76,20 @@ class Note extends React.Component{
     }
 
     async shareNote2() {
-        const targetUser = this.props.user
-        const targetBoard = this.state.targetBoard
-        if (targetUser === ''){
-
-        }
-        else if (targetUser === this.props.user) {
+        const targetUser = 'David'
+        
+        
             const shared = await axios.post("http://localhost:8000/api/share-note-2", {
                 noteID: this.props.note._id,
-                destUser: targetUser
+                destUser: targetUser,
+                boardID: this.props.boards[2]._id
             })
             if (shared.data){
                 this.setState({
                     targetUser: ''
                 })
             }
-        }
-        else {
-            
-        }
+        
     }
 
     deleteButton(){
@@ -123,6 +118,27 @@ class Note extends React.Component{
         }
     }
 
+    boardButton(){
+        if (this.props.boards[this.state.boardSelect].boardname === "Search Results"){
+            return(
+                <button name="addToBoard" className="addToBoardDisabled">
+                    Don't Add To Board
+                </button>
+               
+            )
+        }
+        else{
+            return(
+                <button name="addToBoard" className="addToBoardEnabled" onClick={this.shareNote2}>
+                        Add to Board Epic
+                    </button>
+                
+            )
+        }
+    }
+
+    
+
     render() {
         return(
             <div>
@@ -145,9 +161,14 @@ class Note extends React.Component{
                     </button>
                     {this.saveButton()}
                     <br/>
-                    <select className="boardSelect" value={this.props.boardNum} onChange={this.props.boardSelect}>
-                        { this.props.boards.map((note, board, index) => <option key={index} value={index}>{note.notename}{board.boardname}</option>)}
+                    <select className="boardSelect" name="boardSelect" value={this.props.boardNum} onChange={this.boardButton}>
+                        { this.props.boards.map((board, index) => 
+                        <option key={index} value={index}>{board.boardname}</option>)}
                     </select>
+                    
+                    <button name="share2" className="shareToBoard" onClick={this.shareNote2}>
+                        Add to Board
+                    </button>
                     <input type="text" className="shareTarget" name="targetUser" placeholder="Share Note! Enter a valid user." value={this.state.targetUser} onChange={this.handleChange} />
                     <button name="share" className="shareNote" onClick={this.shareNote}>
                         Share

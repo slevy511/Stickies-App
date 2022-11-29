@@ -104,6 +104,7 @@ class Board extends React.Component{
                         note={note}
                         boardNum={this.props.boardNum}
                         boardID={this.props.activeBoard._id}
+                        boards={this.props.boards}
                         user={this.props.user}
                         deletenote={(i, j, k) => this.deletenote(i, j, k)}
                         rightShift={(i) => this.rightShift(i)}
