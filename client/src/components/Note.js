@@ -15,7 +15,7 @@ class Note extends React.Component{
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.shareNote = this.shareNote.bind(this)
-        this.shareNote2 = this.shareNote2.bind(this)
+        this.shareNote2 = this.addToBoard.bind(this)
         this.deleteButton = this.deleteButton.bind(this)
         this.saveButton = this.saveButton.bind(this)
     }
@@ -75,20 +75,21 @@ class Note extends React.Component{
         }
     }
 
-    async shareNote2() {
+
+    async addToBoard() {
         const targetUser = 'David'
         
         
-            const shared = await axios.post("http://localhost:8000/api/share-note-2", {
-                noteID: this.props.note._id,
-                destUser: targetUser,
-                boardID: this.props.boards[2]._id
+        const shared = await axios.post("http://localhost:8000/api/add-to-board", {
+            noteID: this.props.note._id,
+            //destUser: targetUser,
+            boardID: this.props.boards[this.state.boardSelect]._id
+        })
+        if (shared.data){
+            this.setState({
+                targetUser: ''
             })
-            if (shared.data){
-                this.setState({
-                    targetUser: ''
-                })
-            }
+        }
         
     }
 
@@ -129,9 +130,9 @@ class Note extends React.Component{
         }
         else{
             return(
-                <button name="addToBoard" className="addToBoardEnabled" onClick={this.shareNote2}>
-                        Add to Board Epic
-                    </button>
+                <button name="addToBoard" className="addToBoardEnabled" onClick={this.addToBoard}>
+                        Add to Board
+                </button>
                 
             )
         }
@@ -166,9 +167,6 @@ class Note extends React.Component{
                         <option key={index} value={index}>{board.boardname}</option>)}
                     </select>
                     
-                    <button name="share2" className="shareToBoard" onClick={this.shareNote2}>
-                        Add to Board
-                    </button>
                     <input type="text" className="shareTarget" name="targetUser" placeholder="Share Note! Enter a valid user." value={this.state.targetUser} onChange={this.handleChange} />
                     <button name="share" className="shareNote" onClick={this.shareNote}>
                         Share
@@ -179,5 +177,13 @@ class Note extends React.Component{
         );
     }
 }
-
+/*
+<select className="boardSelect" name="boardSelect" value={this.props.boardNum} onChange={this.boardButton}>
+    { this.props.boards.map((board, index) => 
+    <option key={index} value={index}>{board.boardname}</option>)}
+</select>
+<button name="boardSelect" className="shareToBoard" onClick={this.shareNote2}>
+    Add to Board Dummy
+</button>
+*/
 export default Note;
