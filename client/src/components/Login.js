@@ -61,42 +61,60 @@ class LoginForm extends React.Component {
                 <br/>
                 <img className="logoRight" src={logo} alt={"Stickies!"} />
                 <br/>
-                <div className="banner">
-                    <label name="banner">
-                            {"Welcome to Stickies! "}
-                            
-                    </label>
-                </div>
-                <form className="form" onSubmit={this.handleSubmit}>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <div className="contents">
+                    <div className="banner">
+                        <label name="banner">
+                                {"Welcome to Stickies! "}
+                                
+                        </label>
+                    </div>
                     <br/>
-                    <header className="startupHeader">
-                        <small>
+                    <form className="form" onSubmit={this.handleSubmit}>
+                        <br/>
+                        <header className="startupHeader">
                             <small>
-                                <pre className="messagePrompt">
-                                    {this.state.errstate === 0 ? "Please enter your username\nand password." : 
-                                    "Incorrect username\nor password."}
-                                </pre>
+                                <small>
+                                    <pre className="messagePrompt">
+                                        {this.state.errstate === 0 ? "Please enter your username\nand password." : 
+                                        "Incorrect username\nor password."}
+                                    </pre>
+                                </small>
                             </small>
-                        </small>
-                    </header>
-                    <label>
-                        {"Username: "}
-                        <input name="username" className="userName" type="text" placeholder="Username" value={this.state.username} onChange={this.handleChange} />
-                    </label>
-                    <br/>
-                    <label>
-                        {"Password: "}
-                        <input  name="password" className="passWord" type="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} />
-                    </label>
-                    <br/>
-                    <input type="submit" className="takeAction" name="login" value="Log in" />
-                    <br/>
-                    {"Don't have an account?"}
-                    <br/>
-                    <button name="register" className="switchPage" onClick={this.register} >
-                        Register now
-                    </button>
-                </form>
+                        </header>
+                        
+                        <label>
+                            {"Username: "}
+                            <input name="username" className="userName" type="text" placeholder="Username" value={this.state.username} onChange={this.handleChange} />
+                        </label>
+                        <br/>
+                        <label>
+                            {"Password: "}
+                            <input  name="password" className="passWord" type="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} />
+                        </label>
+                        <br/>
+                        <input type="submit" className="takeAction" name="login" value="Log in" />
+                        <br/>
+                        {"Don't have an account?"}
+                        <br/>
+                        <button name="register" className="switchPage" onClick={this.register} >
+                            Register now
+                        </button>
+                    </form>
+                </div>    
             </div>
         );
     }

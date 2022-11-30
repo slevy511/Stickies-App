@@ -2,13 +2,22 @@ textarea{
     font-family: "Arial Black", "Impact", "Courier New", monospace;   
 }
 
+.contents{
+   
+    
+    
+    
+}
+
 .form {
     background-color: #F3E779;
     font-family: "Consolas", "monaco", monospace;
 
-    width: auto;
+    
+    
+    
     /* min-width: 500px; */
-    display: grid;
+    display: inline-grid;
     padding: 10px;
     
     border: 5px solid rgb(0, 0, 0);
@@ -17,14 +26,17 @@ textarea{
     justify-content: center;
     justify-content: space-around;
     align-items: center;
+    text-align:center;
 
     font-size: 26px;
     position: relative;
     z-index: 3;
     box-sizing: border-box;
     overflow: hidden;
+    margin-left: auto;
 
     top: 0px;
+    
 }
 
 #login{
@@ -45,6 +57,7 @@ textarea{
     left: 0;
     position: absolute;
     padding-bottom:10px;
+    display: inline-grid;
     z-index:1;
    
 }
@@ -58,6 +71,7 @@ textarea{
     right: 0;
     position: absolute;
     padding-bottom:10px;
+    display: inline-grid;
     z-index: 1;
    
 }
@@ -67,10 +81,11 @@ textarea{
     background-color: #F3E779;
     font-family: "Arial Black", "Impact", "Courier New", monospace;
 
-    width: 700px;
-    display: grid;
+    
+    
+    display: inline-grid;
 
-    padding: 10px;
+    padding: 17px;
     margin-top: 10px;
 
 
@@ -78,6 +93,7 @@ textarea{
     border-radius: 5px;
 
     justify-content: center;
+    justify-content: space-around;
     align-items: center;
 
     position: relative;
@@ -88,7 +104,7 @@ textarea{
     
     margin: auto;
 
-    text-align:center;
+    text-align: center;
 
     font-size: 40px;
 
@@ -122,8 +138,8 @@ textarea{
     padding: auto;
     width: 330px;
     background-color: #cee3fd;
-    display: grid;
-    float: right;
+    display: inline-grid;
+    float: inline-start;
 
     /*position: relative;*/
 }
@@ -143,19 +159,19 @@ textarea{
     padding: auto;
     width: 330px;
     background-color: #cee3fd;
-    display: grid;
-    float: right;
+    display: inline-grid;
+    float: inline-start;
 }
 
 /* "Log in" or "Registration" button that calls databse */
 .takeAction{    
-    display: grid;
+    display: inline-grid;
     font-family: "Consolas", "monaco", monospace;
 
     justify-content: center;
     align-items: center;
     position: relative;
-    display:grid;
+    display: inline-grid;
 
     background-color: #0374ff;
     border-radius: 5px;
@@ -171,7 +187,7 @@ textarea{
     transition: all 0.5s;
     cursor: pointer;
     margin: auto;
-
+    float: inline-start;
     box-sizing: border-box;
 }
 
@@ -180,34 +196,41 @@ textarea{
 }
 
 .startup-form {
-    display: grid;
+    display: inline-grid;
     justify-content: center;
     align-items: center;
     height: 100vh;
     font-family: "Consolas", "monaco", monospace;
     font-size: 5px;
     text-align: center;
+    width: 100%;
+    height: 100%;
+    float: center;
+    
+    overflow: auto;
 
     box-sizing: border-box;
+
+   
 }
 
 /* Button to switch between pages */
 .switchPage{  
-    display: grid;
+    display: inline-grid;
     
     font-family: "Consolas", "monaco", monospace;
 
     justify-content: center;
     align-items: center;
     position: relative;
-    display:grid;
+    display:inline-grid;
 
     background-color: #0374ff;
     border-radius: 5px;
 
     color: #eeeeee;
     text-align: center;
-    font-size: 14px;
+    font-size: 16px;
     padding: 12px;
     width: 400px;
     -webkit-transition: all 0.5s;
