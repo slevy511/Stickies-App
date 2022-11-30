@@ -61,12 +61,27 @@ class LoginForm extends React.Component {
                 <br/>
                 <img className="logoRight" src={logo} alt={"Stickies!"} />
                 <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
                 <div className="banner">
                     <label name="banner">
                             {"Welcome to Stickies! "}
                             
                     </label>
                 </div>
+                
                 <form className="form" onSubmit={this.handleSubmit}>
                     <br/>
                     <header className="startupHeader">

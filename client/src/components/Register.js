@@ -52,50 +52,65 @@ class RegistrationForm extends React.Component {
   }
 
   render() {
-    return (
-      <div className="startup-form">
-        <img className="logo" src={logo} alt={"Stickies!"} />
-        <br/>
-        <img className="logoRight" src={logo} alt={"Stickies!"} />
-        <br/>
-        <div className="banner">
-          <label name="banner">
-                  {"Create an account below!"}
-                  
-          </label>
-        </div>
-        <form className="form" onSubmit={this.handleSubmit}>
-          <br/>
-          <header className="startupHeader">
-            <small>
-              <small>
-                <pre className="messagePrompt">
-                  {this.state.errstate === 0 ? "Please enter a username\nand password." : 
-                  "That username is taken.\nTry another username."}
-                </pre>
-              </small>
-            </small>
-          </header>
-          <label>
-            {"Username: "}
-            <input name="username" className="userName" type="text" placeholder="Username" value={this.state.username} onChange={this.handleChange} />
-          </label>
-          <br/>
-          <label>
-            {"Password: "}
-            <input name="password" className="passWord" type="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} />
-          </label>
-          <br/>
-          <input type="submit" name="login" className="takeAction" value="Create Account" />
-          <br/>
-          {"Already have an account?"}
-          <br/>
-          <button name="login" className="switchPage" onClick={this.login} >
-            Log in
-          </button>
-        </form>
-      </div>
-    );
+      return (
+          <div className="startup-form">
+              <img className="logo" src={logo} alt={"Stickies!"} />
+              <br/>
+              <img className="logoRight" src={logo} alt={"Stickies!"} />
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <div className="banner">
+                <label name="banner">
+                        {"Create an account below!"}
+                        
+                </label>
+              </div>
+              
+              <form className="form" onSubmit={this.handleSubmit}>
+                <br/>
+                <header className="startupHeader">
+                  <small>
+                    <small>
+                      <pre className="messagePrompt">
+                        {this.state.errstate === 0 ? "Please enter a username\nand password." : 
+                        "That username is taken.\nTry another username."}
+                      </pre>
+                    </small>
+                  </small>
+                </header>
+                <label>
+                  {"Username: "}
+                  <input name="username" className="userName" type="text" placeholder="Username" value={this.state.username} onChange={this.handleChange} />
+                </label>
+                <br/>
+                <label>
+                  {"Password: "}
+                  <input name="password" className="passWord" type="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} />
+                </label>
+                <br/>
+                <input type="submit" name="login" className="takeAction" value="Create Account" />
+                <br/>
+                {"Already have an account?"}
+                <br/>
+                <button name="login" className="switchPage" onClick={this.login} >
+                  Log in
+                </button>
+              </form>
+          </div>
+      );
   }
 }
 
