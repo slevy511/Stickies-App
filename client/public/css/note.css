@@ -259,5 +259,49 @@ textarea {
 
 
 
+.addToBoardEnabled{
+
+    height: 30px;
+    background-color: #0374ff;
+    border-radius: 0px;
+    /* border: 4px double #cccccc; */
+    color: #eeeeee;
+    text-align: center;
+    font-size: 15px;
+    padding: 4px;
+    width: 125px;
+    height: 35px;
+    border: 2px solid black;
+    white-space: nowrap;
+
+}
+
+.addToBoardEnabled:hover {
+    background-color: blue;
+    color: rgb(255, 255, 255);
+    
+}
+
+.addToBoardDisabled{
+
+    height: 30px;
+    background-color: #424e5e;
+    border-radius: 0px;
+    /* border: 4px double #cccccc; */
+    color: #eeeeee;
+    text-align: center;
+    font-size: 15px;
+    padding: 4px;
+    width: 125px;
+    height: 35px;
+    border: 2px solid black;
+    white-space: nowrap;
+
+}
 
 
+
+
+
+
+/* *************** width for select */

@@ -70,7 +70,7 @@ class Board extends React.Component{
     }
 
     addButton(){
-        if (this.props.boardNum === 1 || this.props.boardNum === 2){
+        if (this.props.boardNum == 1 || this.props.boardNum == 2){
             return null
         }
         else{

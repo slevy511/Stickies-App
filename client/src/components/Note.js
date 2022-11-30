@@ -28,7 +28,7 @@ class Note extends React.Component{
         this.setState({
             [name]: event.target.value,
         });
-        if (name !== "targetUser"){
+        if (name != "targetUser"){
             this.setState({
                 changed: true
             })
@@ -89,7 +89,7 @@ class Note extends React.Component{
     }
 
     deleteButton(){
-        if (this.props.boardNum === 2){
+        if (this.props.boardNum == 2){
             return null
         }
         else{
@@ -118,14 +118,14 @@ class Note extends React.Component{
         if (this.props.boards[this.state.boardSelect].boardname === "Search Results"){
             return(
                 <button name="addToBoard" className="addToBoardDisabled">
-                    Don't Add To Board
+                    Add To Board
                 </button>
             )
         }
         else{
             return(
                 <button name="addToBoard" className="addToBoardEnabled" onClick={this.addToBoard}>
-                    Add to Board
+                    Add To Board
                 </button>
             )
         }
