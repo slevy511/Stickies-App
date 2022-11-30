@@ -5,7 +5,6 @@ import LoginForm from './components/Login'
 import RegistrationForm from './components/Register'
 import Board from './components/Board'
 import Lowerbar from './components/Lowerbar'
-import logo from './logo.png'
 
 class App extends React.Component{
   constructor(props) {
@@ -113,10 +112,10 @@ class App extends React.Component{
         <RegistrationForm login={this.login} setActive={this.setActive} />
         : null}
         {this.state.active === 'Board' && this.state.toggle ?
-        <Board logout={this.logout} user={this.state.user} activeBoard={activeBoard} boardNum={this.state.boardNum}/>
+        <Board boards={this.state.boards} logout={this.logout} user={this.state.user} activeBoard={activeBoard} boardNum={this.state.boardNum}/>
         : null}
         {this.state.active === 'Board' && !this.state.toggle ?
-        <Board logout={this.logout} user={this.state.user} activeBoard={activeBoard} boardNum={this.state.boardNum} />
+        <Board boards={this.state.boards} logout={this.logout} user={this.state.user} activeBoard={activeBoard} boardNum={this.state.boardNum} />
         : null}
         {this.state.active === 'Board' ?
         <Lowerbar boards={this.state.boards} boardNum={this.state.boardNum} boardSelect={this.boardSelect}

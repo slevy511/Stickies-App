@@ -171,13 +171,8 @@
   color: #eeeeee;
   font-size: 15px;
   border-color: black;
+  max-width: 125px;
 }
-
-.boardSelect-content{
-  
-}
-
-
 
 /*createBoard button*/
 .createBoard{

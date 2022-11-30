@@ -545,6 +545,57 @@ app.post('/api/share-note', function(req, res){
     })
 })
 
+// function for adding notes to other boards by ID
+app.post('/api/add-to-board', function(req, res){
+    const noteID = req.body.noteID
+    const boardID = req.body.boardID
+
+    // ensure the note is in the database
+    Note.findById(mongoose.Types.ObjectId(noteID), function(err, foundNote) {
+        if (err) {
+            res.send(err)
+        }
+        else {
+            if (foundNote == null){
+                res.send(false)
+            }
+            else {
+                // find the requested board's ID
+                Board.findById(mongoose.Types.ObjectId(boardID), async function(err, foundBoard){
+                    if (err) {
+                        res.send(err)
+                    }
+                    else {
+                        if (foundBoard == null) {
+                            res.send(false)
+                        }
+                        else {
+                            if (!foundBoard.noteIds.includes(noteID)){
+                                Board.findByIdAndUpdate(foundBoard._id, {$push: {noteIds: [noteID]}}, function (err){
+                                    if (err){
+                                        res.send(err)
+                                    }
+                                })
+                                Note.findByIdAndUpdate(mongoose.Types.ObjectId(noteID), {$inc: { linkcount: 1} }, function(err, ){
+                                    if (err) {
+                                        res.send(err)
+                                    }
+                                    else{
+                                        res.send(true)
+                                    }
+                                })
+                            }
+                            else{
+                                res.send(true)
+                            }                                        
+                        }
+                    }
+                })
+            }
+        }
+    })
+})
+
 /* MOVE NOTE */
 app.post('/api/shift-left', function(req, res) {
     // shifts note at specified index left and returns true if order is changed

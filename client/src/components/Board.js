@@ -31,7 +31,7 @@ class Board extends React.Component{
     }
 
     async addnote() {
-        const newnote = await Axios.post("http://localhost:8000/api/create-note", {
+        await Axios.post("http://localhost:8000/api/create-note", {
             notename: '',
             content: '',
             boardID: this.props.activeBoard._id
@@ -104,6 +104,7 @@ class Board extends React.Component{
                         note={note}
                         boardNum={this.props.boardNum}
                         boardID={this.props.activeBoard._id}
+                        boards={this.props.boards}
                         user={this.props.user}
                         deletenote={(i, j, k) => this.deletenote(i, j, k)}
                         rightShift={(i) => this.rightShift(i)}
