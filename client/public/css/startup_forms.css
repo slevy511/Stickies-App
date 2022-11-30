@@ -134,6 +134,7 @@ textarea{
     align-items: right;
     justify-content: right;
     font-family: "Consolas", "monaco", monospace;
+    box-sizing: border-box;
     border: 3px solid rgb(3, 133, 255);
     border-radius: 0px;
 
