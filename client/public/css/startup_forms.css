@@ -2,13 +2,18 @@ textarea{
     font-family: "Arial Black", "Impact", "Courier New", monospace;   
 }
 
+.contents{
+    min-width:60%;
+    min-height: 60%;
+    
+}
+
 .form {
     background-color: #F3E779;
     font-family: "Consolas", "monaco", monospace;
 
     
-    min-width:51%;
-    min-height: 60%;
+    
     
     /* min-width: 500px; */
     display: inline-block;
@@ -76,8 +81,6 @@ textarea{
     font-family: "Arial Black", "Impact", "Courier New", monospace;
 
     
-    min-width:51%;
-    min-height: 60%;
     
     display: inline-block;
 
@@ -135,7 +138,7 @@ textarea{
     width: 330px;
     background-color: #cee3fd;
     display: grid;
-    float: right;
+    float: inline-start;
 
     /*position: relative;*/
 }
@@ -156,7 +159,7 @@ textarea{
     width: 330px;
     background-color: #cee3fd;
     display: grid;
-    float: right;
+    float: inline-start;
 }
 
 /* "Log in" or "Registration" button that calls databse */
@@ -183,7 +186,7 @@ textarea{
     transition: all 0.5s;
     cursor: pointer;
     margin: auto;
-
+    float: inline-start;
     box-sizing: border-box;
 }
 
