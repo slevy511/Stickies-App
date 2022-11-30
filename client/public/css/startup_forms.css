@@ -3,8 +3,9 @@ textarea{
 }
 
 .contents{
-    min-width:60%;
-    min-height: 60%;
+   
+    
+    
     
 }
 
@@ -16,7 +17,7 @@ textarea{
     
     
     /* min-width: 500px; */
-    display: inline-block;
+    display: inline-grid;
     padding: 10px;
     
     border: 5px solid rgb(0, 0, 0);
@@ -56,7 +57,7 @@ textarea{
     left: 0;
     position: absolute;
     padding-bottom:10px;
-    display: inline-block;
+    display: inline-grid;
     z-index:1;
    
 }
@@ -70,7 +71,7 @@ textarea{
     right: 0;
     position: absolute;
     padding-bottom:10px;
-    display: inline-block;
+    display: inline-grid;
     z-index: 1;
    
 }
@@ -82,9 +83,9 @@ textarea{
 
     
     
-    display: inline-block;
+    display: inline-grid;
 
-    padding: 10px;
+    padding: 17px;
     margin-top: 10px;
 
 
@@ -137,7 +138,7 @@ textarea{
     padding: auto;
     width: 330px;
     background-color: #cee3fd;
-    display: grid;
+    display: inline-grid;
     float: inline-start;
 
     /*position: relative;*/
@@ -158,19 +159,19 @@ textarea{
     padding: auto;
     width: 330px;
     background-color: #cee3fd;
-    display: grid;
+    display: inline-grid;
     float: inline-start;
 }
 
 /* "Log in" or "Registration" button that calls databse */
 .takeAction{    
-    display: grid;
+    display: inline-grid;
     font-family: "Consolas", "monaco", monospace;
 
     justify-content: center;
     align-items: center;
     position: relative;
-    display: grid;
+    display: inline-grid;
 
     background-color: #0374ff;
     border-radius: 5px;
@@ -195,7 +196,7 @@ textarea{
 }
 
 .startup-form {
-    display: inline-block;
+    display: inline-grid;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -204,20 +205,25 @@ textarea{
     text-align: center;
     width: 100%;
     height: 100%;
+    float: center;
+    
+    overflow: auto;
 
     box-sizing: border-box;
+
+   
 }
 
 /* Button to switch between pages */
 .switchPage{  
-    display: grid;
+    display: inline-grid;
     
     font-family: "Consolas", "monaco", monospace;
 
     justify-content: center;
     align-items: center;
     position: relative;
-    display:grid;
+    display:inline-grid;
 
     background-color: #0374ff;
     border-radius: 5px;

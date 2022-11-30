@@ -82,7 +82,7 @@ class LoginForm extends React.Component {
                                 
                         </label>
                     </div>
-                    
+                    <br/>
                     <form className="form" onSubmit={this.handleSubmit}>
                         <br/>
                         <header className="startupHeader">
