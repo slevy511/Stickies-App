@@ -90,8 +90,16 @@ class Note extends React.Component{
 
     deleteButton(){
         if (this.props.boardNum == 2){
+<<<<<<< HEAD
            return null;
             
+=======
+            return(
+                <button name="delete" className="deleteNoteDummy">
+                    X
+                </button>
+            )
+>>>>>>> 6b456b207dc046e7f0fb7b3493b53a6d575b5e3e
         }
         else{
             return(
