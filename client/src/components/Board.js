@@ -31,7 +31,7 @@ class Board extends React.Component{
     }
 
     async addnote() {
-        const newnote = await Axios.post("http://localhost:8000/api/create-note", {
+        await Axios.post("http://localhost:8000/api/create-note", {
             notename: '',
             content: '',
             boardID: this.props.activeBoard._id
@@ -70,7 +70,7 @@ class Board extends React.Component{
     }
 
     addButton(){
-        if (this.props.boardNum == 1 || this.props.boardNum == 2){
+        if (this.props.boardNum === 1 || this.props.boardNum === 2){
             return null
         }
         else{

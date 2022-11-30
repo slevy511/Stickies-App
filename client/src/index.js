@@ -5,7 +5,6 @@ import LoginForm from './components/Login'
 import RegistrationForm from './components/Register'
 import Board from './components/Board'
 import Lowerbar from './components/Lowerbar'
-import logo from './logo.png'
 
 class App extends React.Component{
   constructor(props) {
