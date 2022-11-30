@@ -71,7 +71,11 @@ class Board extends React.Component{
 
     addButton(){
         if (this.props.boardNum == 1 || this.props.boardNum == 2){
-            return null
+            return(
+                <label name="banner" className="nonexistentAddnote">
+                    
+                </label>
+            )
         }
         else{
             return(

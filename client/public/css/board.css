@@ -36,7 +36,7 @@
     align-items: left;
 
     position:relative;
-    z-index: 5;
+    z-index: 6;
       
     /*clear:center;*/
     /*top: -100px;*/
@@ -52,11 +52,15 @@
     top: -10px;
     left: 5px;
     
-    margin: 5px;
+    margin: auto;
     margin-right: 20px;
     white-space:nowrap;
 
-    max-width: 300px;
+    max-width: 50000px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
     
     
 } 
@@ -94,6 +98,35 @@
   background-color: #F3E779;
   
   color: rgb(0, 0, 0);
+}
+
+.nonexistentAddnote{  
+  display: inline-block; 
+  
+  background-color: darkblue;
+  
+  border: 2px solid darkblue;
+
+  /* border: 4px double #cccccc; */
+  color: transparent;
+  text-align: center;
+  font-size: px;
+  padding: 10px;
+  width: 1px;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: -10px;
+  position: relative;
+  font-weight: bold;
+  margin-right: 30px;
+  margin-left: auto;
+  white-space: nowrap;
+  opacity: 0.0;
+
+  
 }
 
   /* "Log out" button */
