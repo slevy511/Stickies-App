@@ -90,7 +90,8 @@ class Note extends React.Component{
 
     deleteButton(){
         if (this.props.boardNum == 2){
-            return null
+           return null;
+            
         }
         else{
             return(

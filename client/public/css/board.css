@@ -55,13 +55,15 @@
     margin: 5px;
     margin-right: 20px;
     white-space:nowrap;
+
+    max-width: 300px;
     
     
 } 
 
 /* "New Note" Button */
 .addnote{  
-  /* display: inline-block; */
+  display: inline-block; 
   
   background-color: #0374ff;
   
@@ -85,9 +87,7 @@
   margin-left: auto;
   white-space: nowrap;
 
-  position: absolute;
-  right: 150px;
-  float: right;
+  
 }
 
 .addnote:hover{
@@ -120,9 +120,7 @@
     margin-right: 5px;
     white-space: nowrap;
 
-    position: absolute;
-    right: 10px;
-    float: right;
+    
     
   }
 

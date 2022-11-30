@@ -82,20 +82,22 @@ class Board extends React.Component{
         }
     }
 
+    //add leftmost note left button disabled (same with rightmost)
+
     render() {
         return(
             <>
             <div className="app-bar">
-            <img className="logo2" src={logo} alt={"Stickies!"} />
-            <div className="boardNameBanner">
-                    <label name="banner">
-                            {this.props.activeBoard.boardname}        
-                    </label>
-            </div>
-            {this.addButton()}
-            <button className="logout" name="logout" onClick={this.logout}>
-                Log Out
-            </button>
+                <img className="logo2" src={logo} alt={"Stickies!"} />
+                <div className="boardNameBanner">
+                        <label name="banner">
+                                {this.props.activeBoard.boardname}        
+                        </label>
+                </div>
+                {this.addButton()}
+                <button className="logout" name="logout" onClick={this.logout}>
+                    Log Out
+                </button>
             </div>
             <div className="board">
                 {this.state.notes.map((note, index) => {
@@ -113,6 +115,11 @@ class Board extends React.Component{
                         key={note._id} />
                     );
                 })}
+            </div>
+            <div>
+                <br/>
+                <br/>
+                <br/>
             </div>
             </>
         );
