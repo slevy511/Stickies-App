@@ -23,7 +23,7 @@ textarea{
     box-sizing: border-box;
     overflow: hidden;
 
-    top: -50px;
+    top: 0px;
 }
 
 #login{
@@ -65,7 +65,7 @@ textarea{
     display: inline-block;
 
     padding: 10px;
-    margin-top: 10px;
+    margin-top: 20px;
 
 
     border: 5px solid rgb(0, 0, 0);
@@ -93,7 +93,7 @@ textarea{
 
 .startupHeader{
     font-size: 25px;
-    margin-top: -30px;
+    margin-top: -50px;
 }
 
 .messagePrompt{
@@ -142,7 +142,8 @@ textarea{
 /* "Log in" or "Registration" button that calls databse */
 .takeAction{    
     display: grid;
-    
+    font-family: "Consolas", "monaco", monospace;
+
     justify-content: center;
     align-items: center;
     position: relative;
