@@ -28,7 +28,7 @@ class Note extends React.Component{
         this.setState({
             [name]: event.target.value,
         });
-        if (name !== "targetUser"){
+        if (name != "targetUser"){
             this.setState({
                 changed: true
             })
@@ -89,7 +89,7 @@ class Note extends React.Component{
     }
 
     deleteButton(){
-        if (this.props.boardNum === 2){
+        if (this.props.boardNum == 2){
             return null
         }
         else{
