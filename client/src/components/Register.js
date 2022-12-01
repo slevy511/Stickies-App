@@ -56,7 +56,6 @@ class RegistrationForm extends React.Component {
           <div className="startup-form">
               <img className="logo" src={logo} alt={"Stickies!"} />
               <br/>
-              <img className="logoRight" src={logo} alt={"Stickies!"} />
               <br/>
               <br/>
               <br/>
@@ -111,6 +110,22 @@ class RegistrationForm extends React.Component {
                     Log in
                   </button>
                 </form>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
               </div>  
           </div>
       );

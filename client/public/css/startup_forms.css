@@ -61,19 +61,7 @@ textarea{
    
 }
 
-/* right logo */
-.logoRight {
-    width: 110px;
-    height: 110px;
-    object-fit: cover;
-    top: 0;
-    right: 0;
-    position: absolute;
-    padding-bottom:10px;
-    display: inline-grid;
-    z-index: 1;
-   
-}
+
 
 /* Top Banner */
 .banner{
@@ -178,7 +166,7 @@ textarea{
     text-align: center;
     font-size: 16px;
     padding: 12px;
-    width: 400px;
+    width: 250px;
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
     -o-transition: all 0.5s;
@@ -190,7 +178,7 @@ textarea{
 }
 
 .takeAction:hover{
-    background-color: #373630;
+    background-color: blue;
 }
 
 .startup-form {
@@ -230,7 +218,7 @@ textarea{
     text-align: center;
     font-size: 16px;
     padding: 12px;
-    width: 400px;
+    width: 250px;
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
     -o-transition: all 0.5s;
@@ -241,7 +229,7 @@ textarea{
 }
 
 .switchPage:hover{
-    background-color: #373630;
+    background-color: blue;
 }
     
 /*placeholder text for username and password fields"*/
