@@ -96,10 +96,8 @@
 }
 
 .addnote:hover{
-  background-color: #F3E779;
-  
-  color: rgb(0, 0, 0);
-}
+  background-color: blue;
+  }
 
 .nonexistentAddnote{  
   display: inline-block; 
@@ -159,7 +157,7 @@
   }
 
 .logout:hover{
-    background-color: #a49937;
+    background-color: blue;
   }  
 
   .shareNote{

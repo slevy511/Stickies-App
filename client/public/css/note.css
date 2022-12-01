@@ -43,7 +43,7 @@ textarea {
     /* border: 3px solid rgb(3, 133, 255); */
     border-radius: 0px;
 
-    font-size: 12px;
+    font-size: 15px;
     border: 2px solid black;
 }
 
@@ -111,7 +111,7 @@ textarea {
 
 .deleteNoteDummy{
     
-    background-color: #1c1e20;
+    background-color: #424e5e;
     /* border-radius: 5px; */
     /* border: 4px double #cccccc; */
     color: #eeeeee;
@@ -156,10 +156,10 @@ textarea {
 }
 
 .saveButtonChanged{
-    background-color: rgb(194, 194, 66);
+    background-color: khaki;
     color: black;
     /* border: 4px double #cccccc; */
-    color: #eeeeee;
+    color: #000000;
     text-align: center;
     font-size: 15px;
     height: 35px;
@@ -170,8 +170,8 @@ textarea {
 }
 
 .saveButtonChanged:hover {
-    background-color: red;
-    color: rgb(255, 255, 255);
+    background-color: lemonchiffon;
+    color: rgb(0, 0, 0);
     
 }
 
