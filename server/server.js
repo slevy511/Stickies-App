@@ -164,6 +164,7 @@ app.get('/api/valid-login/:username/:password', function(req, res) {
 
 })
 
+/*
 // sends back all users & passwords for testing purposes
 app.get('/api/all-users', function(req, res) {
     User.find(function(err, users) {
@@ -177,6 +178,7 @@ app.get('/api/all-users', function(req, res) {
         }
     })
 })
+*/
 
 /* BOARD API */
 
@@ -317,18 +319,18 @@ app.post('/api/delete-board', function(req, res) {
 })
 
 // sends back all boards
-app.get('/api/all-boards', function(req, res) {
-    Board.find(function(err, boards) {
-        if (err) {
-            console.log(err)
-            res.send("Error!")
-        }
-        else {
-            // boards is an array of JavaScript board objects
-            res.send(boards)
-        }
-    })
-})
+// app.get('/api/all-boards', function(req, res) {
+//     Board.find(function(err, boards) {
+//         if (err) {
+//             console.log(err)
+//             res.send("Error!")
+//         }
+//         else {
+//             // boards is an array of JavaScript board objects
+//             res.send(boards)
+//         }
+//     })
+// })
 
 /* NOTE API */
 
@@ -670,18 +672,18 @@ app.post('/api/shift-right', function(req, res) {
 
 
 // sends back all notes for testing purposes
-app.get('/api/all-notes', function(req, res) {
-    Note.find(function(err, notes) {
-        if (err) {
-            console.log(err)
-            res.send("Error!")
-        }
-        else {
-            // users is an array of JavaScript user objects
-            res.send(notes)
-        }
-    })
-})
+// app.get('/api/all-notes', function(req, res) {
+//     Note.find(function(err, notes) {
+//         if (err) {
+//             console.log(err)
+//             res.send("Error!")
+//         }
+//         else {
+//             // users is an array of JavaScript user objects
+//             res.send(notes)
+//         }
+//     })
+// })
 
 
 /* SEARCH FUNCTIONALITY */
